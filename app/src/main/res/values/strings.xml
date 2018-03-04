@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MedicalCenter</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="account_fragment">Moje konto</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="search_fragment">Centra medyczne</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="examination_fragment">Badania</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="statistics_fragment">Statystyki</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
