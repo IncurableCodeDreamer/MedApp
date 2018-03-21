@@ -1,33 +1,169 @@
 package com.example.klaudia.medicalcenter.Model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Klaudia on 11.03.2018.
  */
 
 public class Results {
-    private Photos[] photos;
-
-    private String id;
-
-    private String place_id;
-
+    @SerializedName("icon")
+    @Expose
     private String icon;
 
-    private String vicinity;
+    @SerializedName("place_id")
+    @Expose
+    private String place_id;
 
+    @SerializedName("reviews")
+    @Expose
+    private Reviews[] reviews;
+
+    @SerializedName("scope")
+    @Expose
     private String scope;
 
-    private String name;
+    @SerializedName("website")
+    @Expose
+    private String website;
 
-    private String rating;
+    @SerializedName("international_phone_number")
+    @Expose
+    private String international_phone_number;
 
-    private String[] types;
+    @SerializedName("adr_address")
+    @Expose
+    private String adr_address;
 
+    @SerializedName("url")
+    @Expose
+    private String url;
+
+    @SerializedName("reference")
+    @Expose
     private String reference;
 
-    private Opening_hours opening_hours;
-
+    @SerializedName("geometry")
+    @Expose
     private Geometry geometry;
+
+    @SerializedName("opening_hours")
+    @Expose
+    private OpeningHours opening_hours;
+
+    @SerializedName("utc_offset")
+    @Expose
+    private String utc_offset;
+
+    @SerializedName("id")
+    @Expose
+    private String id;
+
+    @SerializedName("photos")
+    @Expose
+    private Photos[] photos;
+
+    @SerializedName("vincinity")
+    @Expose
+    private String vicinity;
+
+    @SerializedName("address_components")
+    @Expose
+    private AddressComponent[] address_components;
+
+    @SerializedName("name")
+    @Expose
+    private String name;
+
+    @SerializedName("formatted_address")
+    @Expose
+    private String formatted_address;
+
+    @SerializedName("formatted_phone_number")
+    @Expose
+    private String formatted_phone_number;
+
+    @SerializedName("rating")
+    @Expose
+    private String rating;
+
+    @SerializedName("types")
+    @Expose
+    private String[] types;
+
+    public AddressComponent[] getAddressComponents() {
+        return address_components;
+    }
+
+    public void setAddressComponents(AddressComponent[] address_components) {
+        this.address_components = address_components;
+    }
+
+    public String getAdrAddress() {
+        return adr_address;
+    }
+
+    public void setAdrAddress(String adrAddress) {
+        this.adr_address = adrAddress;
+    }
+
+    public String getFormattedAddress() {
+        return formatted_address;
+    }
+
+    public void setFormattedAddress(String formattedAddress) {
+        this.formatted_address = formattedAddress;
+    }
+
+    public String getFormattedPhoneNumber() {
+        return formatted_phone_number;
+    }
+
+    public void setFormattedPhoneNumber(String formattedPhoneNumber) {
+        this.formatted_phone_number = formattedPhoneNumber;
+    }
+
+    public String getInternationalPhoneNumber() {
+        return international_phone_number;
+    }
+
+    public void setInternationalPhoneNumber(String internationalPhoneNumber) {
+        this.international_phone_number = internationalPhoneNumber;
+    }
+
+    public Reviews[] getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Reviews[] reviews) {
+        this.reviews = reviews;
+    }
+
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUtcOffset() {
+        return utc_offset;
+    }
+
+    public void setUtcOffset(String utcOffset) {
+        this.utc_offset = utcOffset;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 
     public Photos[] getPhotos ()
     {
@@ -129,12 +265,12 @@ public class Results {
         this.reference = reference;
     }
 
-    public Opening_hours getOpening_hours ()
+    public OpeningHours getOpening_hours ()
     {
         return opening_hours;
     }
 
-    public void setOpening_hours (Opening_hours opening_hours)
+    public void setOpening_hours (OpeningHours opening_hours)
     {
         this.opening_hours = opening_hours;
     }

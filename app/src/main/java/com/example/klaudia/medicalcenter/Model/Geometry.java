@@ -1,12 +1,20 @@
 package com.example.klaudia.medicalcenter.Model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Klaudia on 11.03.2018.
  */
 
 public class Geometry {
+
+    @SerializedName("viewport")
+    @Expose
     private Viewport viewport;
 
+    @SerializedName("location")
+    @Expose
     private Location location;
 
     public Viewport getViewport ()

@@ -5,13 +5,20 @@
     <item
         android:id="@+id/action_hospital"
         android:enabled="true"
-        android:title="hospital"
+        android:title="Szpitale"
         android:icon="@drawable/ic_local_hospital_black_24dp"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/myLocalization"
+        android:enabled="true"
+        android:title="Moja pozycja"
+        android:icon="@drawable/ic_place_black_24dp"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_pharmacy"
         android:enabled="true"
-        android:title="pharmacy"
+        android:title="Apteki"
         android:icon="@drawable/ic_local_pharmacy_black_24dp"
         app:showAsAction="ifRoom"/>
+
 </menu>

@@ -1,5 +1,6 @@
 package com.example.klaudia.medicalcenter;
 
+import com.example.klaudia.medicalcenter.Model.Results;
 import com.example.klaudia.medicalcenter.Remote.IGoogleApiService;
 import com.example.klaudia.medicalcenter.Remote.RetrofitClient;
 
@@ -8,6 +9,8 @@ import com.example.klaudia.medicalcenter.Remote.RetrofitClient;
  */
 
 public class Common {
+
+    public static Results currentResults;
     private static final String GOOGLE_API_URL="https://maps.googleapis.com/";
     public static IGoogleApiService getGoogleAPIService()
     {

@@ -1,12 +1,20 @@
 package com.example.klaudia.medicalcenter.Model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Klaudia on 11.03.2018.
  */
 
 public class Location {
+
+    @SerializedName("lng")
+    @Expose
     private String lng;
 
+    @SerializedName("lat")
+    @Expose
     private String lat;
 
     public String getLng ()

@@ -1,6 +1,7 @@
 package com.example.klaudia.medicalcenter.Remote;
 
 import com.example.klaudia.medicalcenter.Model.MyPlaces;
+import com.example.klaudia.medicalcenter.Model.PlaceDetails;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,4 +15,7 @@ public interface IGoogleApiService {
 
     @GET
     Call<MyPlaces> getNearByPlaces(@Url String url);
+
+    @GET
+    Call<PlaceDetails> getDetailsPlace(@Url String url);
 }

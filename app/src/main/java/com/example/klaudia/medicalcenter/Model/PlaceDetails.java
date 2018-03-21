@@ -4,15 +4,14 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Klaudia on 11.03.2018.
+ * Created by Klaudia on 13.03.2018.
  */
 
-public class MyPlaces {
-    private String next_page_token;
+public class PlaceDetails {
 
-    @SerializedName("results")
+    @SerializedName("result")
     @Expose
-    private Results[] results;
+    private Results result;
 
     @SerializedName("html_attributions")
     @Expose
@@ -22,24 +21,14 @@ public class MyPlaces {
     @Expose
     private String status;
 
-    public String getNext_page_token ()
+    public Results getResult ()
     {
-        return next_page_token;
+        return result;
     }
 
-    public void setNext_page_token (String next_page_token)
+    public void setResult (Results result)
     {
-        this.next_page_token = next_page_token;
-    }
-
-    public Results[] getResults ()
-    {
-        return results;
-    }
-
-    public void setResults (Results[] results)
-    {
-        this.results = results;
+        this.result = result;
     }
 
     public String[] getHtml_attributions ()
@@ -65,6 +54,6 @@ public class MyPlaces {
     @Override
     public String toString()
     {
-        return "ClassPojo [next_page_token = "+next_page_token+", results = "+results+", html_attributions = "+html_attributions+", status = "+status+"]";
+        return "ClassPojo [result = "+result+", html_attributions = "+html_attributions+", status = "+status+"]";
     }
 }

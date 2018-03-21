@@ -1,6 +1,7 @@
 package com.example.klaudia.medicalcenter;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -51,6 +52,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationRequest mLocationRequest;
 
     IGoogleApiService mService;
+    MyPlaces currentPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +114,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .enqueue(new Callback<MyPlaces>() {
                     @Override
                     public void onResponse(Call<MyPlaces> call, Response<MyPlaces> response) {
+
+                        currentPlace = response.body();
+
                         if(response.isSuccessful())
                         {
                             for(int i=0;i<response.body().getResults().length;i++)
@@ -126,16 +131,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 markerOptions.position(latLng);
                                 markerOptions.title(placeName);
                                 if(placeType.equals("hospital"))
-                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                                 else if(placeType.equals("pharmacy"))
-                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                                 else
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
+                                markerOptions.snippet(String.valueOf(i));
 
                                 mMap.addMarker(markerOptions);
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                                 mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
-
                             }
                         }
                     }
@@ -197,8 +203,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
-
-
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Common.currentResults = currentPlace.getResults()[Integer.parseInt(marker.getSnippet())];
+                startActivity(new Intent(MapsActivity.this,ViewDetailsActivity.class));
+                return true;
+            }
+        });
     }
 
     private synchronized void buildGoogleApiClient() {

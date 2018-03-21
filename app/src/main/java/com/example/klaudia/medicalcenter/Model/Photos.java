@@ -1,16 +1,28 @@
 package com.example.klaudia.medicalcenter.Model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Klaudia on 11.03.2018.
  */
 
 public class Photos {
+
+    @SerializedName("photo_reference")
+    @Expose
     private String photo_reference;
 
+    @SerializedName("height")
+    @Expose
     private String height;
 
+    @SerializedName("html_attributions")
+    @Expose
     private String[] html_attributions;
 
+    @SerializedName("width")
+    @Expose
     private String width;
 
     public String getPhoto_reference ()
