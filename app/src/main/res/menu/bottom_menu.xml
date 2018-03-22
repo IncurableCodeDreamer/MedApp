@@ -7,7 +7,7 @@
         android:enabled="true"
         android:title="Szpitale"
         android:icon="@drawable/ic_local_hospital_black_24dp"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/myLocalization"
         android:enabled="true"

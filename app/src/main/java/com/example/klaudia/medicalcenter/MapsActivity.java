@@ -81,6 +81,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     case R.id.action_pharmacy:
                         nearByPlace("pharmacy");
                         break;
+                    case R.id.myLocalization:
+                        LatLng latLng=new LatLng(latitude,longitude);
+                        mMap.clear();
+                        MarkerOptions markerOptions=new MarkerOptions()
+                                .position(latLng)
+                                .title("Moja pozycja")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+
+                        mMarker=mMap.addMarker(markerOptions);
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+                        break;
                     default:
                         break;
                 }
@@ -108,6 +120,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void nearByPlace(final String placeType) {
         mMap.clear();
+        LatLng latLng=new LatLng(latitude,longitude);
+        MarkerOptions markerOptions=new MarkerOptions()
+                .position(latLng)
+                .title("Moja pozycja")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+
+        mMarker=mMap.addMarker(markerOptions);
         String url=getUrl(latitude,longitude,placeType);
 
         mService.getNearByPlaces(url)
@@ -133,7 +152,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 if(placeType.equals("hospital"))
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                                 else if(placeType.equals("pharmacy"))
-                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                                 else
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
 
@@ -206,9 +225,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Common.currentResults = currentPlace.getResults()[Integer.parseInt(marker.getSnippet())];
-                startActivity(new Intent(MapsActivity.this,ViewDetailsActivity.class));
-                return true;
+                LatLng latLng=new LatLng(latitude,longitude);
+                if(marker.getPosition().latitude != latLng.latitude && marker.getPosition().longitude != latLng.longitude) {
+                    Common.currentResults = currentPlace.getResults()[Integer.parseInt(marker.getSnippet())];
+                    startActivity(new Intent(MapsActivity.this, ViewDetailsActivity.class));
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
         });
     }
@@ -254,15 +279,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         latitude=location.getLatitude();
         longitude=location.getLongitude();
 
-        LatLng latLng=new LatLng(latitude,longitude);
-        MarkerOptions markerOptions=new MarkerOptions()
-                .position(latLng)
-                .title("Twoja pozycja")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+       // LatLng latLng=new LatLng(latitude,longitude);
+        //MarkerOptions markerOptions=new MarkerOptions()
+         //       .position(latLng)
+          //      .title("Twoja pozycja")
+           //     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
-        mMarker=mMap.addMarker(markerOptions);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+        //mMarker=mMap.addMarker(markerOptions);
+      //  mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+       // mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
         if(mGoogleApiClient!=null)
         {

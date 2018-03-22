@@ -53,6 +53,7 @@ public class ViewDetailsActivity extends AppCompatActivity {
         place_name.setText("");
         opening_hours.setText("");
         place_adress.setText("");
+        telefonNumber.setText("");
 
         viewOnMap.setOnClickListener(new View.OnClickListener() {
             @Override
