@@ -14,7 +14,7 @@ import java.net.URL;
 
 public class DowloadURL {
 
-    public String readUrl (String myUrl) throws IOException{
+    public String readUrl(String myUrl) throws IOException {
         String data = "";
         InputStream inputStream = null;
 
@@ -30,7 +30,7 @@ public class DowloadURL {
             StringBuffer stringBuffer = new StringBuffer();
 
             String line = "";
-            while((line=bufferedReader.readLine())!=null){
+            while ((line = bufferedReader.readLine()) != null) {
                 stringBuffer.append(line);
             }
 
@@ -41,8 +41,7 @@ public class DowloadURL {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             inputStream.close();
             httpURLConnection.disconnect();
         }

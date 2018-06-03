@@ -17,29 +17,24 @@ public class Periods {
     @Expose
     private Close close;
 
-    public Open getOpen ()
-    {
+    public Open getOpen() {
         return open;
     }
 
-    public void setOpen (Open open)
-    {
+    public void setOpen(Open open) {
         this.open = open;
     }
 
-    public Close getClose ()
-    {
+    public Close getClose() {
         return close;
     }
 
-    public void setClose (Close close)
-    {
+    public void setClose(Close close) {
         this.close = close;
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [open = "+open+", close = "+close+"]";
+    public String toString() {
+        return "ClassPojo [open = " + open + ", close = " + close + "]";
     }
 }

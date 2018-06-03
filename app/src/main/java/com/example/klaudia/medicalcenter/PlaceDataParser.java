@@ -14,11 +14,11 @@ import java.util.List;
 
 public class PlaceDataParser {
 
-    private HashMap<String,String> getPlace(JSONObject googlePlaceJson){
-        HashMap <String,String> googlePlacesMap = new HashMap<>();
+    private HashMap<String, String> getPlace(JSONObject googlePlaceJson) {
+        HashMap<String, String> googlePlacesMap = new HashMap<>();
         String placeName = "-NA-";
         String vicinity = "-NA-";
-        String latitude="";
+        String latitude = "";
         String longitude = "";
         String reference = "";
 
@@ -27,7 +27,7 @@ public class PlaceDataParser {
 
                 placeName = googlePlaceJson.getString("name");
             }
-            if(!googlePlaceJson.isNull("vicinity")){
+            if (!googlePlaceJson.isNull("vicinity")) {
                 vicinity = googlePlaceJson.getString("vicinity");
             }
             latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat");
@@ -35,24 +35,24 @@ public class PlaceDataParser {
 
             reference = googlePlaceJson.getString("reference");
 
-            googlePlacesMap.put("place_name",placeName);
-            googlePlacesMap.put("vicinity",vicinity);
-            googlePlacesMap.put("lat",latitude);
-            googlePlacesMap.put("lng",longitude);
-            googlePlacesMap.put("reference",reference);
+            googlePlacesMap.put("place_name", placeName);
+            googlePlacesMap.put("vicinity", vicinity);
+            googlePlacesMap.put("lat", latitude);
+            googlePlacesMap.put("lng", longitude);
+            googlePlacesMap.put("reference", reference);
 
-        }catch(JSONException e){
-                e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return  googlePlacesMap;
+        return googlePlacesMap;
     }
 
-    private List<HashMap<String,String>> getPlaces(JSONArray jsonArray){
+    private List<HashMap<String, String>> getPlaces(JSONArray jsonArray) {
         int count = jsonArray.length();
-        List<HashMap<String,String>> placesList = new ArrayList<>();
-        HashMap<String,String> placeMap=null;
+        List<HashMap<String, String>> placesList = new ArrayList<>();
+        HashMap<String, String> placeMap = null;
 
-        for(int i=0; i<count;i++){
+        for (int i = 0; i < count; i++) {
             try {
                 placeMap = getPlace((JSONObject) jsonArray.get(i));
                 placesList.add(placeMap);
@@ -61,10 +61,10 @@ public class PlaceDataParser {
                 e.printStackTrace();
             }
         }
-        return  placesList;
+        return placesList;
     }
 
-    public List<HashMap<String,String>> parse(String jsonData) {
+    public List<HashMap<String, String>> parse(String jsonData) {
         JSONArray jsonArray = null;
         JSONObject jsonObject;
 

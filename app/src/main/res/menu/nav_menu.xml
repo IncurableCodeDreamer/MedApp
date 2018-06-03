@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_account"
-        android:title="Konto"
-        android:icon="@drawable/ic_person_black_24dp"/>
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/konto" />
 
-    <item android:id="@+id/nav_search"
-        android:title="Centra medyczne"
-        android:icon="@drawable/ic_local_hospital_black_24dp"/>
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_local_hospital_black_24dp"
+        android:title="@string/centraMedyczne" />
 
-    <item android:id="@+id/nav_examination"
-        android:title="Badania"
-        android:icon="@drawable/ic_favorite_black_24dp"/>
+    <item
+        android:id="@+id/nav_examination"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="@string/badania" />
 
-    <item android:id="@+id/nav_statistics"
-        android:title="Statystyki"
-        android:icon="@drawable/ic_equalizer_black_24dp"/>
+    <item
+        android:id="@+id/nav_statistics"
+        android:icon="@drawable/ic_equalizer_black_24dp"
+        android:title="@string/statystyki" />
 
-    <item android:id="@+id/nav_properties"
-        android:title="Ustawienia"
-        android:icon="@drawable/ic_settings_black_24dp"/>
+    <item
+        android:id="@+id/nav_properties"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/ustawienia" />
 
-    <item android:id="@+id/nav_log_out"
-        android:title="Wyloguj"
-        android:icon="@drawable/ic_power_settings_new_black_24dp"/>
+    <item
+        android:id="@+id/nav_log_out"
+        android:icon="@drawable/ic_power_settings_new_black_24dp"
+        android:title="@string/wyloguj" />
 
 </menu>

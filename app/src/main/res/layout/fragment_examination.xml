@@ -10,4 +10,11 @@
         android:layout_height="match_parent"
         android:text="@string/examination_fragment" />
 
+    <Button
+        android:id="@+id/calendar"
+        android:layout_marginTop="30px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/kalendarz"/>
+
 </FrameLayout>

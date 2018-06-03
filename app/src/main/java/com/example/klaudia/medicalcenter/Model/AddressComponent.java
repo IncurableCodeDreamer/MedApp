@@ -46,8 +46,7 @@ public class AddressComponent {
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [long_name = "+longName+", types = "+types+", short_name = "+shortName+"]";
+    public String toString() {
+        return "ClassPojo [long_name = " + longName + ", types = " + types + ", short_name = " + shortName + "]";
     }
 }

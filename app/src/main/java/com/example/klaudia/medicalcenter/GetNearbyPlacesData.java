@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Klaudia on 06.03.2018.
  */
 
-public class GetNearbyPlacesData extends AsyncTask <Object, String, String>{
+public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
 
     String GooglePlaceData;
     GoogleMap mMap;
@@ -26,7 +26,7 @@ public class GetNearbyPlacesData extends AsyncTask <Object, String, String>{
     @Override
     protected String doInBackground(Object... objects) {
         mMap = (GoogleMap) objects[0];
-        url= (String) objects[1];
+        url = (String) objects[1];
 
         DowloadURL dowloadURL = new DowloadURL();
         try {
@@ -38,25 +38,25 @@ public class GetNearbyPlacesData extends AsyncTask <Object, String, String>{
     }
 
     @Override
-    protected void onPostExecute (String s){
-        List <HashMap<String,String>> nearbyPlaceList = null;
+    protected void onPostExecute(String s) {
+        List<HashMap<String, String>> nearbyPlaceList = null;
         PlaceDataParser placeDataParser = new PlaceDataParser();
         nearbyPlaceList = placeDataParser.parse(s);
         showNearbyPlaces(nearbyPlaceList);
 
     }
 
-    private  void showNearbyPlaces(List<HashMap<String,String>> nearbyPlacesList){
-        for(int i=0; i<nearbyPlacesList.size();i++){
+    private void showNearbyPlaces(List<HashMap<String, String>> nearbyPlacesList) {
+        for (int i = 0; i < nearbyPlacesList.size(); i++) {
             MarkerOptions markerOptions = new MarkerOptions();
-            HashMap<String,String> googlePlace = nearbyPlacesList.get(i);
+            HashMap<String, String> googlePlace = nearbyPlacesList.get(i);
 
             String placeName = googlePlace.get("place_name");
             String vicinity = googlePlace.get("vicinity");
             double lat = Double.parseDouble(googlePlace.get("lat"));
             double lng = Double.parseDouble(googlePlace.get("lng"));
 
-            LatLng latLng = new LatLng(lat,lng);
+            LatLng latLng = new LatLng(lat, lng);
             markerOptions.position(latLng);
             markerOptions.title(placeName + " : " + vicinity);
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));

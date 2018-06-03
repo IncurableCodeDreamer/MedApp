@@ -61,11 +61,11 @@ public class Search extends Fragment {
 
     //@OnClick(R.id.btngo)
     //void onClick(View view){
-        //Intent intent = new Intent(getActivity(),MapsActivity.class);
-       // Bundle bundle = new Bundle();
-      //  intent.putExtras(bundle);
-     //   startActivity(intent);
-   //}
+    //Intent intent = new Intent(getActivity(),MapsActivity.class);
+    // Bundle bundle = new Bundle();
+    //  intent.putExtras(bundle);
+    //   startActivity(intent);
+    //}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -11,9 +11,9 @@ import com.example.klaudia.medicalcenter.Remote.RetrofitClient;
 public class Common {
 
     public static Results currentResults;
-    private static final String GOOGLE_API_URL="https://maps.googleapis.com/";
-    public static IGoogleApiService getGoogleAPIService()
-    {
+    private static final String GOOGLE_API_URL = "https://maps.googleapis.com/";
+
+    public static IGoogleApiService getGoogleAPIService() {
         return RetrofitClient.getClient(GOOGLE_API_URL).create(IGoogleApiService.class);
     }
 }

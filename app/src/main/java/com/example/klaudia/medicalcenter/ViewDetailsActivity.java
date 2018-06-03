@@ -20,16 +20,27 @@ import com.example.klaudia.medicalcenter.Remote.IGoogleApiService;
 import com.squareup.picasso.Picasso;
 
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ViewDetailsActivity extends AppCompatActivity {
 
+    @BindView(R.id.photo)
     ImageView photo;
+    @BindView(R.id.ratingBar)
     RatingBar ratingBar;
-    TextView opening_hours,place_adress,place_name;
+    @BindView(R.id.place_open_hours)
+    TextView opening_hours;
+    @BindView(R.id.place_address)
+    TextView place_adress;
+    @BindView(R.id.place_name)
+    TextView place_name;
+    @BindView(R.id.map_show)
     Button viewOnMap;
+    @BindView(R.id.telephon_number)
     Button telefonNumber;
 
     IGoogleApiService mService;
@@ -39,16 +50,9 @@ public class ViewDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_details);
+        ButterKnife.bind(this);
 
         mService = Common.getGoogleAPIService();
-
-        photo = (ImageView) findViewById(R.id.photo);
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        place_adress = (TextView) findViewById(R.id.place_address);
-        place_name = (TextView) findViewById(R.id.place_name);
-        opening_hours = (TextView) findViewById(R.id.place_open_hours);
-        viewOnMap = (Button) findViewById(R.id.map_show);
-        telefonNumber = (Button) findViewById(R.id.telephon_number);
 
         place_name.setText("");
         opening_hours.setText("");
@@ -78,12 +82,12 @@ public class ViewDetailsActivity extends AppCompatActivity {
         }
 
         if (Common.currentResults.getOpening_hours() != null) {
-            opening_hours.setText("Status: ");
+            opening_hours.setText(this.getString(R.string.status));
 
             if (Common.currentResults.getOpening_hours().getOpen_now() == "true") {
-                opening_hours.append("otwarte");
+                opening_hours.append(this.getString(R.string.otwarte));
             } else {
-                opening_hours.append("zamknięte");
+                opening_hours.append(this.getString(R.string.zamkniete));
             }
         } else {
             opening_hours.setVisibility(View.GONE);
@@ -109,10 +113,10 @@ public class ViewDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:"+myPlace.getResult().getFormattedPhoneNumber().trim()));
+                callIntent.setData(Uri.parse("tel:" + myPlace.getResult().getFormattedPhoneNumber().trim()));
                 callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                if (ActivityCompat.checkSelfPermission(ViewDetailsActivity.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.checkSelfPermission(ViewDetailsActivity.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
                 try {
@@ -126,16 +130,16 @@ public class ViewDetailsActivity extends AppCompatActivity {
 
     private String getPlaceUrl(String place_id) {
         StringBuilder url = new StringBuilder("https://maps.googleapis.com/maps/api/place/details/json");
-        url.append("?placeid="+ place_id);
-        url.append("&key="+getResources().getString(R.string.browser_key));
+        url.append("?placeid=" + place_id);
+        url.append("&key=" + getResources().getString(R.string.browser_key));
         return url.toString();
     }
 
     private String getPhotoOfPlace(String photo_reference, int maxWidth) {
         StringBuilder url = new StringBuilder("https://maps.googleapis.com/maps/api/place/photo");
-        url.append("?maxwidth="+ maxWidth);
-        url.append("&photoreference="+photo_reference);
-        url.append("&key="+getResources().getString(R.string.browser_key));
+        url.append("?maxwidth=" + maxWidth);
+        url.append("&photoreference=" + photo_reference);
+        url.append("&key=" + getResources().getString(R.string.browser_key));
         return url.toString();
     }
 }

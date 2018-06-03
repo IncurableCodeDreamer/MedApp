@@ -42,11 +42,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
 
-    private static final int MY_PERMISSION_CODE =1000 ;
+    private static final int MY_PERMISSION_CODE = 1000;
     private GoogleMap mMap;
     private GoogleApiClient mGoogleApiClient;
 
-    private double latitude,longitude;
+    private double latitude, longitude;
     private Location mLastLocation;
     private Marker mMarker;
     private LocationRequest mLocationRequest;
@@ -63,18 +63,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mService=Common.getGoogleAPIService();
+        mService = Common.getGoogleAPIService();
 
-        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.M)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
-        BottomNavigationView bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottom_navigator);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigator);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId())
-                {
+                switch (item.getItemId()) {
                     case R.id.action_hospital:
                         nearByPlace("hospital");
                         break;
@@ -82,14 +80,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         nearByPlace("pharmacy");
                         break;
                     case R.id.myLocalization:
-                        LatLng latLng=new LatLng(latitude,longitude);
+                        LatLng latLng = new LatLng(latitude, longitude);
                         mMap.clear();
-                        MarkerOptions markerOptions=new MarkerOptions()
+                        MarkerOptions markerOptions = new MarkerOptions()
                                 .position(latLng)
-                                .title("Moja pozycja")
+                                .title(getApplicationContext().getString(R.string.pozycja)) //this.getString(R.string.pozycja)
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
-                        mMarker=mMap.addMarker(markerOptions);
+                        mMarker = mMap.addMarker(markerOptions);
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
                         break;
@@ -102,7 +100,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private boolean checkLocationPermission() {
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION))
                 ActivityCompat.requestPermissions(this, new String[]{
                         Manifest.permission.ACCESS_FINE_LOCATION
@@ -113,21 +111,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Manifest.permission.ACCESS_FINE_LOCATION
                 }, MY_PERMISSION_CODE);
             return false;
-        }
-        else
+        } else
             return true;
     }
 
     private void nearByPlace(final String placeType) {
         mMap.clear();
-        LatLng latLng=new LatLng(latitude,longitude);
-        MarkerOptions markerOptions=new MarkerOptions()
+        LatLng latLng = new LatLng(latitude, longitude);
+        MarkerOptions markerOptions = new MarkerOptions()
                 .position(latLng)
-                .title("Moja pozycja")
+                .title(getApplicationContext().getString(R.string.pozycja))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
-        mMarker=mMap.addMarker(markerOptions);
-        String url=getUrl(latitude,longitude,placeType);
+        mMarker = mMap.addMarker(markerOptions);
+        String url = getUrl(latitude, longitude, placeType);
 
         mService.getNearByPlaces(url)
                 .enqueue(new Callback<MyPlaces>() {
@@ -136,22 +133,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         currentPlace = response.body();
 
-                        if(response.isSuccessful())
-                        {
-                            for(int i=0;i<response.body().getResults().length;i++)
-                            {
-                                MarkerOptions markerOptions=new MarkerOptions();
-                                Results googlePlace=response.body().getResults()[i];
-                                double lat=Double.parseDouble(googlePlace.getGeometry().getLocation().getLat());
-                                double lng=Double.parseDouble(googlePlace.getGeometry().getLocation().getLng());
-                                String placeName=googlePlace.getName();
-                                String vicinity=googlePlace.getVicinity();
-                                LatLng latLng=new LatLng(lat,lng);
+                        if (response.isSuccessful()) {
+                            for (int i = 0; i < response.body().getResults().length; i++) {
+                                MarkerOptions markerOptions = new MarkerOptions();
+                                Results googlePlace = response.body().getResults()[i];
+                                double lat = Double.parseDouble(googlePlace.getGeometry().getLocation().getLat());
+                                double lng = Double.parseDouble(googlePlace.getGeometry().getLocation().getLng());
+                                String placeName = googlePlace.getName();
+                                String vicinity = googlePlace.getVicinity();
+                                LatLng latLng = new LatLng(lat, lng);
                                 markerOptions.position(latLng);
                                 markerOptions.title(placeName);
-                                if(placeType.equals("hospital"))
+                                if (placeType.equals("hospital"))
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-                                else if(placeType.equals("pharmacy"))
+                                else if (placeType.equals("pharmacy"))
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                                 else
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
@@ -173,35 +168,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private String getUrl(double latitude, double longitude, String placeType) {
-        StringBuilder googlePlacesUrl=new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-        googlePlacesUrl.append("location="+latitude+","+longitude);
-        googlePlacesUrl.append("&radius="+10000);
-        googlePlacesUrl.append("&type="+placeType);
+        StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googlePlacesUrl.append("location=" + latitude + "," + longitude);
+        googlePlacesUrl.append("&radius=" + 10000);
+        googlePlacesUrl.append("&type=" + placeType);
         googlePlacesUrl.append("&sensor=true");
-        googlePlacesUrl.append("&key="+getResources().getString(R.string.browser_key));
-        Log.d("getUrl",googlePlacesUrl.toString());
+        googlePlacesUrl.append("&key=" + getResources().getString(R.string.browser_key));
+        Log.d("getUrl", googlePlacesUrl.toString());
         return googlePlacesUrl.toString();
     }
 
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode)
-        {
-            case MY_PERMISSION_CODE:
-            {
-                if(grantResults.length > 0 && grantResults[0]==PackageManager.PERMISSION_GRANTED )
-                {
-                    if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED)
-                    {
-                        if(mGoogleApiClient==null)
+        switch (requestCode) {
+            case MY_PERMISSION_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        if (mGoogleApiClient == null)
 
                             buildGoogleApiClient();
                         mMap.setMyLocationEnabled(true);
                     }
-                }
-                else
-                    Toast.makeText(this,"Odmowa dostępu", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(this, this.getString(R.string.odmowa), Toast.LENGTH_SHORT).show();
             }
             break;
         }
@@ -211,27 +201,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 buildGoogleApiClient();
                 mMap.setMyLocationEnabled(true);
             }
-        }
-        else
-        {
+        } else {
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                LatLng latLng=new LatLng(latitude,longitude);
-                if(marker.getPosition().latitude != latLng.latitude && marker.getPosition().longitude != latLng.longitude) {
+                LatLng latLng = new LatLng(latitude, longitude);
+                if (marker.getPosition().latitude != latLng.latitude && marker.getPosition().longitude != latLng.longitude) {
                     Common.currentResults = currentPlace.getResults()[Integer.parseInt(marker.getSnippet())];
                     startActivity(new Intent(MapsActivity.this, ViewDetailsActivity.class));
                     return true;
-                }
-                else {
+                } else {
                     return false;
                 }
             }
@@ -239,7 +226,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private synchronized void buildGoogleApiClient() {
-        mGoogleApiClient= new GoogleApiClient.Builder(this)
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
@@ -249,13 +236,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        mLocationRequest=new LocationRequest();
+        mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED)
-        {
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,mLocationRequest,this);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
     }
 
@@ -271,27 +257,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onLocationChanged(Location location) {
-        mLastLocation=location;
-        if(mMarker!=null)
-        {
+        mLastLocation = location;
+        if (mMarker != null) {
             mMarker.remove();
         }
-        latitude=location.getLatitude();
-        longitude=location.getLongitude();
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
 
-       // LatLng latLng=new LatLng(latitude,longitude);
+        // LatLng latLng=new LatLng(latitude,longitude);
         //MarkerOptions markerOptions=new MarkerOptions()
-         //       .position(latLng)
-          //      .title("Twoja pozycja")
-           //     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+        //       .position(latLng)
+        //      .title("Twoja pozycja")
+        //     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
         //mMarker=mMap.addMarker(markerOptions);
-      //  mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-       // mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+        //  mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        // mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 
-        if(mGoogleApiClient!=null)
-        {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
+        if (mGoogleApiClient != null) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
     }
 }
