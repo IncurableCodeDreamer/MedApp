@@ -12,6 +12,11 @@
         android:title="@string/centraMedyczne" />
 
     <item
+        android:id="@+id/nav-medicinie"
+        android:icon="@drawable/ic_healing_black_24dp"
+        android:title="@string/lekarstwa" />
+
+    <item
         android:id="@+id/nav_examination"
         android:icon="@drawable/ic_favorite_black_24dp"
         android:title="@string/badania" />
@@ -30,5 +35,4 @@
         android:id="@+id/nav_log_out"
         android:icon="@drawable/ic_power_settings_new_black_24dp"
         android:title="@string/wyloguj" />
-
 </menu>

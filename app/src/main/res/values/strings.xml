@@ -2,17 +2,9 @@
     <string name="app_name">MedicalCenter</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="account_fragment">Moje konto</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="examination_fragment">Badania</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="statistics_fragment">Statystyki</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
     <string name="status">Status: </string>
@@ -27,6 +19,7 @@
     <string name="adresMiejsca">Adres miejsca</string>
     <string name="godzinyOtwarcia">Godziny otwarcia</string>
     <string name="apteki">Apteki</string>
+    <string name="lekarstwa">Lekarstwa</string>
     <string name="szpitale">Szpitale</string>
     <string name="dane">Imie i nazwisko</string>
     <string name="konto">Konto</string>
