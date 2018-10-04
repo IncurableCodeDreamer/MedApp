@@ -15,9 +15,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
-    <string name="status">Status</string>
-    <string name="otwarte">otwarte</string>
-    <string name="zamkniete">zamknięte</string>
+    <string name="status">Status: </string>
+    <string name="otwarte"> otwarte</string>
+    <string name="zamkniete"> zamknięte</string>
     <string name="pozycja">Moja pozycja</string>
     <string name="odmowa">Odmowa dostępu</string>
     <string name="powitanie">Witaj w aplikacji</string>
