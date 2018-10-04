@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
-
         drawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
 
@@ -76,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frameLayout, fragment).commit();
         setTitle(menuItem.getTitle());
@@ -90,6 +90,5 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
     }
 }
