@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_hospital"
+        android:enabled="true"
+        android:icon="@drawable/ic_local_hospital_black_24dp"
+        android:title="@string/szpitale"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/myLocalization"
+        android:enabled="true"
+        android:icon="@drawable/ic_place_black_24dp"
+        android:title="@string/pozycja"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_pharmacy"
+        android:enabled="true"
+        android:icon="@drawable/ic_local_pharmacy_black_24dp"
+        android:title="@string/apteki"
+        app:showAsAction="ifRoom" />
+
+</menu>
