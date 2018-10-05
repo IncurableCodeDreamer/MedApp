@@ -1,6 +1,7 @@
 package com.example.klaudia.medicalcenter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -63,6 +64,8 @@ public class Medicine extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Intent intent = new Intent(getActivity(), MedicineActivity.class);
+        getActivity().startActivity(intent);
         return inflater.inflate(R.layout.fragment_medicine, container, false);
     }
 

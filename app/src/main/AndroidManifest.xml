@@ -44,8 +44,9 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".ViewDetailsActivity"></activity>
-        <activity android:name=".CalendarActivity"></activity>
+        <activity android:name=".ViewDetailsActivity" />
+        <activity android:name=".CalendarActivity" />
+        <activity android:name=".MedicineActivity" />
     </application>
 
 </manifest>
