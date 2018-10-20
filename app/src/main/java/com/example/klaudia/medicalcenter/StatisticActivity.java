@@ -13,7 +13,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MedicineActivity extends AppCompatActivity {
+public class StatisticActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle Toggle;
     @BindView(R.id.nav_view)
@@ -24,8 +24,8 @@ public class MedicineActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medicine);
-        setTitle(MedicineActivity.this.getTitle());
+        setContentView(R.layout.activity_statistic);
+        setTitle(StatisticActivity.this.getTitle());
         ButterKnife.bind(this);
 
         Toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
@@ -49,7 +49,7 @@ public class MedicineActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                MenuSelector.selectedItemDrawer(item, MedicineActivity.this, drawerLayout);
+                MenuSelector.selectedItemDrawer(item, StatisticActivity.this, drawerLayout);
                 return true;
             }
         });

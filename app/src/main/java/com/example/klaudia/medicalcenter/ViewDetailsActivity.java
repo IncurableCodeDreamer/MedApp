@@ -1,6 +1,5 @@
 package com.example.klaudia.medicalcenter;
 
-import android.*;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -85,9 +84,9 @@ public class ViewDetailsActivity extends AppCompatActivity {
             opening_hours.setText(this.getString(R.string.status));
 
             if (Common.currentResults.getOpening_hours().getOpen_now() == "true") {
-                opening_hours.append(this.getString(R.string.otwarte));
+                opening_hours.append(this.getString(R.string.status_open));
             } else {
-                opening_hours.append(this.getString(R.string.zamkniete));
+                opening_hours.append(this.getString(R.string.status_closed));
             }
         } else {
             opening_hours.setVisibility(View.GONE);

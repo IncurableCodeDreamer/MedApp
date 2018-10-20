@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/drawerLayout"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".MedicineActivity">
+tools:context=".StatisticActivity">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -14,7 +14,7 @@ tools:context=".MedicineActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/title_activity_medicine"/>
+        android:text="@string/title_activity_statistic"/>
 
 </LinearLayout>
 

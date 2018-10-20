@@ -1,32 +1,36 @@
 <resources>
-    <string name="app_name">MedicalCenter</string>
+    <!--Global-->
+    <string name="app_name">Medical Center</string>
+    <string name="user_data">Imie i nazwisko</string>
+    <string name="user_mail">imie.nazwisko@mail.com</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="account_fragment">Moje konto</string>
-    <string name="examination_fragment">Badania</string>
-    <string name="statistics_fragment">Statystyki</string>
-    <string name="hello_blank_fragment">Lekarstwa</string>
-    <string name="title_activity_maps">Map</string>
+
+    <!--Trials-->
+    <string name="hello">Witaj w aplikacji</string>
+
+    <!--Details & Maps-->
     <string name="status">Status: </string>
-    <string name="otwarte"> otwarte</string>
-    <string name="zamkniete"> zamknięte</string>
-    <string name="pozycja">Moja pozycja</string>
-    <string name="odmowa">Odmowa dostępu</string>
-    <string name="powitanie">Witaj w aplikacji</string>
-    <string name="nazwaMiejsca">Nazwa miejsca</string>
-    <string name="pokazNaMapie">Pokaż na mapie</string>
-    <string name="telefon">Telefon</string>
-    <string name="adresMiejsca">Adres miejsca</string>
-    <string name="godzinyOtwarcia">Godziny otwarcia</string>
-    <string name="apteki">Apteki</string>
-    <string name="lekarstwa">Lekarstwa</string>
-    <string name="szpitale">Szpitale</string>
-    <string name="dane">Imie i nazwisko</string>
-    <string name="konto">Konto</string>
-    <string name="centraMedyczne">Centra medyczne</string>
-    <string name="badania">Badania</string>
-    <string name="statystyki">Statystyki</string>
-    <string name="ustawienia">Ustawienia</string>
-    <string name="wyloguj">Wyloguj</string>
-    <string name="kalendarz">Kalendarz</string>
+    <string name="status_closed"> otwarte</string>
+    <string name="status_open"> zamknięte</string>
+    <string name="position">Moja pozycja</string>
+    <string name="reject_acces">Odmowa dostępu</string>
+    <string name="place_name">Nazwa miejsca</string>
+    <string name="show_on_map">Pokaż na mapie</string>
+    <string name="telephone">Telefon</string>
+    <string name="address">Adres miejsca</string>
+    <string name="open_hours">Godziny otwarcia</string>
+    <string name="pharmacy">Apteki</string>
+    <string name="medicine">Lekarstwa</string>
+    <string name="hospital">Szpitale</string>
+
+    <!--Navigation & Names of activities-->
+    <string name="title_activity_maps">Centra medyczne</string>
+    <string name="title_activity_account">Konto</string>
+    <string name="title_activity_calendar">Badania</string>
+    <string name="title_activity_medicine">Lekarstwa</string>
+    <string name="title_activity_statistic">Statystyki</string>
+    <string name="title_activity_view_details">Szczegóły</string>
+    <string name="title_activity_settings">Ustawienia</string>
+    <string name="title_activity_logout">Wyloguj</string>
 </resources>
