@@ -1,91 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.klaudia.medicalcenter.ViewDetailsActivity">
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/drawerLayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ViewDetailsActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/photo"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/ic_image_black_24dp" />
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:layout_centerVertical="true"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/place_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text="@string/nazwaMiejsca"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_image_black_24dp" />
 
-            <TextView
-                android:id="@+id/place_address"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text="@string/adresMiejsca"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/place_open_hours"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/godzinyOtwarcia"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/place_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="@string/place_name"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/telephon_number"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/telefon"
-                android:textColor="@color/gray"
-                android:textSize="16sp"
-                android:textStyle="normal" />
+                <TextView
+                    android:id="@+id/place_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="@string/address"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:max="5"
-                android:scaleX="0.65"
-                android:scaleY="0.65" />
+                <TextView
+                    android:id="@+id/place_open_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/open_hours"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/map_show"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pokazNaMapie" />
+                <Button
+                    android:id="@+id/telephon_number"
+                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/telephone"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
 
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:max="5"
+                    android:scaleX="0.65"
+                    android:scaleY="0.65" />
+
+                <Button
+                    android:id="@+id/map_show"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/show_on_map" />
+
+            </LinearLayout>
         </LinearLayout>
+    </RelativeLayout>
 
-    </LinearLayout>
+<FrameLayout
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"/>
 
-</RelativeLayout>
+<android.support.design.widget.NavigationView
+    android:id="@+id/nav_view"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    app:headerLayout="@layout/nav_header"
+    app:menu="@menu/nav_menu"/>
+
+</android.support.v4.widget.DrawerLayout>

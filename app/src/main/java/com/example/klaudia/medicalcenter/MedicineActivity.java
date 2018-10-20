@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MedicineActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle Toggle;
     @BindView(R.id.nav_view)
@@ -22,20 +24,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        setTitle(MainActivity.this.getTitle());
+        setContentView(R.layout.activity_medicine);
+        setTitle(MedicineActivity.this.getTitle());
         ButterKnife.bind(this);
 
         Toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         if (Toggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                MenuSelector.selectedItemDrawer(item, MainActivity.this, drawerLayout);
+                MenuSelector.selectedItemDrawer(item, MedicineActivity.this, drawerLayout);
                 return true;
             }
         });
