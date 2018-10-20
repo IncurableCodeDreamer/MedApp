@@ -8,12 +8,26 @@ android:layout_height="match_parent"
 tools:context=".CalendarActivity">
 
 <LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <CalendarView
+        android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/addEventToCalendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dodaj wydarzenie"/>
+
+    <Button
+        android:id="@+id/deleteEventFromCalendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuń wydarzenie"/>
 
 </LinearLayout>
 

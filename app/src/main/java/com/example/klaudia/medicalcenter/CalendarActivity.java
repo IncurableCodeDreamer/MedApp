@@ -7,6 +7,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
 
 import java.util.Objects;
 
@@ -16,10 +19,11 @@ import butterknife.ButterKnife;
 public class CalendarActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle Toggle;
-    @BindView(R.id.nav_view)
-    NavigationView navigationView;
-    @BindView(R.id.drawerLayout)
-    DrawerLayout drawerLayout;
+    @BindView(R.id.calendar) CalendarView calendarView;
+    @BindView(R.id.nav_view) NavigationView navigationView;
+    @BindView(R.id.drawerLayout) DrawerLayout drawerLayout;
+    @BindView(R.id.addEventToCalendar) Button addEventBtn;
+    @BindView(R.id.deleteEventFromCalendar) Button deleteEventBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,17 @@ public class CalendarActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
+
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                //po wybraniu daty pokaz fragment z wydarzeniem
+            }
+        });
+
+        //addEventBtn.setOnClickListener(this);
+        //deleteEventBtn.setOnClickListener(this);
     }
 
     @Override
