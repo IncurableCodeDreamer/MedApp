@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20sp">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nazwa leku:"/>
+
+    <TextView
+        android:id="@+id/medicine_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wartosc"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginStart="2sp"
+        android:layout_marginEnd="2sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ilość:"/>
+
+    <TextView
+        android:id="@+id/medicine_item_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wartosc"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginStart="2sp"
+        android:layout_marginEnd="2sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Częstotliwość spożywania:"/>
+
+    <TextView
+        android:id="@+id/medicine_item_frequency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wartosc"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginStart="2sp"
+        android:layout_marginEnd="2sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Informacje dodatkowe:"/>
+
+    <TextView
+        android:id="@+id/medicine_item_add_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wartosc"/>
+
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="@android:color/darker_gray"
+    android:layout_marginStart="1sp"
+    android:layout_marginEnd="2sp"/>
+
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@android:color/darker_gray"
+    android:layout_marginStart="2sp"
+    android:layout_marginEnd="2sp"/>
+
+</LinearLayout>

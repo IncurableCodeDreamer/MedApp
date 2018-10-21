@@ -8,13 +8,26 @@ android:layout_height="match_parent"
 tools:context=".MedicineActivity">
 
 <LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/title_activity_medicine"/>
+        android:layout_height="wrap_content"
+        android:text="Dodaj leki oraz ustaw częstotliwość ich spożywania wraz z godziną aby umożliwić powiadomienia"/>
+
+    <EditText
+        android:id="@+id/medicine_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wyszukaj lek"/>
+
+    <ListView
+        android:id="@+id/medicine_listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
 

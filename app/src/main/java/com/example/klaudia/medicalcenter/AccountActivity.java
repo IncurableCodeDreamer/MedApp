@@ -1,13 +1,20 @@
 package com.example.klaudia.medicalcenter;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import java.util.Dictionary;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -20,6 +27,12 @@ public class AccountActivity extends AppCompatActivity {
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+
+    @BindView(R.id.ifDonor)
+    TextView ifDonor;
+    @BindView(R.id.accountList)
+    ListView listView;
+    DatabaseHelper DBhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +47,15 @@ public class AccountActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
+
+        //AccountAdapter accountAdapter = new AccountAdapter();
+        //listView.setAdapter(accountAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.account_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -41,8 +63,11 @@ public class AccountActivity extends AppCompatActivity {
 
         if (Toggle.onOptionsItemSelected(item)) {
             return true;
+        } else {
+            Intent intent = new Intent(AccountActivity.this, AddAccountActivity.class);
+            startActivity(intent);
+            return true;
         }
-        return super.onOptionsItemSelected(item);
     }
 
     private void setDrawerContent(NavigationView navigationView) {

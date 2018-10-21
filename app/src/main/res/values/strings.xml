@@ -24,9 +24,18 @@
     <string name="medicine">Lekarstwa</string>
     <string name="hospital">Szpitale</string>
 
+    <!--account-->
+    <string name="ifDonor">Dawca narządów </string>
+
+    <!--medicine-->
+    <string name="add_medicine">Dodaj lek</string>
+
     <!--Navigation & Names of activities-->
     <string name="title_activity_maps">Centra medyczne</string>
     <string name="title_activity_account">Konto</string>
+    <string name="title_activity_add_account">Dodawanie paramertu</string>
+    <string name="title_activity_add_medicine">Dodawanie leku</string>
+    <string name="title_activity_edit_medicine">Edycja leku</string>
     <string name="title_activity_calendar">Badania</string>
     <string name="title_activity_medicine">Lekarstwa</string>
     <string name="title_activity_statistic">Statystyki</string>

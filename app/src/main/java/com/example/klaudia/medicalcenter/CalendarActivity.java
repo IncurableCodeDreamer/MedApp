@@ -19,11 +19,14 @@ import butterknife.ButterKnife;
 public class CalendarActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle Toggle;
-    @BindView(R.id.calendar) CalendarView calendarView;
-    @BindView(R.id.nav_view) NavigationView navigationView;
-    @BindView(R.id.drawerLayout) DrawerLayout drawerLayout;
-    @BindView(R.id.addEventToCalendar) Button addEventBtn;
-    @BindView(R.id.deleteEventFromCalendar) Button deleteEventBtn;
+    @BindView(R.id.calendar)
+    CalendarView calendarView;
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+    @BindView(R.id.drawerLayout)
+    DrawerLayout drawerLayout;
+    //Button addEventBtn = (Button) findViewById(R.id.addEventToCalendar);
+    //Button deleteEventBtn = (Button) findViewById(R.id.deleteEventFromCalendar);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +42,12 @@ public class CalendarActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
 
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                //po wybraniu daty pokaz fragment z wydarzeniem
-            }
-        });
+//        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+//            @Override
+//            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+//                //po wybraniu daty pokaz fragment z wydarzeniem, jesli jest jakies, inaczej nic nie rob
+//            }
+//        });
 
         //addEventBtn.setOnClickListener(this);
         //deleteEventBtn.setOnClickListener(this);
