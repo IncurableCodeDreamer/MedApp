@@ -28,6 +28,9 @@ public class AccountActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     @BindView(R.id.accountList)
     ListView listView;
+    @BindView(R.id.ifDonor_text)
+    TextView ifDonor;
+
     DatabaseHelper DBhelper;
 
     @Override
@@ -51,7 +54,6 @@ public class AccountActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        TextView ifDonor = findViewById(R.id.ifDonor_text);
 
         if(ifChecked) {
             ifDonor.setVisibility(View.VISIBLE);
@@ -68,7 +70,6 @@ public class AccountActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (Toggle.onOptionsItemSelected(item)) {
             return true;
         } else {

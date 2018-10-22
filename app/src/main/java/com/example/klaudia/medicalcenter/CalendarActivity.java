@@ -55,7 +55,6 @@ public class CalendarActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (Toggle.onOptionsItemSelected(item)) {
             return true;
         }

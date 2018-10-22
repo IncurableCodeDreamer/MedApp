@@ -67,6 +67,36 @@
             android:layout_height="wrap_content"
             android:hint="Wprowadź dodatkowe informacje"/>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txt_nortification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="Powiadomienia" />
+
+            <ToggleButton
+                android:id="@+id/add_medicine_toogle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textOff="Wyłączone"
+                android:textOn="Włączone" />
+
+            </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/nortification_layout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/add_medicine_btn_activity"
             android:layout_width="wrap_content"

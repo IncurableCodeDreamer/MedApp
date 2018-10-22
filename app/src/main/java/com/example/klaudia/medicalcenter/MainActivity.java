@@ -48,10 +48,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setTitle(MainActivity.this.getTitle());
+        ButterKnife.bind( this);
+
+        Toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(Toggle);
+        Toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setDrawerContent(navigationView);
+    }
+
+
     private void createUser() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_on_start);
         dialog.setTitle("Wprowadzanie swoich danych");
+
         final TextView userBirth = dialog.findViewById(R.id.start_dialog_bithdate);
         final EditText userName = dialog.findViewById(R.id.start_dialog_name);
         final EditText userEmail = dialog.findViewById(R.id.start_dialog_email);
@@ -70,11 +87,11 @@ public class MainActivity extends AppCompatActivity {
                 int currentYear = Calendar.getInstance().get(Calendar.YEAR);
                 int age = currentYear - Integer.valueOf(user.getBirthDate().substring(user.getBirthDate().length() - 4));
                 user.setAge(age);
-//              SQLiteDatabase db;
 
-//            String sql = "INSERT INTO tbl_test (test) VALUES ('xyz')";
-//            db.getWritableDatabase().execSQL(sql);
-//            dbHelper.onCreate(db);
+//              SQLiteDatabase db;
+//              String sql = "INSERT INTO tbl_test (test) VALUES ('xyz')";
+//              db.getWritableDatabase().execSQL(sql);
+//              dbHelper.onCreate(db);
 
                 dialog.dismiss();
             }
@@ -114,21 +131,6 @@ public class MainActivity extends AppCompatActivity {
         dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        setTitle(MainActivity.this.getTitle());
-        ButterKnife.bind( this);
-
-        Toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
-        drawerLayout.addDrawerListener(Toggle);
-        Toggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setDrawerContent(navigationView);
     }
 
     @Override

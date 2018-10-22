@@ -18,21 +18,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AddAccountActivity extends AppCompatActivity{
 
     private static final int PICK_IMAGE = 100;
-    Uri imageUri;
+    private Uri imageUri;
+
+    @BindView(R.id.nav_image)
+    ImageView image;
+    @BindView(R.id.ifDonor_checkbox)
+    CheckBox ifDonor;
+    @BindView(R.id.item_value_medicine)
+    Button editMedicine;
+    @BindView(R.id.add_account_layout)
+    LinearLayout layout;
+    @BindView(R.id.add_account_save_btn)
+    Button add_account_save_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_account);
+        ButterKnife.bind(this);
 
-        CheckBox ifDonor_checkbox= findViewById(R.id.ifDonor_checkbox);
-        ifDonor_checkbox.setChecked(AccountActivity.ifChecked);
+        ifDonor.setChecked(AccountActivity.ifChecked);
 
-        Button editMedicine = findViewById(R.id.item_value_medicine);
         editMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +52,6 @@ public class AddAccountActivity extends AppCompatActivity{
             }
         });
 
-        Button add_account_save_btn = findViewById(R.id.add_account_save_btn);
         add_account_save_btn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("WrongConstant")
             @Override
@@ -50,7 +60,6 @@ public class AddAccountActivity extends AppCompatActivity{
             }
         });
 
-        ImageView image = findViewById(R.id.nav_image);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +70,6 @@ public class AddAccountActivity extends AppCompatActivity{
 
     private void saveAccount() {
         List<Account> accountList = new ArrayList<>();
-        LinearLayout layout = findViewById(R.id.add_account_layout);
 
         for (int i = 0; i < layout.getChildCount(); i++) {
             View child = layout.getChildAt(i);
@@ -79,7 +87,6 @@ public class AddAccountActivity extends AppCompatActivity{
             }
         }
 
-        CheckBox ifDonor = findViewById(R.id.ifDonor_checkbox);
         if (ifDonor.isChecked()) {
             AccountActivity.ifChecked = true;
         } else {
@@ -98,8 +105,8 @@ public class AddAccountActivity extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
-            ImageView image = findViewById(R.id.nav_image);
             imageUri = data.getData();
             image.setImageURI(imageUri);
         }

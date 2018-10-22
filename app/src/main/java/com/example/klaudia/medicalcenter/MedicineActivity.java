@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 public class MedicineActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle Toggle;
+
     @BindView(R.id.nav_view)
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)

@@ -9,7 +9,8 @@ import butterknife.BindView;
 
 public class EditMedicineActivity extends AppCompatActivity {
 
-    @BindView(R.id.edit_medicine_item_frequency) Spinner dropdown;
+    @BindView(R.id.edit_medicine_item_frequency)
+    Spinner dropdown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
