@@ -10,9 +10,9 @@
     <string name="hello">Witaj w aplikacji</string>
 
     <!--Details & Maps-->
-    <string name="status">Status: </string>
-    <string name="status_closed"> otwarte</string>
-    <string name="status_open"> zamknięte</string>
+    <string name="status">Status:</string>
+    <string name="status_closed">otwarte</string>
+    <string name="status_open">zamknięte</string>
     <string name="position">Moja pozycja</string>
     <string name="reject_acces">Odmowa dostępu</string>
     <string name="place_name">Nazwa miejsca</string>
@@ -25,7 +25,7 @@
     <string name="hospital">Szpitale</string>
 
     <!--account-->
-    <string name="ifDonor">Dawca narządów </string>
+    <string name="ifDonor">Dawca narządów</string>
 
     <!--medicine-->
     <string name="add_medicine">Dodaj lek</string>
