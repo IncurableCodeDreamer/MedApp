@@ -22,7 +22,7 @@ tools:context=".MedicineActivity">
         android:id="@+id/medicine_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wyszukaj lek"/>
+        android:hint="Wyszukaj lek"/>
 
     <ListView
         android:id="@+id/medicine_listView"

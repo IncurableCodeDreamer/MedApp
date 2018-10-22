@@ -38,7 +38,7 @@ tools:context=".AccountActivity">
         android:text="Data urodzenia (wiek)"/>
 
     <TextView
-        android:id="@+id/ifDonor"
+        android:id="@+id/ifDonor_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/darkGray"

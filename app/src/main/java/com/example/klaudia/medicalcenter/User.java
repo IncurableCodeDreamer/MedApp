@@ -71,6 +71,6 @@ public class User {
                     SURNAME + " TEXT, " +
                     EMAIL + " TEXT, " +
                     BIRTHDATE + " TEXT, " +
-                    AGE + " NUMBER, " +"); ";
+                    AGE + " INTEGER, " +"); ";
 
 }

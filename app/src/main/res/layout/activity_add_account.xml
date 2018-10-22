@@ -42,7 +42,7 @@
                         android:text="Data urodzenia (wiek)"/>
 
                     <CheckBox
-                        android:id="@+id/ifDonor"
+                        android:id="@+id/ifDonor_checkbox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/darkGray"
@@ -61,6 +61,7 @@
             </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/add_account_layout"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,7 +77,8 @@
                 android:id="@+id/item_value_illness"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wartosc"/>
+                android:inputType="text"
+                android:hint="Wpisz choroby przewlekłe"/>
 
             <TextView
                 android:id="@+id/item_name_alergy"
@@ -88,7 +90,8 @@
                 android:id="@+id/item_value_alergy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wartosc"/>
+                android:inputType="text"
+                android:hint="Wpisz alergie "/>
 
             <TextView
                 android:id="@+id/item_name_blood"
@@ -100,7 +103,8 @@
                 android:id="@+id/item_value_blood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wartosc"/>
+                android:inputType="text"
+                android:hint="Wprowadź grupę krwi"/>
 
             <TextView
                 android:id="@+id/item_name_weight"
@@ -112,7 +116,8 @@
                 android:id="@+id/item_value_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wartosc"/>
+                android:inputType="number"
+                android:hint="Wprowadź wagę"/>
 
             <TextView
                 android:id="@+id/item_name_height"
@@ -124,7 +129,8 @@
                 android:id="@+id/item_value_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wartosc"/>
+                android:inputType="number"
+                android:hint="Wprowadź wzrost"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -147,7 +153,14 @@
                 android:id="@+id/item_value_notes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wartosc"/>
+                android:inputType="text"
+                android:hint="Wpisz dodatkowe informacje"/>
+
+            <Button
+                android:id="@+id/add_account_save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zapisz zmiany"/>
 
         </LinearLayout>
 

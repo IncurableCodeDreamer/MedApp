@@ -1,20 +1,16 @@
 package com.example.klaudia.medicalcenter;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import java.util.Dictionary;
-import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -28,8 +24,8 @@ public class AccountActivity extends AppCompatActivity {
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
 
-    @BindView(R.id.ifDonor)
-    TextView ifDonor;
+    //@BindView(R.id.ifDonor)
+    //TextView ifDonor;
     @BindView(R.id.accountList)
     ListView listView;
     DatabaseHelper DBhelper;

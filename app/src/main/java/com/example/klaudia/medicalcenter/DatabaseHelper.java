@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Account.CREATE_TABLE);
         db.execSQL(Examination.CREATE_TABLE);
         db.execSQL(Medicine.CREATE_TABLE);
+    }
+
+    public boolean doesDatabaseExist(Context context) {
+        File dbFile = context.getDatabasePath(DB_NAME);
+        return dbFile.exists();
     }
 
     @Override
@@ -94,16 +100,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //endregion
 
     //region Account
-    public void updateAccount(Account account) {
+    public void updateAccount(List<Account> accountList) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(Account.NAME, account.getName());
-        values.put(Account.VALUE, account.getValue());
+        for (Account account: accountList) {
+            values.put(Account.NAME, account.getName());
+            values.put(Account.VALUE, account.getValue());
 
-        db.insert(Account.TABLE, null, values);
-        db.update(Account.TABLE, values, Account.ID + " = ?",
-                new String[]{"1"});
+            db.insert(Account.TABLE, null, values);
+            db.update(Account.TABLE, values, Account.ID + " = ?",
+                    new String[]{"1"});
+        }
     }
 
     public int getAccountCount() {
@@ -197,6 +205,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         values.put(Medicine.NAME, medicine.getName());
         values.put(Medicine.FREQUENCY, medicine.getFrequency());
+        values.put(Medicine.ADDINFO, medicine.getAddInfo());
+        values.put(Medicine.AMOUNT, medicine.getAmount());
 
         db.insert(Medicine.TABLE, null, values);
         db.update(Medicine.TABLE, values, Medicine.ID + " = ?",
@@ -221,6 +231,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Medicine medicine = new Medicine();
         medicine.setName(cursor.getString(cursor.getColumnIndex(Medicine.NAME)));
         medicine.setFrequency(cursor.getString(cursor.getColumnIndex(Medicine.FREQUENCY)));
+        medicine.setAddInfo(cursor.getString(cursor.getColumnIndex(Medicine.ADDINFO)));
+        medicine.setAmount(cursor.getString(cursor.getColumnIndex(Medicine.AMOUNT)));
 
         cursor.close();
         db.close();
