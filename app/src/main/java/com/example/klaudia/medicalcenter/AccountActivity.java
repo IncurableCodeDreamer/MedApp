@@ -9,7 +9,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.Objects;
 
@@ -19,13 +21,11 @@ import butterknife.ButterKnife;
 public class AccountActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle Toggle;
+    public static boolean ifChecked = false;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-
-    //@BindView(R.id.ifDonor)
-    //TextView ifDonor;
     @BindView(R.id.accountList)
     ListView listView;
     DatabaseHelper DBhelper;
@@ -46,6 +46,18 @@ public class AccountActivity extends AppCompatActivity {
 
         //AccountAdapter accountAdapter = new AccountAdapter();
         //listView.setAdapter(accountAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TextView ifDonor = findViewById(R.id.ifDonor_text);
+
+        if(ifChecked) {
+            ifDonor.setVisibility(View.VISIBLE);
+        }else{
+            ifDonor.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

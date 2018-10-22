@@ -1,5 +1,8 @@
 package com.example.klaudia.medicalcenter;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,15 +20,13 @@ import butterknife.BindView;
 
 public class AddAccountActivity extends AppCompatActivity{
 
-//    @BindView(R.id.ifDonor_checkbox)
-//    CheckBox ifDonor;
-//    @BindView(R.id.ifDonor_text)
-//    CheckBox ifDonorText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_account);
+
+        CheckBox ifDonor_checkbox= findViewById(R.id.ifDonor_checkbox);
+        ifDonor_checkbox.setChecked(AccountActivity.ifChecked);
 
         Button editMedicine = findViewById(R.id.item_value_medicine);
         editMedicine.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +39,7 @@ public class AddAccountActivity extends AppCompatActivity{
 
         Button add_account_save_btn = findViewById(R.id.add_account_save_btn);
         add_account_save_btn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("WrongConstant")
             @Override
             public void onClick(View v) {
                 List<Account> accountList = new ArrayList<>();
@@ -59,14 +61,15 @@ public class AddAccountActivity extends AppCompatActivity{
                     }
                 }
 
-//                if (ifDonor.isChecked()) {
-//                    pobierz view
-//                    ifDonorText.setVisibility(view.);
-//                } else {
-//                    ifDonorText.setVisibility(view.);
-//                }
+                CheckBox ifDonor = findViewById(R.id.ifDonor_checkbox);
+                if (ifDonor.isChecked()) {
+                    AccountActivity.ifChecked = true;
+                } else {
+                    AccountActivity.ifChecked = false;
+                }
 
-                Account account = new Account();
+                Intent intent = new Intent(AddAccountActivity.this, AccountActivity.class);
+                startActivity(intent);
             }
         });
     }

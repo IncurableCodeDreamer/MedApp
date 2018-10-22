@@ -1,5 +1,6 @@
 package com.example.klaudia.medicalcenter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -42,6 +43,9 @@ public class AddMedicineActivity extends AppCompatActivity {
                 medicine.setFrequency(dropdown.getSelectedItem().toString());
                 medicine.setAddInfo(add_medicine_item_add_info.getText().toString());
                 medicine.setAmount(add_medicine_item_amount.getText().toString());
+
+                Intent intent = new Intent(AddMedicineActivity.this, MedicineActivity.class);
+                startActivity(intent);
             }
         });
     }
