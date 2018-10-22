@@ -78,13 +78,11 @@
             android:layout_alignParentLeft="true"
             android:text="Powiadomienia" />
 
-            <ToggleButton
-                android:id="@+id/add_medicine_toogle"
+            <Switch
+                android:id="@+id/add_medicine_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:textOff="Wyłączone"
-                android:textOn="Włączone" />
+                android:layout_alignParentRight="true"/>
 
             </RelativeLayout>
 
@@ -94,6 +92,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Godzina przypomnienia:"/>
+
+            <TimePicker
+                android:id="@+id/timePicker1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"/>
 
         </LinearLayout>
 

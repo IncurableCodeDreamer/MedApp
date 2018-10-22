@@ -1,14 +1,23 @@
 package com.example.klaudia.medicalcenter;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.ToggleButton;
 
 import butterknife.BindView;
@@ -24,8 +33,8 @@ public class AddMedicineActivity extends AppCompatActivity {
     EditText add_medicine_item_amount;
     @BindView(R.id.add_medicine_item_add_info)
     EditText add_medicine_item_add_info;
-    @BindView(R.id.add_medicine_toogle)
-    ToggleButton nortification_btn;
+    @BindView(R.id.add_medicine_switch)
+    Switch nortification_btn;
     @BindView(R.id.nortification_layout)
     LinearLayout nortifiction_layout;
     @BindView(R.id.add_medicine_btn_activity)
@@ -49,10 +58,10 @@ public class AddMedicineActivity extends AppCompatActivity {
             }
         });
 
-        nortification_btn.setOnClickListener(new View.OnClickListener() {
+        nortification_btn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if (nortification_btn.isChecked()) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
                     nortifiction_layout.setVisibility(View.VISIBLE);
                 } else {
                     nortifiction_layout.setVisibility(View.GONE);
@@ -62,7 +71,15 @@ public class AddMedicineActivity extends AppCompatActivity {
     }
 
     private void addNotification() {
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setContentTitle("Przypomnienie")
+                .setContentText("Zabierz lek")
+                .setSmallIcon(R.drawable.ic_access_time_black_24dp);
+
+        manager.notify(1, notification.build());
     }
 
     private void addMedicine() {
