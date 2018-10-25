@@ -55,5 +55,5 @@ public class Medicine {
                     FREQUENCY + " TEXT, " +
                     AMOUNT + " TEXT, " +
                     ADDINFO + " TEXT, " +
-                    NAME + " TEXT, " + "); ";
+                    NAME + " TEXT " + "); ";
 }

@@ -5,14 +5,18 @@ public class User {
     private String surname;
     private String email;
     private String birthDate;
+    private boolean ifDonor;
+    byte [] picture;
     private int age;
 
-    public User(String name, String surname, String email, String birthDate, int age) {
+    public User(String name, String surname, String email, String birthDate, boolean ifDonor, int age, byte [] picture) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.birthDate = birthDate;
+        this.ifDonor = ifDonor;
         this.age = age;
+        this.picture = picture;
     }
 
     public User() {
@@ -35,6 +39,14 @@ public class User {
     public int getAge() {
         return age;
     }
+
+    public byte[] getPicture() { return picture; }
+
+    public void setPicture(byte[] picture) { this.picture = picture; }
+
+    public boolean isIfDonor() { return ifDonor; }
+
+    public void setIfDonor(boolean ifDonor) { this.ifDonor = ifDonor; }
 
     public void setName(String name) {
         this.name = name;
@@ -63,6 +75,8 @@ public class User {
     public static final String EMAIL = "email";
     public static final String BIRTHDATE = "birthDate";
     public static final String AGE = "age";
+    public static final String IFDONOR = "ifdonor";
+    public static final String PICTURE = "picture";
 
     public static final String CREATE_TABLE =
             "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
@@ -71,6 +85,8 @@ public class User {
                     SURNAME + " TEXT, " +
                     EMAIL + " TEXT, " +
                     BIRTHDATE + " TEXT, " +
-                    AGE + " INTEGER, " +"); ";
+                    IFDONOR + " REAL, " +
+                    PICTURE + " BLOB, " +
+                    AGE + " INTEGER " + "); ";
 
 }

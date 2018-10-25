@@ -19,6 +19,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.facebook.stetho.Stetho;
+
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,17 +37,11 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onStart() {
-        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         super.onStart();
-
-        if (dbHelper.doesDatabaseExist(getApplicationContext())) {
-            createUser();
-        } else if (dbHelper.getUserCount() == 0){
-            createUser();
-        }
     }
 
     @Override
@@ -54,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle(MainActivity.this.getTitle());
         ButterKnife.bind( this);
+
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+
+        if (!dbHelper.doesDatabaseExist(getApplicationContext())) {
+            createUser();
+        } else if (dbHelper.getUserCount() == 0){
+            createUser();
+        }
 
         Toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(Toggle);
@@ -88,11 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 int age = currentYear - Integer.valueOf(user.getBirthDate().substring(user.getBirthDate().length() - 4));
                 user.setAge(age);
 
-//              SQLiteDatabase db;
-//              String sql = "INSERT INTO tbl_test (test) VALUES ('xyz')";
-//              db.getWritableDatabase().execSQL(sql);
-//              dbHelper.onCreate(db);
-
+                dbHelper.insertUser(user);
                 dialog.dismiss();
             }
         });

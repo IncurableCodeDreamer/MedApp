@@ -49,5 +49,5 @@ public class Examination {
                     ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     NAME + " TEXT, " +
                     DATE + " TEXT, " +
-                    DESCRIPTION + " TEXT, " + "); ";
+                    DESCRIPTION + " TEXT " + "); ";
 }

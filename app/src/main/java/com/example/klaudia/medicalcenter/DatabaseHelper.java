@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Account.CREATE_TABLE);
         db.execSQL(Examination.CREATE_TABLE);
         db.execSQL(Medicine.CREATE_TABLE);
+        Log.i("db","create"+ DB_NAME);
     }
 
     public boolean doesDatabaseExist(Context context) {
@@ -51,6 +53,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(User.EMAIL, user.getEmail());
         values.put(User.BIRTHDATE, user.getBirthDate());
         values.put(User.AGE, user.getAge());
+        values.put(User.IFDONOR, user.isIfDonor());
+        values.put(User.PICTURE, user.getPicture());
 
         db.insert(User.TABLE, null, values);
         db.close();
@@ -65,6 +69,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(User.EMAIL, user.getEmail());
         values.put(User.BIRTHDATE, user.getBirthDate());
         values.put(User.AGE, user.getAge());
+        values.put(User.IFDONOR, user.isIfDonor());
+        values.put(User.PICTURE, user.getPicture());
 
         db.insert(User.TABLE, null, values);
         db.update(User.TABLE, values, User.ID + " = ?",
@@ -72,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getUserCount() {
-        String countQuery = "SELECT  * FROM " + User.TABLE;
+        String countQuery = "SELECT * FROM " + User.TABLE;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
@@ -92,6 +98,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user.setEmail(cursor.getString(cursor.getColumnIndex(User.EMAIL)));
         user.setBirthDate(cursor.getString(cursor.getColumnIndex(User.BIRTHDATE)));
         user.setAge(cursor.getInt(cursor.getColumnIndex(User.AGE)));
+        user.setPicture(cursor.getBlob(cursor.getColumnIndex(User.PICTURE)));
+        user.setIfDonor(cursor.getInt(cursor.getColumnIndex(User.IFDONOR)) != 0);
 
         cursor.close();
         db.close();

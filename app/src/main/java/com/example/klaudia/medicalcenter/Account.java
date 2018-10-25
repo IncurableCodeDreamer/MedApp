@@ -37,5 +37,5 @@ public class Account {
                 "CREATE TABLE IF NOT EXISTS " + TABLE + " ( " +
                         ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         VALUE + " TEXT, " +
-                        NAME + " TEXT, " + "); ";
+                        NAME + " TEXT " + "); ";
 }
