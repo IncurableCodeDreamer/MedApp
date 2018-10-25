@@ -48,6 +48,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/darkGray"
+                        android:checked="true"
                         android:text="@string/ifDonor"
                         android:drawableRight="@drawable/ic_favorite_black_24dp"/>
 
