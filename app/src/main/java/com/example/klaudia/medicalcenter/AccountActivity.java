@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 public class AccountActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle Toggle;
-    public static boolean ifChecked = false;
+    public static boolean ifChecked = true;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
@@ -47,19 +47,25 @@ public class AccountActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
 
+        ifIsDonor();
+
+
         //AccountAdapter accountAdapter = new AccountAdapter();
         //listView.setAdapter(accountAdapter);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
+    private void ifIsDonor() {
         if(ifChecked) {
             ifDonor.setVisibility(View.VISIBLE);
         }else{
             ifDonor.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ifIsDonor();
     }
 
     @Override

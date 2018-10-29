@@ -2,15 +2,14 @@ package com.example.klaudia.medicalcenter;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,17 +17,20 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.facebook.stetho.Stetho;
+import com.harpz.androidvalidator.Validator;
+import com.harpz.androidvalidator.ValidatorListener;
+import com.harpz.androidvalidator.validatorAnnotations.Email;
+import com.harpz.androidvalidator.validatorAnnotations.Name;
 
-import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ValidatorListener {
 
     private ActionBarDrawerToggle Toggle;
     private static final String TAG = "MainActivity";
@@ -39,10 +41,13 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     DatabaseHelper dbHelper;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
+    @Email(message = "Wprowadź email w poprawnej formie", til = R.id.start_dialog_email)
+    private EditText userEmail;
+    @Name(message = "Wprowadż dane w poprawnej formie", til = R.id.start_dialog_name) //zmiana tekstu wyswietlanego
+    private EditText userName;
+    @Name(message = "Wprowadż dane w poprawnej formie", til = R.id.start_dialog_surname)
+    private EditText userSurname;
+    private TextView userBirthdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,39 +72,39 @@ public class MainActivity extends AppCompatActivity {
         setDrawerContent(navigationView);
     }
 
-
     private void createUser() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_on_start);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.setTitle("Wprowadzanie swoich danych");
 
-        final TextView userBirth = dialog.findViewById(R.id.start_dialog_bithdate);
-        final EditText userName = dialog.findViewById(R.id.start_dialog_name);
-        final EditText userEmail = dialog.findViewById(R.id.start_dialog_email);
-        final EditText userSurname = dialog.findViewById(R.id.start_dialog_surname);
+        userBirthdate = dialog.findViewById(R.id.start_dialog_bithdate);
+        userName = dialog.findViewById(R.id.start_dialog_name);
+        userEmail = dialog.findViewById(R.id.start_dialog_email);
+        userSurname = dialog.findViewById(R.id.start_dialog_surname);
+
+        Calendar cal = Calendar.getInstance();
+        String date = cal.get(Calendar.DAY_OF_MONTH)-1 + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+        userBirthdate.setText(date);
+
+        final Validator validator = new Validator(this);
 
         Button button = dialog.findViewById(R.id.start_dialog_ok_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = new User();
-                user.setBirthDate(userBirth.getText().toString());
-                user.setName(userName.getText().toString());
-                user.setSurname(userSurname.getText().toString());
-                user.setEmail(userEmail.getText().toString());
+                validator.validate();
 
-                int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-                int age = currentYear - Integer.valueOf(user.getBirthDate().substring(user.getBirthDate().length() - 4));
-                user.setAge(age);
-
-                dbHelper.insertUser(user);
-                dialog.dismiss();
+                if((validator.equals(true))){
+                    dialog.hide(); //zamknij okno dialogowe - dismiss() ??
+                }
             }
         });
 
+
         dialog.show();
 
-        userBirth.setOnClickListener(new View.OnClickListener() {
+        userBirthdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createDateDialog();
@@ -113,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onDateSet: dd/mm/yyy: " + day + "/" + month + "/" + year);
 
                 String date = day + "/" + month + "/" + year;
-                userBirth.setText(date);
+                userBirthdate.setText(date);
             }
         };
     }
@@ -149,5 +154,25 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onValidateSuccess() {
+        Toast.makeText(this, "Witaj w aplikacji", Toast.LENGTH_SHORT).show();
+        final User user = new User();
+
+        user.setBirthDate(userBirthdate.getText().toString());
+                    int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+                    int age = currentYear - Integer.valueOf(user.getBirthDate().substring(user.getBirthDate().length() - 4));
+                    user.setAge(age);
+
+        user.setName(userName.getText().toString());
+        user.setSurname(userSurname.getText().toString());
+        user.setEmail(userEmail.getText().toString());
+    }
+
+    @Override
+    public void onValidateFailed(ArrayList arrayList) {
+        Toast.makeText(this, "Wprowadź poprawne dane", Toast.LENGTH_SHORT).show();
     }
 }
