@@ -1,14 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/startDialogFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DialogStart">
+    android:padding="5sp"
+    tools:context="com.example.klaudia.medicalcenter.MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+<TextView
+    android:text="Wybierz płeć"
+    android:id="@+id/txt_sex"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5sp"/>
 
-</FrameLayout>
+<RadioGroup
+    android:id="@+id/start_dialog_sex"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/txt_sex">
+    <RadioButton
+        android:id="@+id/female"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kobieta"
+        android:checked="true"/>
+    <RadioButton
+        android:id="@+id/male"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mężczyzna"/>
+</RadioGroup>
+
+<TextView
+    android:id="@+id/txt_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/start_dialog_sex"
+    android:layout_marginTop="15sp"
+    android:layout_marginBottom="5sp"
+    android:text="Imię:" />
+
+<EditText
+    android:hint="Imię"
+    android:id="@+id/start_dialog_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_toRightOf="@+id/txt_name"
+    android:layout_below="@+id/start_dialog_sex"
+    android:inputType="text"
+    android:textSize="15sp"
+    android:layout_margin="5sp"/>
+
+<TextView
+    android:text="Nazwisko:"
+    android:id="@+id/txt_surname"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/start_dialog_name"
+    android:paddingTop="5sp"
+    android:layout_margin="5sp"/>
+
+<EditText
+    android:hint="Nazwisko"
+    android:id="@+id/start_dialog_surname"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="text"
+    android:textSize="15sp"
+    android:layout_toRightOf="@+id/txt_surname"
+    android:layout_below="@id/start_dialog_name"/>
+
+<TextView
+    android:text="Email:"
+    android:id="@+id/txt_email"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/start_dialog_surname"
+    android:paddingTop="5sp"
+    android:layout_margin="5sp"/>
+
+<EditText
+    android:hint="Email"
+    android:id="@+id/start_dialog_email"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="15sp"
+    android:layout_toRightOf="@+id/txt_email"
+    android:inputType="text"
+    android:layout_below="@id/start_dialog_surname"/>
+
+<TextView
+    android:id="@+id/txt_birthdate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/txt_email"
+    android:layout_marginTop="20sp"
+    android:layout_marginBottom="5sp"
+    android:text="Data urodzin:" />
+
+<TextView
+    android:id="@+id/start_dialog_bithdate"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/start_dialog_email"
+    android:layout_marginLeft="10sp"
+    android:layout_marginTop="10dp"
+    android:layout_toRightOf="@+id/txt_birthdate"
+    android:hint="Wybierz datę"
+    android:clickable="true"
+    android:textSize="15sp" />
+
+<Button
+    android:id="@+id/start_dialog_ok_btn"
+    android:layout_below="@id/start_dialog_bithdate"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_centerHorizontal="true"
+    android:text="OK" />
+
+</RelativeLayout>
