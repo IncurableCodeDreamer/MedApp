@@ -12,10 +12,15 @@ tools:context=".CalendarActivity">
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <CalendarView
+    <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent" />
+
+    <!--<CalendarView-->
+        <!--android:id="@+id/calendar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"/>-->
 
     <Button
         android:id="@+id/addEventToCalendar"

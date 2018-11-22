@@ -9,8 +9,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 
+
+import com.applandeo.materialcalendarview.CalendarView;
+import com.applandeo.materialcalendarview.EventDay;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -25,6 +31,7 @@ public class CalendarActivity extends AppCompatActivity {
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    private List<EventDay> eventDays = new ArrayList<>();
     //Button addEventBtn = (Button) findViewById(R.id.addEventToCalendar);
     //Button deleteEventBtn = (Button) findViewById(R.id.deleteEventFromCalendar);
 
@@ -42,6 +49,7 @@ public class CalendarActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
 
+        //calendarView
 //        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 //            @Override
 //            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
