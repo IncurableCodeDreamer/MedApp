@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -46,7 +47,7 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
     private static final int PICK_IMAGE = 100;
     private Uri imageUri;
     private String age;
-    private int year, month, day;
+    private String year, month, day;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private static final String TAG = "AddAccountActivity";
     @BindView(R.id.nav_image)
@@ -184,19 +185,23 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
 
         try {
             Date date = format.parse(age);
-            year = date.getYear();
-            month = date.getMonth();
-            day = date.getDay();
+            year = (String) DateFormat.format("yyyy", date);
+            month = (String) DateFormat.format("MM", date);
+            day = (String) DateFormat.format("dd", date);
         } catch (ParseException e) {
             e.printStackTrace();
-            year = cal.get(Calendar.YEAR);
-            month = cal.get(Calendar.MONTH);
-            day = cal.get(Calendar.DAY_OF_MONTH);
+            year = String.valueOf(cal.get(Calendar.YEAR));
+            month = String.valueOf(cal.get(Calendar.MONTH));
+            day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
         }
+
+        int yearToCal = Integer.parseInt(year);
+        int monthToCal = Integer.parseInt(month);
+        int dayToCal = Integer.parseInt(day);
 
         DatePickerDialog dialog = new DatePickerDialog(Objects.requireNonNull(this),
                 android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener,
-                year, month, day);
+                yearToCal, monthToCal, dayToCal);
 
         dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
