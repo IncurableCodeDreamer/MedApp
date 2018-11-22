@@ -1,25 +1,27 @@
 package com.example.klaudia.medicalcenter;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.ContextMenu;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MedicineActivity extends AppCompatActivity {
+public class MedicineActivity extends AppCompatActivity{
 
     private ActionBarDrawerToggle Toggle;
 
@@ -27,6 +29,12 @@ public class MedicineActivity extends AppCompatActivity {
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    @BindView(R.id.medicine_listView)
+    RecyclerView listView;
+    @BindView(R.id.medicine_search)
+    EditText search;
+    private MedicineAdapter adapter;
+    private ArrayList<Medicine> itemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +47,48 @@ public class MedicineActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
 
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        if(dbHelper.getAccountCount() != 0) {
+            itemList = dbHelper.getAllMedicine();
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+            listView.setLayoutManager(layoutManager);
+            adapter=new MedicineAdapter(itemList);
+            listView.setAdapter(adapter);
+        }
+
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
+    }
+
+    private void filter(String s) {
+        ArrayList<Medicine> list = new ArrayList<>();
+            if(s.length() == 0){
+                list.addAll(itemList);
+            } else{
+                for(Medicine m : itemList){
+                    if(m.getName().toLowerCase().contains(s.toLowerCase())){
+                        list.add(m);
+                    }
+                }
+            }
+        adapter.filterList(list);
     }
 
     @Override

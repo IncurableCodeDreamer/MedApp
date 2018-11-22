@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20sp">
+    android:paddingLeft="20sp"
+    android:paddingRight="20sp"
+    android:paddingTop="0sp">
 
     <TextView
         android:layout_width="match_parent"
@@ -61,28 +63,24 @@
         android:layout_marginEnd="2sp"/>
 
     <TextView
+        android:id="@+id/medicine_item_add_info_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Informacje dodatkowe:"/>
+        android:text="Informacje dodatkowe:"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/medicine_item_add_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wartosc"/>
+        android:text="Wartosc"
+        android:visibility="gone"/>
 
     <View
     android:layout_width="match_parent"
     android:layout_height="2dp"
     android:background="@android:color/darker_gray"
     android:layout_marginStart="1sp"
-    android:layout_marginEnd="2sp"/>
-
-    <View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@android:color/darker_gray"
-    android:layout_marginStart="2sp"
     android:layout_marginEnd="2sp"/>
 
 </LinearLayout>

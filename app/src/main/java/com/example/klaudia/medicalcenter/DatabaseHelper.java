@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "DatabaseHelper";
+    private static final String DB_NAME = "DatabaseHelp";
     private static final int DB_VERSION = 1;
 
     public DatabaseHelper(Context context) {
@@ -108,6 +108,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //endregion
 
     //region Account
+    public void insertAccount(List<Account> accountList) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        for (Account account: accountList) {
+            values.put(Account.NAME, account.getName());
+            values.put(Account.VALUE, account.getValue());
+        }
+
+        db.insert(Account.TABLE, null, values);
+        db.close();
+    }
+
     public void updateAccount(List<Account> accountList) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -146,11 +159,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return account;
     }
 
-    public List<Account> getAllAccount() {
+    public ArrayList<Account> getAllAccount() {
         String Query = "SELECT * FROM " + Account.TABLE + " WHERE " + Account.VALUE + " IS NOT NULL";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
-        List<Account> accountList = new ArrayList<>();
+        ArrayList<Account> accountList = new ArrayList<>();
         cursor.moveToFirst();
 
         while (cursor.moveToNext()) {
@@ -207,6 +220,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //endregion
 
     //region Medicine
+    public void insertMedicine(Medicine medicine) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(Medicine.ADDINFO, medicine.getAddInfo());
+        values.put(Medicine.AMOUNT, medicine.getAmount());
+        values.put(Medicine.FREQUENCY, medicine.getFrequency());
+        values.put(Medicine.NAME, medicine.getName());
+
+        db.insert(Medicine.TABLE, null, values);
+        db.close();
+    }
+
     public void updateMedicine(Medicine medicine) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -245,6 +271,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return medicine;
+    }
+
+    public ArrayList<Medicine> getAllMedicine() {
+        String Query = "SELECT * FROM " + Medicine.TABLE + " WHERE " + Medicine.NAME + " IS NOT NULL";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(Query, null);
+        ArrayList<Medicine> medicineList = new ArrayList<>();
+        cursor.moveToFirst();
+
+        while (cursor.moveToNext()) {
+            Medicine medicine = new Medicine();
+            medicine.setAddInfo(cursor.getString(cursor.getColumnIndex(Medicine.ADDINFO)));
+            medicine.setAmount(cursor.getString(cursor.getColumnIndex(Medicine.AMOUNT)));
+            medicine.setFrequency(cursor.getString(cursor.getColumnIndex(Medicine.FREQUENCY)));
+            medicine.setName(cursor.getString(cursor.getColumnIndex(Medicine.NAME)));
+            medicineList.add(medicine);
+        }
+
+        cursor.close();
+        db.close();
+        return medicineList;
     }
     //endregion
 }
