@@ -1,13 +1,8 @@
 package com.example.klaudia.medicalcenter;
 
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,17 +13,29 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.ToggleButton;
+import android.widget.Toast;
+
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Length;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Pattern;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddMedicineActivity extends AppCompatActivity {
+public class AddMedicineActivity extends AppCompatActivity implements Validator.ValidationListener{
 
     @BindView(R.id.add_medicine_item_frequency)
     Spinner dropdown;
+    @NotEmpty(message = "Pole nie może pozostać puste")
+    @Length(min = 3, message = "Nazwa leku musi miec powyzej 3 liter")
+    @Pattern(sequence = 2, regex = "[a-zA-Z][a-zA-Z ]+", message = "Wprowadz dane w odpowiedniej formie")
     @BindView(R.id.add_medicine_item_name)
     EditText add_medicine_item_name;
+    @NotEmpty(message = "Pole nie może pozostać puste")
     @BindView(R.id.add_medicine_item_amount)
     EditText add_medicine_item_amount;
     @BindView(R.id.add_medicine_item_add_info)
@@ -50,11 +57,13 @@ public class AddMedicineActivity extends AppCompatActivity {
         String[] items = new String[]{"Dziennie", "Tygodniowo", "Miesięcznie"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
+        final Validator validator = new Validator(this);
+        validator.setValidationListener(this);
 
         add_medicine_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addMedicine();
+                validator.validate();
             }
         });
 
@@ -93,7 +102,29 @@ public class AddMedicineActivity extends AppCompatActivity {
             addNotification();
         }
 
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        dbHelper.insertMedicine(medicine);
+
         Intent intent = new Intent(AddMedicineActivity.this, MedicineActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onValidationSucceeded() {
+        addMedicine();
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors) {
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(getApplicationContext());
+
+            if (view instanceof EditText) {
+                ((EditText) view).setError(message);
+            } else {
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
