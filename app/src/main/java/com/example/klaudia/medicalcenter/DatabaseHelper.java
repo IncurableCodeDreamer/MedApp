@@ -285,7 +285,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean deleteMedicine(String name)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(Medicine.TABLE, Medicine.NAME + "=" + name, null) > 0;
+        return db.delete(Medicine.TABLE, Medicine.NAME + "='" + name +"'", null) > 0;
     }
 
 //    public int getMedicineId(Medicine medicine) {
