@@ -1,6 +1,7 @@
 package com.example.klaudia.medicalcenter;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -9,11 +10,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+
+import org.xml.sax.Attributes;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -69,8 +74,21 @@ public class MedicineActivity extends AppCompatActivity{
             itemList = dbHelper.getAllMedicine();
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
             listView.setLayoutManager(layoutManager);
-            adapter=new MedicineAdapter(itemList);
+            adapter=new MedicineAdapter(this, itemList);
+            adapter.setMode(com.daimajia.swipe.util.Attributes.Mode.Single);
             listView.setAdapter(adapter);
+
+            listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    Log.e("RecyclerView", "onScrollStateChanged");
+                }
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                }
+            });
         }
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -118,3 +136,5 @@ public class MedicineActivity extends AppCompatActivity{
         });
     }
 }
+
+

@@ -1,6 +1,8 @@
 package com.example.klaudia.medicalcenter;
+import java.io.Serializable;
 
-public class Medicine {
+public class Medicine implements Serializable{
+    private static final long serialVersionUID = 1L;
     private String name;
     private String frequency;
     private String amount;

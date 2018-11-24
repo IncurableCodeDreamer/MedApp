@@ -121,6 +121,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void insertOneAccount(Account account) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(Account.NAME, account.getName());
+        values.put(Account.VALUE, account.getValue());
+
+        db.insert(Account.TABLE, null, values);
+        db.close();
+    }
+
+    public boolean checkAccount(Account account){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = null;
+        String sql ="SELECT NAME FROM "+ Account.TABLE + " WHERE NAME='"+ account.getName()+"'";
+        cursor= db.rawQuery(sql,null);
+
+        if(cursor.getCount()>0){
+            cursor.close();
+            return true;
+        }else{
+            cursor.close();
+            return false;
+        }
+    }
+
     public void updateAccount(List<Account> accountList) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -157,6 +183,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return account;
+    }
+
+    public void updateOneAccount(Account account) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Account.NAME, account.getName());
+        values.put(Account.VALUE, account.getValue());
+
+        db.update(Account.TABLE, values, " NAME='"+ Account.NAME + "'", null);
     }
 
     public ArrayList<Account> getAllAccount() {
@@ -246,6 +281,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(Medicine.TABLE, values, Medicine.ID + " = ?",
                 new String[]{"1"});
     }
+
+    public boolean deleteMedicine(String name)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(Medicine.TABLE, Medicine.NAME + "=" + name, null) > 0;
+    }
+
+//    public int getMedicineId(Medicine medicine) {
+//        String countQuery = "SELECT  * FROM " + Medicine.TABLE;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.rawQuery(countQuery, );
+//        int count = cursor.getCount();
+//        cursor.close();
+//        return count;
+//    }
 
     public int getMedicineCount() {
         String countQuery = "SELECT  * FROM " + Medicine.TABLE;

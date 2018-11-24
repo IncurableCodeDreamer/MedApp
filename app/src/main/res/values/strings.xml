@@ -29,6 +29,8 @@
 
     <!--medicine-->
     <string name="add_medicine">Dodaj lek</string>
+    <string name="edit">Edytuj</string>
+    <string name="delete">Usuń</string>
 
     <!--Navigation & Names of activities-->
     <string name="title_activity_maps">Centra medyczne</string>

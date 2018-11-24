@@ -3,6 +3,8 @@ package com.example.klaudia.medicalcenter;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -230,9 +232,13 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
         }
 
         if(accountList.size() !=0) {
-            if (dbHelper.getAccountCount() != 0) {
+            if(dbHelper.getAccountCount()!= 0){
+                for (Account ac: accountList) {
+                    updateAccount(dbHelper, ac);
+                }
+
                 dbHelper.updateAccount(accountList);
-            } else {
+            }else {
                 dbHelper.insertAccount(accountList);
             }
         }
@@ -269,6 +275,14 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
 
         Intent intent = new Intent(AddAccountActivity.this, AccountActivity.class);
         startActivity(intent);
+    }
+
+    private void updateAccount(DatabaseHelper dbHelper, Account ac) {
+        if (dbHelper.checkAccount(ac)) {
+            dbHelper.updateOneAccount(ac);
+        } else{
+            dbHelper.insertOneAccount(ac);
+        }
     }
 
     private void operGallery() {
