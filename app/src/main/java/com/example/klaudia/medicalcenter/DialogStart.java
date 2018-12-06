@@ -3,26 +3,17 @@ package com.example.klaudia.medicalcenter;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.FragmentManager;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatDialog;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -39,10 +30,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
-import javax.annotation.Nullable;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class DialogStart extends AppCompatDialogFragment implements Validator.ValidationListener{
 
@@ -64,12 +52,6 @@ public class DialogStart extends AppCompatDialogFragment implements Validator.Va
     TextView userBirthdate;
     @BindView(R.id.start_dialog_sex)
     RadioGroup userSex;
-    //@BindView(R.id.nav_image)
-    //ImageView image;
-    //@BindView(R.id.nav_name)
-    //TextView name;
-    //@BindView(R.id.nav_email)
-    //TextView email;
     Button button;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private static final String TAG = "DialogStart";
@@ -171,10 +153,6 @@ public class DialogStart extends AppCompatDialogFragment implements Validator.Va
 
         DatabaseHelper dbHelper = new DatabaseHelper(this.getContext());
         dbHelper.insertUser(user);
-
-        //image.se
-        //name.setText(user.getName() + " " + user.getSurname());
-        //email.setText(user.getEmail());
 
         closeDialog();
     }

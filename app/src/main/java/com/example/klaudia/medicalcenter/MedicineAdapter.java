@@ -1,11 +1,14 @@
 package com.example.klaudia.medicalcenter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,16 +24,13 @@ public class MedicineAdapter extends RecyclerSwipeAdapter<MedicineAdapter.Simple
 
     private Context mContext;
     private ArrayList<Medicine> itemList;
+    TextView name;
+    Button button;
 
     public MedicineAdapter(Context context, ArrayList<Medicine> objects) {
         this.mContext = context;
         this.itemList = objects;
     }
-
-    MedicineAdapter(ArrayList<Medicine> itemList) {
-        this.itemList = itemList;
-    }
-
 
     @Override
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,14 +42,7 @@ public class MedicineAdapter extends RecyclerSwipeAdapter<MedicineAdapter.Simple
     public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
         final Medicine item = itemList.get(position);
 
-        if(itemList.get(position).getAddInfo() != null) {
-            viewHolder.setAddInfo(itemList.get(position).getAddInfo());
-
-        }
         viewHolder.setName(itemList.get(position).getName());
-        viewHolder.setFrequency(itemList.get(position).getFrequency());
-        viewHolder.setAmount(itemList.get(position).getAmount());
-
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
         viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, viewHolder.swipeLayout.findViewById(R.id.bottom_wraper));
 
@@ -88,15 +81,25 @@ public class MedicineAdapter extends RecyclerSwipeAdapter<MedicineAdapter.Simple
         viewHolder.swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, " Click : " + item.getName(), Toast.LENGTH_SHORT).show();
+                MedicineActivity activity = (MedicineActivity) (mContext);
+                DialogMedicine dialog = DialogMedicine.newInstance(item.getAddInfo(), item.getAmount(), item.getFrequency(), item.getName());
+                FragmentManager fm = activity.getSupportFragmentManager();
+                dialog.show(fm, "fragment_dialog_medicine");
             }
         });
 
         viewHolder.Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Toast.makeText(view.getContext(), "Clicked on Edit  " + viewHolder.Name.getText().toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MedicineAdapter.this.mContext, EditMedicineActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("addInfo", item.getAddInfo());
+                extras.putString("amount", item.getAmount());
+                extras.putString("frequency", item.getFrequency());
+                extras.putString("name", item.getName());
+                //extras.putBoolean("notification", item.isNotifications());
+                intent.putExtras(extras);
+                mContext.startActivity(intent);
             }
         });
 
@@ -136,14 +139,14 @@ public class MedicineAdapter extends RecyclerSwipeAdapter<MedicineAdapter.Simple
 
         @BindView(R.id.medicine_item_name)
         TextView Name;
-        @BindView(R.id.medicine_item_amount)
-        TextView Amount;
-        @BindView(R.id.medicine_item_frequency)
-        TextView Frequency;
-        @BindView(R.id.medicine_item_add_info)
-        TextView AddInfo;
-        @BindView(R.id.medicine_item_add_info_name)
-        TextView AddInfoName;
+//        @BindView(R.id.medicine_item_amount)
+//        TextView Amount;
+//        @BindView(R.id.medicine_item_frequency)
+//        TextView Frequency;
+//        @BindView(R.id.medicine_item_add_info)
+//        TextView AddInfo;
+//        @BindView(R.id.medicine_item_add_info_name)
+//        TextView AddInfoName;
         @BindView(R.id.Delete)
         TextView Delete;
         @BindView(R.id.Edit)
@@ -160,21 +163,21 @@ public class MedicineAdapter extends RecyclerSwipeAdapter<MedicineAdapter.Simple
             Name.setText(name);
         }
 
-        public void setAmount(String amount) {
-            Amount.setText(amount);
-        }
-
-        public void setFrequency(String frequency) {
-            Frequency.setText(frequency);
-        }
-
-        public void setAddInfo(String addInfo) {
-            if(addInfo != null && !(addInfo.isEmpty())){
-                AddInfoName.setVisibility(View.VISIBLE);
-                AddInfo.setVisibility(View.VISIBLE);
-            }
-            AddInfo.setText(addInfo);
-        }
+//        public void setAmount(String amount) {
+//            Amount.setText(amount);
+//        }
+//
+//        public void setFrequency(String frequency) {
+//            Frequency.setText(frequency);
+//        }
+//
+//        public void setAddInfo(String addInfo) {
+//            if(addInfo != null && !(addInfo.isEmpty())){
+//                AddInfoName.setVisibility(View.VISIBLE);
+//                AddInfo.setVisibility(View.VISIBLE);
+//            }
+//            AddInfo.setText(addInfo);
+//        }
 
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "DatabaseHelp";
+    private static final String DB_NAME = "NewDatabase2";
     private static final int DB_VERSION = 1;
 
     public DatabaseHelper(Context context) {
@@ -147,19 +147,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void updateAccount(List<Account> accountList) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        for (Account account: accountList) {
-            values.put(Account.NAME, account.getName());
-            values.put(Account.VALUE, account.getValue());
-
-            db.insert(Account.TABLE, null, values);
-            db.update(Account.TABLE, values, Account.ID + " = ?",
-                    new String[]{"1"});
-        }
-    }
+//    public void updateAccount(List<Account> accountList) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//
+//        for (Account account: accountList) {
+//            values.put(Account.NAME, account.getName());
+//            values.put(Account.VALUE, account.getValue());
+//
+//            db.update(Account.TABLE, values, Account.NAME + "='" + account.getName()+"'",
+//                    new String[]{"1"});
+//        }
+//    }
 
     public int getAccountCount() {
         String countQuery = "SELECT  * FROM " + Account.TABLE + " WHERE " + Account.VALUE + " IS NOT NULL";
@@ -191,7 +190,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Account.NAME, account.getName());
         values.put(Account.VALUE, account.getValue());
 
-        db.update(Account.TABLE, values, " NAME='"+ Account.NAME + "'", null);
+        db.update(Account.TABLE, values, " NAME="+ Account.NAME, null);
     }
 
     public ArrayList<Account> getAllAccount() {
@@ -199,7 +198,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
         ArrayList<Account> accountList = new ArrayList<>();
-        cursor.moveToFirst();
+        if(cursor.moveToFirst()){
+            Account account = new Account();
+            account.setName(cursor.getString(cursor.getColumnIndex(Account.NAME)));
+            account.setValue(cursor.getString(cursor.getColumnIndex(Account.VALUE)));
+            accountList.add(account);
+        }
 
         while (cursor.moveToNext()) {
             Account account = new Account();
@@ -263,6 +267,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Medicine.AMOUNT, medicine.getAmount());
         values.put(Medicine.FREQUENCY, medicine.getFrequency());
         values.put(Medicine.NAME, medicine.getName());
+        //values.put(Medicine.NOTIFICATIONS, medicine.isNotifications());
 
         db.insert(Medicine.TABLE, null, values);
         db.close();
@@ -276,34 +281,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Medicine.FREQUENCY, medicine.getFrequency());
         values.put(Medicine.ADDINFO, medicine.getAddInfo());
         values.put(Medicine.AMOUNT, medicine.getAmount());
+        //values.put(Medicine.NOTIFICATIONS, medicine.isNotifications());
 
-        db.insert(Medicine.TABLE, null, values);
-        db.update(Medicine.TABLE, values, Medicine.ID + " = ?",
-                new String[]{"1"});
+        db.update(Medicine.TABLE, values, Medicine.NAME + "='" + medicine.getName()+"'", null);
     }
 
-    public boolean deleteMedicine(String name)
-    {
+    public boolean deleteMedicine(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(Medicine.TABLE, Medicine.NAME + "='" + name +"'", null) > 0;
-    }
-
-//    public int getMedicineId(Medicine medicine) {
-//        String countQuery = "SELECT  * FROM " + Medicine.TABLE;
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor cursor = db.rawQuery(countQuery, );
-//        int count = cursor.getCount();
-//        cursor.close();
-//        return count;
-//    }
-
-    public int getMedicineCount() {
-        String countQuery = "SELECT  * FROM " + Medicine.TABLE;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        int count = cursor.getCount();
-        cursor.close();
-        return count;
     }
 
     public Medicine getMedicine() {
@@ -317,6 +302,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         medicine.setFrequency(cursor.getString(cursor.getColumnIndex(Medicine.FREQUENCY)));
         medicine.setAddInfo(cursor.getString(cursor.getColumnIndex(Medicine.ADDINFO)));
         medicine.setAmount(cursor.getString(cursor.getColumnIndex(Medicine.AMOUNT)));
+//        String notify = cursor.getString(cursor.getColumnIndex(Medicine.NOTIFICATIONS));
+//        if(notify == "1"){
+//            medicine.setNotifications(true);
+//        }else{
+//            medicine.setNotifications(false);
+//        }
 
         cursor.close();
         db.close();
@@ -328,7 +319,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
         ArrayList<Medicine> medicineList = new ArrayList<>();
-        cursor.moveToFirst();
+        if(cursor.moveToFirst()){
+            Medicine medicine = new Medicine();
+            medicine.setAddInfo(cursor.getString(cursor.getColumnIndex(Medicine.ADDINFO)));
+            medicine.setAmount(cursor.getString(cursor.getColumnIndex(Medicine.AMOUNT)));
+            medicine.setFrequency(cursor.getString(cursor.getColumnIndex(Medicine.FREQUENCY)));
+            medicine.setName(cursor.getString(cursor.getColumnIndex(Medicine.NAME)));
+//            String notify = cursor.getString(cursor.getColumnIndex(Medicine.NOTIFICATIONS));
+//
+//            if(notify.equals("1")){
+//                medicine.setNotifications(true);
+//            } else{
+//                medicine.setNotifications(false);
+//            }
+
+            medicineList.add(medicine);
+        }
 
         while (cursor.moveToNext()) {
             Medicine medicine = new Medicine();
@@ -336,6 +342,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             medicine.setAmount(cursor.getString(cursor.getColumnIndex(Medicine.AMOUNT)));
             medicine.setFrequency(cursor.getString(cursor.getColumnIndex(Medicine.FREQUENCY)));
             medicine.setName(cursor.getString(cursor.getColumnIndex(Medicine.NAME)));
+//            String notify = cursor.getString(cursor.getColumnIndex(Medicine.NOTIFICATIONS));
+//
+//            if(notify.equals("1")){
+//                medicine.setNotifications(true);
+//            } else{
+//                medicine.setNotifications(false);
+//            }
+
             medicineList.add(medicine);
         }
 

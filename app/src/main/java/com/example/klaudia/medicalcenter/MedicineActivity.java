@@ -1,7 +1,6 @@
 package com.example.klaudia.medicalcenter;
 
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -10,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -18,15 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-import org.xml.sax.Attributes;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MedicineActivity extends AppCompatActivity{
+public class MedicineActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle Toggle;
 
@@ -135,6 +131,7 @@ public class MedicineActivity extends AppCompatActivity{
             }
         });
     }
+
 }
 
 
