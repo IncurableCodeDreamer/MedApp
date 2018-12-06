@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.klaudia.medicalcenter.DatabaseModel.Account;
+import com.example.klaudia.medicalcenter.DatabaseModel.Examination;
+import com.example.klaudia.medicalcenter.DatabaseModel.Medicine;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
