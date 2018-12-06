@@ -21,8 +21,7 @@ public class User {
         this.sex = sex;
     }
 
-    public User() {
-    }
+    public User() { }
 
     public String getName() {
         return name;
