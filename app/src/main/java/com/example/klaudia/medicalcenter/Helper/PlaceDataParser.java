@@ -1,4 +1,4 @@
-package com.example.klaudia.medicalcenter;
+package com.example.klaudia.medicalcenter.Helper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
