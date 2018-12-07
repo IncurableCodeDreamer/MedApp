@@ -1,22 +1,33 @@
 package com.example.klaudia.medicalcenter;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
+import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
+import com.example.klaudia.medicalcenter.DatabaseModel.EventNote;
+import com.example.klaudia.medicalcenter.DatabaseModel.Examination;
+import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -31,9 +42,11 @@ public class CalendarActivity extends AppCompatActivity {
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    private List<EventDay> eventDays = new ArrayList<>();
-    //Button addEventBtn = (Button) findViewById(R.id.addEventToCalendar);
-    //Button deleteEventBtn = (Button) findViewById(R.id.deleteEventFromCalendar);
+    @BindView(R.id.floatingActionButton)
+    FloatingActionButton floatingActionButton;
+    @BindView(R.id.info)
+    FloatingActionButton floatInfo;
+    private static final int ADD_NOTE = 44;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,25 +61,121 @@ public class CalendarActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
+        
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNote();
+            }
+        });
 
-        //calendarView
-//        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-//            @Override
-//            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-//                //po wybraniu daty pokaz fragment z wydarzeniem, jesli jest jakies, inaczej nic nie rob
-//            }
-//        });
+        floatInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInfo();
+            }
+        });
 
-        //addEventBtn.setOnClickListener(this);
-        //deleteEventBtn.setOnClickListener(this);
+
+        calendarView.setOnDayClickListener(new OnDayClickListener() { //sprawdzic czy to ten klik
+            @Override
+            public void onDayClick(EventDay eventDay) {
+                DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+                Calendar date = calendarView.getSelectedDate();
+                SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+                String strdate = formatter.format(date.getTime());
+
+                if(dbHelper.examinationCheck(strdate)){
+                    floatInfo.setVisibility(View.VISIBLE);
+                } else {
+                    floatInfo.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        setIconInCalendar();
+
+        Calendar cal = Calendar.getInstance();
+        try {
+            calendarView.setDate(cal);
+        } catch (OutOfDateRangeException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showInfo() {
+        Intent intent = new Intent(CalendarActivity.this, InfoExaminationActivity.class);
+        Bundle extras = new Bundle();
+        Calendar cal = calendarView.getSelectedDate();
+        extras.putSerializable("date", cal);
+        intent.putExtras(extras);
+        startActivity(intent);
+    }
+
+    private void setIconInCalendar() {
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        List<Examination> examinationList = dbHelper.getAllExamination();
+        List<Examination> notes = dbHelper.getAllNotes();
+        List <EventDay> events = new ArrayList<>();
+
+        for (Examination e :examinationList) {
+            String dateFromExamination = e.getDate();
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+
+            try {
+                Date date = formatter.parse(dateFromExamination);
+                Calendar cal=Calendar.getInstance();
+                cal.setTime(date);
+                events.add(new EventDay(cal, R.drawable.ic_favorite_black_24dp));
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        for (Examination e :notes) {
+            String dateFromExamination = e.getDate();
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+            try {
+                Date date = formatter.parse(dateFromExamination);
+                Calendar cal=Calendar.getInstance();
+                cal.setTime(date);
+                events.add(new EventDay(cal, R.drawable.ic_message_black_24dp));
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        calendarView.setEvents(events);
+    }
+
+    private void addNote() {
+        Intent intent = new Intent(this, AddNoteActivity.class);
+        Bundle extras = new Bundle();
+        Calendar cal = calendarView.getSelectedDate();
+        extras.putSerializable("date", cal);
+        intent.putExtras(extras);
+        startActivityForResult(intent, ADD_NOTE);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.examination_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (Toggle.onOptionsItemSelected(item)) {
             return true;
+        } else {
+            Intent intent = new Intent(CalendarActivity.this, AddCalendarActivity.class);
+            Bundle extras = new Bundle();
+            Date date = calendarView.getFirstSelectedDate().getTime();
+            extras.putSerializable("date", date);
+            intent.putExtras(extras);
+            startActivity(intent);
+            return true;
         }
-        return super.onOptionsItemSelected(item);
     }
 
     private void setDrawerContent(NavigationView navigationView) {
