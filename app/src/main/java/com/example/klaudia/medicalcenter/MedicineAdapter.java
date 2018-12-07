@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
+import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
+import com.example.klaudia.medicalcenter.DatabaseModel.Medicine;
 
 import java.util.ArrayList;
 
