@@ -69,8 +69,8 @@
             android:label="@string/title_activity_medicine"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StatisticActivity"
-            android:label="@string/title_activity_statistic"
+            android:name=".AboutAppActivity"
+            android:label="@string/title_activity_about_app"
             android:screenOrientation="portrait" />
         <activity
             android:name=".CalendarActivity"

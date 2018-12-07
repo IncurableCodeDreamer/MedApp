@@ -41,7 +41,7 @@
     <string name="title_activity_edit_medicine">Edycja leku</string>
     <string name="title_activity_calendar">Badania</string>
     <string name="title_activity_medicine">Lekarstwa</string>
-    <string name="title_activity_statistic">Strona główna</string>
+    <string name="title_activity_about_app">Informacje o aplikacji</string>
     <string name="title_activity_view_details">Szczegóły</string>
     <string name="title_add_calendar_activity">Dodawanie wizyty</string>
     <string name="title_note_preview_activity">Podgląd notatki</string>
@@ -73,5 +73,21 @@
     <string name="material_calendar_today_button">Dzisiaj</string>
     <string name="material_calendar_positive_button">Ok</string>
     <string name="material_calendar_negative_button">Anuluj</string>
+
+    <!--about app view-->
+    <string name="slide_1_title">Hello Food!</string>
+    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+
+    <string name="slide_2_title">Movie Tickets</string>
+    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+
+    <string name="slide_3_title">Great Discounts</string>
+    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+
+    <string name="slide_4_title">World Travel</string>
+    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+
+    <string name="play_again_desc">Aby zobaczyć ponownie wybierz Informacje o aplikacji z menu</string>
+    <string name="play_again">Odtwórz ponownie</string>
 
 </resources>
