@@ -23,55 +23,78 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nazwa leku:"/>
+            android:textSize="15sp"
+            android:text="Nazwa leku"/>
 
         <EditText
             android:id="@+id/edit_medicine_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Wpisz nazwę leku"/>
+            android:layout_marginLeft="5px"
+            android:focusable="false"
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="10px"
+            android:textSize="15sp"
+            android:enabled="false"
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ilość:"/>
+            android:textSize="15sp"
+            android:text="Ilość"/>
 
         <EditText
             android:id="@+id/edit_medicine_item_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Wpisz ilość spożywanych tabletek/kropli"/>
+            android:textColor="@android:color/black"
+            android:inputType="number"
+            android:textSize="15sp"
+            android:hint="Wprowadź ilość spożywanego leku"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Częstotliwość spożywania:"/>
+            android:textSize="15sp"
+            android:text="Częstotliwość spożywania leku"/>
 
         <Spinner
             android:id="@+id/edit_medicine_item_frequency"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
             android:layout_alignParentLeft="true"
+            android:layout_marginBottom="5sp"
+            android:layout_marginTop="5sp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Informacje dodatkowe:"/>
+            android:textSize="15sp"
+            android:text="Informacje dodatkowe"/>
 
         <EditText
             android:id="@+id/edit_medicine_item_add_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
             android:hint="Wprowadź dodatkowe informacje"/>
 
         <Button
             android:id="@+id/save_medicine_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Zapisz zmiany" />
+            android:textSize="15sp"
+            android:text="Zapisz zmiany"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="5sp"
+            android:textColor="@color/white"
+            android:background="@color/colorAccent"/>
 
     </LinearLayout>
 

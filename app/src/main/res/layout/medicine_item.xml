@@ -20,6 +20,7 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textSize="15sp"
             android:background="@color/colorAccent"
             android:gravity="center"
             android:text="@string/edit"
@@ -30,6 +31,7 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textSize="15sp"
             android:background="@color/colorRed"
             android:gravity="center"
             android:text="@string/delete"
@@ -43,84 +45,31 @@
         android:layout_height="match_parent"
         android:background="?android:selectableItemBackground"
         android:orientation="vertical"
-        android:paddingLeft="20sp"
-        android:paddingRight="20sp"
         android:paddingTop="0sp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:padding="5sp"
+            android:textStyle="bold"
             android:text="Nazwa leku:"/>
 
         <TextView
             android:id="@+id/medicine_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:padding="5sp"
             android:text="Wartosc"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/transparentBlack"
             android:layout_marginStart="2sp"
             android:layout_marginEnd="2sp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ilość:"/>
-
-        <TextView
-            android:id="@+id/medicine_item_amount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Wartosc"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginStart="2sp"
-            android:layout_marginEnd="2sp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Częstotliwość spożywania:"/>
-
-        <TextView
-            android:id="@+id/medicine_item_frequency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Wartosc"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginStart="2sp"
-            android:layout_marginEnd="2sp"/>
-
-        <TextView
-            android:id="@+id/medicine_item_add_info_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Informacje dodatkowe:"
-            android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/medicine_item_add_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Wartosc"
-            android:visibility="gone"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginStart="1sp"
-            android:layout_marginEnd="2sp"/>
     </LinearLayout>
 
 </com.daimajia.swipe.SwipeLayout>

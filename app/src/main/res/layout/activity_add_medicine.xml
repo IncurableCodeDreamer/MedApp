@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
@@ -24,98 +25,76 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nazwa leku:"/>
+            android:textSize="15sp"
+            android:text="Nazwa leku"/>
 
         <EditText
             android:id="@+id/add_medicine_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
             android:inputType="text"
-            android:hint="Wpisz nazwę leku"/>
+            android:hint="Wprowadź nazwę leku"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ilość:"/>
+            android:textSize="15sp"
+            android:text="Ilość"/>
 
         <EditText
             android:id="@+id/add_medicine_item_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Wpisz ilość spożywanych tabletek/kropli"/>
+            android:textSize="15sp"
+            android:hint="Wprowadź ilość spożywanego leku"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Częstotliwość spożywania:"/>
+            android:textSize="15sp"
+            android:text="Częstotliwość spożywania leku"/>
 
         <Spinner
             android:id="@+id/add_medicine_item_frequency"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:drawSelectorOnTop="true"
+            android:layout_marginBottom="5sp"
+            android:layout_marginTop="5sp"
+            android:textSize="15sp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Informacje dodatkowe:"/>
+            android:textSize="15sp"
+            android:text="Informacje dodatkowe"/>
 
         <EditText
             android:id="@+id/add_medicine_item_add_info"
             android:layout_width="match_parent"
+            android:textSize="15sp"
             android:layout_height="wrap_content"
             android:hint="Wprowadź dodatkowe informacje"/>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/txt_nortification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="Powiadomienia" />
-
-            <Switch
-                android:id="@+id/add_medicine_switch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"/>
-
-            </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/nortification_layout"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Godzina przypomnienia:"/>
-
-            <TimePicker
-                android:id="@+id/timePicker1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:timePickerMode="spinner"/>
-
-        </LinearLayout>
-
         <Button
             android:id="@+id/add_medicine_btn_activity"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
             android:textAlignment="center"
-            android:text="Dodaj lek" />
+            android:text="Dodaj lek"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="5sp"
+            android:textColor="@color/white"
+            android:background="@color/colorAccent"/>
 
     </LinearLayout>
 
     </ScrollView>
+
 </android.support.v4.widget.DrawerLayout >

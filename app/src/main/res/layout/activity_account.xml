@@ -30,12 +30,14 @@ tools:context=".AccountActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:textSize="15sp"
         android:text="@string/user_data"/>
 
     <TextView
         android:id="@+id/userAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="15sp"
         android:text="Data urodzenia (wiek)"/>
 
     <TextView
@@ -43,18 +45,19 @@ tools:context=".AccountActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/darkGray"
+        android:textSize="15sp"
         android:text="@string/ifDonor"
         android:drawableRight="@drawable/ic_favorite_black_24dp"/>
 
     </LinearLayout>
 
-        <ImageView
-            android:id="@+id/nav_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/ic_person_black_24dp"
-            android:clickable="false"
-            android:layout_alignParentRight="true"/>
+            <ImageView
+                android:id="@+id/nav_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentRight="true"
+                android:clickable="false"
+                android:src="@drawable/ic_person_black_24dp" />
 
     </RelativeLayout>
 

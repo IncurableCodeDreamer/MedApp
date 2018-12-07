@@ -5,15 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5sp"
+    android:padding="20sp"
     tools:context="com.example.klaudia.medicalcenter.MainActivity"
     android:focusable="true"
     android:focusableInTouchMode="true">
 
 <TextView
-    android:text="Wybierz płeć"
+    android:text="Wybierz płeć:"
     android:id="@+id/txt_sex"
     android:layout_width="wrap_content"
+    android:textSize="15sp"
+    android:layout_marginLeft="0sp"
     android:layout_height="wrap_content"
     android:layout_margin="5sp"/>
 
@@ -26,11 +28,13 @@
         android:id="@+id/female"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15sp"
         android:text="Kobieta"
         android:checked="true"/>
     <RadioButton
         android:id="@+id/male"
         android:layout_width="wrap_content"
+        android:textSize="15sp"
         android:layout_height="wrap_content"
         android:text="Mężczyzna"/>
 </RadioGroup>
@@ -38,34 +42,38 @@
 <TextView
     android:id="@+id/txt_name"
     android:layout_width="wrap_content"
+    android:textSize="15sp"
     android:layout_height="wrap_content"
     android:layout_below="@+id/start_dialog_sex"
     android:layout_marginTop="15sp"
     android:layout_marginBottom="5sp"
+    android:layout_marginLeft="5sp"
     android:text="Imię:" />
 
 <EditText
-    android:hint="Imię"
+    android:hint="Wprowadź imię"
     android:id="@+id/start_dialog_name"
     android:layout_width="match_parent"
+    android:textSize="15sp"
     android:layout_height="wrap_content"
     android:layout_toRightOf="@+id/txt_name"
     android:layout_below="@+id/start_dialog_sex"
     android:inputType="text"
-    android:textSize="15sp"
     android:layout_margin="5sp"/>
 
 <TextView
     android:text="Nazwisko:"
     android:id="@+id/txt_surname"
     android:layout_width="wrap_content"
+    android:textSize="15sp"
     android:layout_height="wrap_content"
     android:layout_below="@+id/start_dialog_name"
     android:paddingTop="5sp"
+    android:layout_marginLeft="0sp"
     android:layout_margin="5sp"/>
 
 <EditText
-    android:hint="Nazwisko"
+    android:hint="Wprowadź nazwisko"
     android:id="@+id/start_dialog_surname"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -78,13 +86,14 @@
     android:text="Email:"
     android:id="@+id/txt_email"
     android:layout_width="wrap_content"
+    android:textSize="15sp"
     android:layout_height="wrap_content"
     android:layout_below="@+id/start_dialog_surname"
     android:paddingTop="5sp"
     android:layout_margin="5sp"/>
 
 <EditText
-    android:hint="Email"
+    android:hint="Wprowadź email"
     android:id="@+id/start_dialog_email"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -98,7 +107,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@+id/txt_email"
-    android:layout_marginTop="20sp"
+    android:layout_marginTop="15sp"
+    android:textSize="15sp"
+    android:layout_marginLeft="5sp"
     android:layout_marginBottom="5sp"
     android:text="Data urodzin:" />
 
@@ -108,7 +119,7 @@
     android:layout_height="wrap_content"
     android:layout_below="@id/start_dialog_email"
     android:layout_marginLeft="10sp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="9dp"
     android:layout_toRightOf="@+id/txt_birthdate"
     android:hint="Wybierz datę"
     android:clickable="true"
@@ -117,9 +128,13 @@
 <Button
     android:id="@+id/start_dialog_ok_btn"
     android:layout_below="@id/start_dialog_bithdate"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="7sp"
+    android:layout_marginBottom="5sp"
+    android:textColor="@color/white"
+    android:background="@color/colorAccent"
+    android:textSize="15sp"
     android:layout_centerHorizontal="true"
     android:text="OK" />
 

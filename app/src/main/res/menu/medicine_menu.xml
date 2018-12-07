@@ -8,6 +8,8 @@
         android:id="@+id/add_medicine_menu_btn"
         android:icon="@drawable/ic_add_circle_black_24dp"
         android:title="@string/add_medicine"
+        android:iconTint="@color/white"
+        android:iconTintMode="add"
         app:showAsAction="always"
         />
 
