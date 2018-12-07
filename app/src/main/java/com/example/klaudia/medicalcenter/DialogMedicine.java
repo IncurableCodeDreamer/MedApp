@@ -29,7 +29,8 @@ public class DialogMedicine extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.fragment_dialog_medicine, null);
 
         builder.setView(view)
-                .setTitle("Informacje o leku");
+                .setTitle("Informacje o leku")
+                .setCancelable(false);
 
         frequency = getArguments().getString("frequency");
         amount = getArguments().getString("amount");

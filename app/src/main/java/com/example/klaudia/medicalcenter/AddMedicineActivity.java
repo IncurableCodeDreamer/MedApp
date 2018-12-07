@@ -1,20 +1,17 @@
 package com.example.klaudia.medicalcenter;
 
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
+import com.example.klaudia.medicalcenter.DatabaseModel.Medicine;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
@@ -40,10 +37,6 @@ public class AddMedicineActivity extends AppCompatActivity implements Validator.
     EditText add_medicine_item_amount;
     @BindView(R.id.add_medicine_item_add_info)
     EditText add_medicine_item_add_info;
-    @BindView(R.id.add_medicine_switch)
-    Switch nortification_btn;
-    @BindView(R.id.nortification_layout)
-    LinearLayout nortifiction_layout;
     @BindView(R.id.add_medicine_btn_activity)
     Button add_medicine_btn;
 
@@ -66,29 +59,6 @@ public class AddMedicineActivity extends AppCompatActivity implements Validator.
                 validator.validate();
             }
         });
-
-        nortification_btn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    nortifiction_layout.setVisibility(View.VISIBLE);
-                } else {
-                    nortifiction_layout.setVisibility(View.GONE);
-                }
-            }
-        });
-    }
-
-    private void addNotification() {
-        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(this)
-                .setDefaults(NotificationCompat.DEFAULT_ALL)
-                .setContentTitle("Przypomnienie")
-                .setContentText("Zabierz lek")
-                .setSmallIcon(R.drawable.ic_access_time_black_24dp);
-
-        manager.notify(1, notification.build());
     }
 
     private void addMedicine() {
@@ -97,10 +67,6 @@ public class AddMedicineActivity extends AppCompatActivity implements Validator.
         medicine.setFrequency(dropdown.getSelectedItem().toString());
         medicine.setAddInfo(add_medicine_item_add_info.getText().toString());
         medicine.setAmount(add_medicine_item_amount.getText().toString());
-
-        if (nortification_btn.isChecked()) {
-            addNotification();
-        }
 
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         dbHelper.insertMedicine(medicine);

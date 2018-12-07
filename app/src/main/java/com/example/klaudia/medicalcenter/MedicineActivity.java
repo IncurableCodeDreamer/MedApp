@@ -16,6 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
+import com.example.klaudia.medicalcenter.DatabaseModel.Medicine;
+
 import java.util.ArrayList;
 import java.util.Objects;
 

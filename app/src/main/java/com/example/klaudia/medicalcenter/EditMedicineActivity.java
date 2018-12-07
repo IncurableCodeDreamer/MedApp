@@ -9,9 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
+import com.example.klaudia.medicalcenter.DatabaseModel.Medicine;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
@@ -32,7 +33,7 @@ public class EditMedicineActivity extends AppCompatActivity implements Validator
     @Length(min = 3, message = "Nazwa leku musi miec powyzej 3 liter")
     @Pattern(sequence = 2, regex = "[a-zA-Z][a-zA-Z ]+", message = "Wprowadz dane w odpowiedniej formie")
     @BindView(R.id.edit_medicine_item_name)
-    TextView save_medicine_item_name;
+    EditText save_medicine_item_name;
     @NotEmpty(message = "Pole nie może pozostać puste")
     @BindView(R.id.edit_medicine_item_amount)
     EditText save_medicine_item_amount;
