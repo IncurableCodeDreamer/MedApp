@@ -3,8 +3,6 @@ package com.example.klaudia.medicalcenter;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,11 +24,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.klaudia.medicalcenter.DatabaseModel.Account;
+import com.example.klaudia.medicalcenter.DatabaseModel.User;
+import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
+import com.tooltip.Tooltip;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -90,6 +93,13 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
         ButterKnife.bind(this);
         final Validator validator = new Validator(this);
         validator.setValidationListener(this);
+
+        Tooltip tooltipImage = new Tooltip.Builder(image)
+                .setText("Dodaj zdjęcie z galerii")
+                .setCancelable(true)
+                .setBackgroundColor(Color.GRAY)
+                .setGravity(Gravity.BOTTOM)
+                .build();
 
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         User user = dbHelper.getUser();
@@ -232,28 +242,18 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
         }
 
         if(accountList.size() !=0) {
-            if(dbHelper.getAccountCount()!= 0){
-                for (Account ac: accountList) {
-                    updateAccount(dbHelper, ac);
-                }
-
-                dbHelper.updateAccount(accountList);
-            }else {
-                dbHelper.insertAccount(accountList);
+            dbHelper.deleteAllAcount();
+            for (Account ac : accountList) {
+                dbHelper.insertOneAccount(ac);
             }
         }
 
         if(!(image.getDrawable().getConstantState().equals (getResources().getDrawable(R.drawable.ic_person_black_24dp).getConstantState()))){
-            //bytearrayoutputstream = new ByteArrayOutputStream();
             ByteArrayOutputStream bytearrayoutputstream;
             bytearrayoutputstream = new ByteArrayOutputStream();
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
             bitmap.compress(Bitmap.CompressFormat.JPEG,70,bytearrayoutputstream);
             byte [] BYTE = bytearrayoutputstream.toByteArray();
-//            Drawable dr = image.getDrawable();
-//            Bitmap bitmap1 = ((BitmapDrawable)dr).getBitmap();
-//            bitmap1.compress(Bitmap.CompressFormat.JPEG,70,bytearrayoutputstream);
-//            byte [] BYTE1 = bytearrayoutputstream.toByteArray();
             user.setPicture(BYTE);
         }
 
@@ -275,14 +275,6 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
 
         Intent intent = new Intent(AddAccountActivity.this, AccountActivity.class);
         startActivity(intent);
-    }
-
-    private void updateAccount(DatabaseHelper dbHelper, Account ac) {
-        if (dbHelper.checkAccount(ac)) {
-            dbHelper.updateOneAccount(ac);
-        } else{
-            dbHelper.insertOneAccount(ac);
-        }
     }
 
     private void operGallery() {

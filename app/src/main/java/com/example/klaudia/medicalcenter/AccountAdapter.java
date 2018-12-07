@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.klaudia.medicalcenter.DatabaseModel.Account;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;

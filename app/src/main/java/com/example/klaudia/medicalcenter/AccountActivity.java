@@ -1,6 +1,9 @@
 package com.example.klaudia.medicalcenter;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -14,6 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.klaudia.medicalcenter.DatabaseModel.Account;
+import com.example.klaudia.medicalcenter.DatabaseModel.User;
+import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -42,6 +49,7 @@ public class AccountActivity extends AppCompatActivity {
     @BindView(R.id.nav_image)
     ImageView image;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +79,11 @@ public class AccountActivity extends AppCompatActivity {
         userData.setText(user.getName() + " " + user.getSurname());
         String yearsOld = getYearsOld(user.getAge());
         userAge.setText(user.getBirthDate()+" ("+user.getAge()+" " + yearsOld + ")");
-        //image.set
+
+        if(user.getPicture() != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(user.getPicture(), 0, user.getPicture().length);
+            image.setImageBitmap(bitmap);
+        }
     }
 
     private String getYearsOld(int age) {
