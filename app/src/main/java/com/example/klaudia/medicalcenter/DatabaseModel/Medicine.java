@@ -1,4 +1,4 @@
-package com.example.klaudia.medicalcenter;
+package com.example.klaudia.medicalcenter.DatabaseModel;
 import java.io.Serializable;
 
 public class Medicine implements Serializable{

@@ -1,4 +1,4 @@
-package com.example.klaudia.medicalcenter;
+package com.example.klaudia.medicalcenter.DatabaseModel;
 
 public class Account {
         private String name;

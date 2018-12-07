@@ -1,4 +1,4 @@
-package com.example.klaudia.medicalcenter;
+package com.example.klaudia.medicalcenter.DatabaseModel;
 
 public class User {
     private String name;
@@ -7,7 +7,7 @@ public class User {
     private String birthDate;
     private String sex;
     private boolean ifDonor;
-    byte [] picture;
+    private byte [] picture;
     private int age;
 
     public User(String name, String surname, String email, String birthDate, String sex, boolean ifDonor, int age, byte [] picture) {
