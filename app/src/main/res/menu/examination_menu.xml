@@ -6,7 +6,7 @@
 
         <item
             android:id="@+id/add_examination_menu_btn"
-            android:icon="@drawable/ic_add_circle_black_24dp"
+            android:icon="@drawable/ic_add_whtie_24dp"
             android:title="Dodaj wizytę"
             android:iconTint="@color/white"
             app:showAsAction="always"

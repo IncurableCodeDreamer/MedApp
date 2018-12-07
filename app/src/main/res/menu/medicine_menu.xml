@@ -6,10 +6,9 @@
 
     <item
         android:id="@+id/add_medicine_menu_btn"
-        android:icon="@drawable/ic_add_circle_black_24dp"
-        android:title="@string/add_medicine"
+        android:icon="@drawable/ic_add_whtie_24dp"
         android:iconTint="@color/white"
-        android:iconTintMode="add"
+        android:title="@string/add_medicine"
         app:showAsAction="always"
         />
 

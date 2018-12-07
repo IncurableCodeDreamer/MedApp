@@ -4,7 +4,7 @@
     <item
         android:id="@+id/nav_main"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_activity_statistic" />
+        android:title="@string/title_activity_main" />
 
     <item
         android:id="@+id/nav_account"
@@ -25,4 +25,9 @@
         android:id="@+id/nav_examination"
         android:icon="@drawable/ic_favorite_black_24dp"
         android:title="@string/title_activity_calendar" />
+
+    <item
+        android:id="@+id/nav_info"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="@string/title_activity_about_app" />
 </menu>

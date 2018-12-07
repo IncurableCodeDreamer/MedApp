@@ -6,7 +6,7 @@
 
     <item
         android:id="@+id/edit_account_menu_btn"
-        android:icon="@drawable/ic_edit_black_24dp"
+        android:icon="@drawable/ic_edit_white_24dp"
         android:iconTint="@color/white"
         android:title="@string/add_medicine"
         app:showAsAction="always"
