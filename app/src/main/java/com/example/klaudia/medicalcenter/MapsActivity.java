@@ -18,8 +18,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.klaudia.medicalcenter.Model.MyPlaces;
-import com.example.klaudia.medicalcenter.Model.Results;
+import com.example.klaudia.medicalcenter.RetrofitModel.MyPlaces;
+import com.example.klaudia.medicalcenter.RetrofitModel.Results;
 import com.example.klaudia.medicalcenter.Remote.IGoogleApiService;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -151,15 +151,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 latitude = mLastLocation.getLatitude();
                 longitude = mLastLocation.getLongitude();
 
-                //LatLng latLng = new LatLng(latitude,longitude);
-                //MarkerOptions markerOptions = new MarkerOptions()
-                //       .position(latLng)
-                //      .title("Twoja pozycja")
-                //     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+                LatLng latLng = new LatLng(latitude, longitude);
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .position(latLng)
+                        .title("Twoja pozycja")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
-                //mMarker=mMap.addMarker(markerOptions);
-                //  mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                // mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+                mMarker = mMap.addMarker(markerOptions);
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
             }
         };
     }
