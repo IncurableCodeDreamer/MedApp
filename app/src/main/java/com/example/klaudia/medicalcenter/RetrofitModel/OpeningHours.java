@@ -1,9 +1,7 @@
-package com.example.klaudia.medicalcenter.Model;
+package com.example.klaudia.medicalcenter.RetrofitModel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 /**
  * Created by Klaudia on 11.03.2018.

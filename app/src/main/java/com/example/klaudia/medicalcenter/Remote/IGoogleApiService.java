@@ -1,7 +1,7 @@
 package com.example.klaudia.medicalcenter.Remote;
 
-import com.example.klaudia.medicalcenter.Model.MyPlaces;
-import com.example.klaudia.medicalcenter.Model.PlaceDetails;
+import com.example.klaudia.medicalcenter.RetrofitModel.MyPlaces;
+import com.example.klaudia.medicalcenter.RetrofitModel.PlaceDetails;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

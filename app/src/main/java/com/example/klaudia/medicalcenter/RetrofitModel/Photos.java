@@ -1,4 +1,4 @@
-package com.example.klaudia.medicalcenter.Model;
+package com.example.klaudia.medicalcenter.RetrofitModel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
