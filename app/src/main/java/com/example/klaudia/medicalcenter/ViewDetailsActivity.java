@@ -14,7 +14,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.klaudia.medicalcenter.Model.PlaceDetails;
+import com.example.klaudia.medicalcenter.RetrofitModel.PlaceDetails;
 import com.example.klaudia.medicalcenter.Remote.IGoogleApiService;
 import com.squareup.picasso.Picasso;
 
