@@ -7,8 +7,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,12 +20,6 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    //@BindView(R.id.nav_image)
-    //ImageView image;
-    //@BindView(R.id.nav_name)
-    //TextView name;
-    //@BindView(R.id.nav_email)
-    //TextView email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +33,6 @@ public class MainActivity extends AppCompatActivity {
             showDialog();
         } else if (dbHelper.getUserCount() == 0){
             showDialog();
-        }
-        else{
-           // User user = dbHelper.getUser();
-            //image.se
-           //name.setText(user.getName() + " " + user.getSurname());
-           // email.setText(user.getEmail());
         }
 
         Toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);

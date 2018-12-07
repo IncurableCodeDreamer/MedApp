@@ -54,11 +54,11 @@
                         android:id="@+id/ifDonor_checkbox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/darkGray"
                         android:checked="true"
-                        android:textSize="15sp"
+                        android:drawableRight="@drawable/ic_favorite_black_24dp"
                         android:text="@string/ifDonor"
-                        android:drawableRight="@drawable/ic_favorite_black_24dp"/>
+                        android:textColor="@color/darkGray"
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
