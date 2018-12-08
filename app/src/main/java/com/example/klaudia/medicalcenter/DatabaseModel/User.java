@@ -7,10 +7,10 @@ public class User {
     private String birthDate;
     private String sex;
     private boolean ifDonor;
-    private byte [] picture;
+    private byte[] picture;
     private int age;
 
-    public User(String name, String surname, String email, String birthDate, String sex, boolean ifDonor, int age, byte [] picture) {
+    public User(String name, String surname, String email, String birthDate, String sex, boolean ifDonor, int age, byte[] picture) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -21,7 +21,8 @@ public class User {
         this.sex = sex;
     }
 
-    public User() { }
+    public User() {
+    }
 
     public String getName() {
         return name;
@@ -31,7 +32,9 @@ public class User {
         return surname;
     }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
     public String getBirthDate() {
         return birthDate;
@@ -41,17 +44,29 @@ public class User {
         return age;
     }
 
-    public byte[] getPicture() { return picture; }
+    public byte[] getPicture() {
+        return picture;
+    }
 
-    public String getSex() { return sex; }
+    public String getSex() {
+        return sex;
+    }
 
-    public void setSex(String sex) { this.sex = sex; }
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
-    public void setPicture(byte[] picture) { this.picture = picture; }
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
 
-    public boolean isIfDonor() { return ifDonor; }
+    public boolean isIfDonor() {
+        return ifDonor;
+    }
 
-    public void setIfDonor(boolean ifDonor) { this.ifDonor = ifDonor; }
+    public void setIfDonor(boolean ifDonor) {
+        this.ifDonor = ifDonor;
+    }
 
     public void setName(String name) {
         this.name = name;

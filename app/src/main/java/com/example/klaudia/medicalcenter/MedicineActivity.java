@@ -69,11 +69,11 @@ public class MedicineActivity extends AppCompatActivity {
         });
 
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        if(dbHelper.getAccountCount() != 0) {
+        if (dbHelper.getAccountCount() != 0) {
             itemList = dbHelper.getAllMedicine();
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
             listView.setLayoutManager(layoutManager);
-            adapter=new MedicineAdapter(this, itemList);
+            adapter = new MedicineAdapter(this, itemList);
             adapter.setMode(com.daimajia.swipe.util.Attributes.Mode.Single);
             listView.setAdapter(adapter);
 
@@ -83,6 +83,7 @@ public class MedicineActivity extends AppCompatActivity {
                     super.onScrollStateChanged(recyclerView, newState);
                     Log.e("RecyclerView", "onScrollStateChanged");
                 }
+
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
@@ -96,15 +97,15 @@ public class MedicineActivity extends AppCompatActivity {
 
     private void filter(String s) {
         ArrayList<Medicine> list = new ArrayList<>();
-            if(s.length() == 0){
-                list.addAll(itemList);
-            } else{
-                for(Medicine m : itemList){
-                    if(m.getName().toLowerCase().contains(s.toLowerCase())){
-                        list.add(m);
-                    }
+        if (s.length() == 0) {
+            list.addAll(itemList);
+        } else {
+            for (Medicine m : itemList) {
+                if (m.getName().toLowerCase().contains(s.toLowerCase())) {
+                    list.add(m);
                 }
             }
+        }
         adapter.filterList(list);
     }
 

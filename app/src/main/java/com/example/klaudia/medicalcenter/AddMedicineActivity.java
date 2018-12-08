@@ -23,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddMedicineActivity extends AppCompatActivity implements Validator.ValidationListener{
+public class AddMedicineActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     @BindView(R.id.add_medicine_item_frequency)
     Spinner dropdown;

@@ -15,8 +15,9 @@ import java.util.Date;
 
 import static android.app.NotificationManager.IMPORTANCE_DEFAULT;
 
-public class NotificationReciver extends BroadcastReceiver{
+public class NotificationReciver extends BroadcastReceiver {
     private static final String CHANNEL_ID = "com.example.klaudia.medicalcenter.channelId";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent notificationIntent = new Intent(context, MainActivity.class);
@@ -31,7 +32,7 @@ public class NotificationReciver extends BroadcastReceiver{
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification.Builder builder = new Notification.Builder(context);
         Notification notification = builder.setContentTitle("Przypomnienie")
-                .setContentText("Masz jutro wizytę u "+ name + "o godzinie " + hour +".")
+                .setContentText("Masz jutro wizytę u " + name + "o godzinie " + hour + ".")
                 .setTicker("New Message Alert!")
                 .setSmallIcon(R.drawable.ic_favorite_black_24dp)
                 .setContentIntent(pendingIntent).build();

@@ -32,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Account.CREATE_TABLE);
         db.execSQL(Examination.CREATE_TABLE);
         db.execSQL(Medicine.CREATE_TABLE);
-        Log.i("db","create"+ DB_NAME);
+        Log.i("db", "create" + DB_NAME);
     }
 
     public boolean doesDatabaseExist(Context context) {
@@ -78,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(User.IFDONOR, user.isIfDonor());
         values.put(User.PICTURE, user.getPicture());
 
-        db.update(User.TABLE, values, User.ID + "=1",null);
+        db.update(User.TABLE, values, User.ID + "=1", null);
     }
 
     public int getUserCount() {
@@ -157,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
         ArrayList<Account> accountList = new ArrayList<>();
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Account account = new Account();
             account.setName(cursor.getString(cursor.getColumnIndex(Account.NAME)));
             account.setValue(cursor.getString(cursor.getColumnIndex(Account.VALUE)));
@@ -180,7 +180,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //region Examination
     public void deleteExamination(Examination examination) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(Examination.TABLE," DATE = '" + examination.getDate() + "'", null);
+        db.delete(Examination.TABLE, " DATE = '" + examination.getDate() + "'", null);
     }
 
     public void insertExamination(Examination examination) {
@@ -218,15 +218,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(Examination.TABLE, values, Examination.ID + "=" + examination.getId(), null);
     }
 
-    public boolean examinationCheck(String date){
+    public boolean examinationCheck(String date) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String sql ="SELECT * FROM "+ Examination.TABLE +" WHERE DATE='"+ date +"'";
-        Cursor cursor= db.rawQuery(sql,null);
+        String sql = "SELECT * FROM " + Examination.TABLE + " WHERE DATE='" + date + "'";
+        Cursor cursor = db.rawQuery(sql, null);
 
-        if(cursor.getCount()>0){
+        if (cursor.getCount() > 0) {
             cursor.close();
             return true;
-        }else{
+        } else {
             cursor.close();
             return false;
         }
@@ -234,7 +234,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Examination getExamination(String date) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String Query = "SELECT * FROM "+ Examination.TABLE +" WHERE DATE='"+ date +"'";
+        String Query = "SELECT * FROM " + Examination.TABLE + " WHERE DATE='" + date + "'";
         Cursor cursor = db.rawQuery(Query, null);
         cursor.moveToFirst();
 
@@ -265,7 +265,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
         ArrayList<Examination> examinationList = new ArrayList<>();
-        if(cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             Examination examination = new Examination();
             examination.setName(cursor.getString(cursor.getColumnIndex(Examination.NAME)));
             examination.setAddInfo(cursor.getString(cursor.getColumnIndex(Examination.ADDINFO)));
@@ -315,7 +315,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
         ArrayList<Examination> examinationList = new ArrayList<>();
-        if(cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             Examination examination = new Examination();
             examination.setId(cursor.getInt(cursor.getColumnIndex(Examination.ID)));
             examination.setName(cursor.getString(cursor.getColumnIndex(Examination.NAME)));
@@ -387,12 +387,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Medicine.AMOUNT, medicine.getAmount());
         //values.put(Medicine.NOTIFICATIONS, medicine.isNotifications());
 
-        db.update(Medicine.TABLE, values, Medicine.NAME + "='" + medicine.getName()+"'", null);
+        db.update(Medicine.TABLE, values, Medicine.NAME + "='" + medicine.getName() + "'", null);
     }
 
     public boolean deleteMedicine(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(Medicine.TABLE, Medicine.NAME + "='" + name +"'", null) > 0;
+        return db.delete(Medicine.TABLE, Medicine.NAME + "='" + name + "'", null) > 0;
     }
 
     public Medicine getMedicine() {
@@ -417,7 +417,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
         ArrayList<Medicine> medicineList = new ArrayList<>();
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Medicine medicine = new Medicine();
             medicine.setAddInfo(cursor.getString(cursor.getColumnIndex(Medicine.ADDINFO)));
             medicine.setAmount(cursor.getString(cursor.getColumnIndex(Medicine.AMOUNT)));

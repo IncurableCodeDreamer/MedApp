@@ -67,20 +67,20 @@ public class AccountActivity extends AppCompatActivity {
         ifIsDonor();
 
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        if(dbHelper.getAccountCount() != 0) {
+        if (dbHelper.getAccountCount() != 0) {
             itemList = dbHelper.getAllAccount();
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
             listView.setLayoutManager(layoutManager);
-            adapter=new AccountAdapter(itemList);
+            adapter = new AccountAdapter(itemList);
             listView.setAdapter(adapter);
         }
 
         User user = dbHelper.getUser();
         userData.setText(user.getName() + " " + user.getSurname());
         String yearsOld = getYearsOld(user.getAge());
-        userAge.setText(user.getBirthDate()+" ("+user.getAge()+" " + yearsOld + ")");
+        userAge.setText(user.getBirthDate() + " (" + user.getAge() + " " + yearsOld + ")");
 
-        if(user.getPicture() != null) {
+        if (user.getPicture() != null) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(user.getPicture(), 0, user.getPicture().length);
             image.setImageBitmap(bitmap);
         }
@@ -88,9 +88,9 @@ public class AccountActivity extends AppCompatActivity {
 
     private String getYearsOld(int age) {
         String yearsOld;
-        if (age <= 4 || (age >21 && age <=24) || (age >31 && age <=34) || (age >41 && age <=44) || (age >51 && age <=54) || (age >61 && age <=64) || (age >71 && age <=74) || (age >81 && age <=84) ||(age >91 && age <=94)) {
+        if (age <= 4 || (age > 21 && age <= 24) || (age > 31 && age <= 34) || (age > 41 && age <= 44) || (age > 51 && age <= 54) || (age > 61 && age <= 64) || (age > 71 && age <= 74) || (age > 81 && age <= 84) || (age > 91 && age <= 94)) {
             yearsOld = "lata";
-        } else{
+        } else {
             yearsOld = "lat";
         }
 
@@ -98,9 +98,9 @@ public class AccountActivity extends AppCompatActivity {
     }
 
     private void ifIsDonor() {
-        if(ifChecked) {
+        if (ifChecked) {
             ifDonor.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             ifDonor.setVisibility(View.INVISIBLE);
         }
     }

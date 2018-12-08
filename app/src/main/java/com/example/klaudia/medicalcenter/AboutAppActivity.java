@@ -118,10 +118,12 @@ public class AboutAppActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) { }
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
 
         @Override
-        public void onPageScrollStateChanged(int arg0) { }
+        public void onPageScrollStateChanged(int arg0) {
+        }
     };
 
     public class MyViewPagerAdapter extends PagerAdapter {

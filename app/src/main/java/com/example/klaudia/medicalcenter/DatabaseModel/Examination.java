@@ -24,13 +24,20 @@ public class Examination {
         this.hour = hour;
     }
 
-    public Examination() { }
+    public Examination() {
+    }
 
-    public String getHour() { return hour; }
+    public String getHour() {
+        return hour;
+    }
 
-    public void setHour(String hour) { this.hour = hour; }
+    public void setHour(String hour) {
+        this.hour = hour;
+    }
 
-    public String getAddress() { return address; }
+    public String getAddress() {
+        return address;
+    }
 
     public void setAddress(String address) {
         this.address = address;
@@ -44,15 +51,25 @@ public class Examination {
         this.type = type;
     }
 
-    public String getAddInfo() { return addInfo; }
+    public String getAddInfo() {
+        return addInfo;
+    }
 
-    public String getNote() { return note; }
+    public String getNote() {
+        return note;
+    }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public void setNote(String note) { this.note = note; }
+    public void setNote(String note) {
+        this.note = note;
+    }
 
     public void setAddInfo(String addInfo) {
         this.addInfo = addInfo;

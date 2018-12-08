@@ -141,7 +141,7 @@ public class MedicineAdapter extends RecyclerSwipeAdapter<MedicineAdapter.Simple
 
         @BindView(R.id.medicine_item_name)
         TextView Name;
-//        @BindView(R.id.medicine_item_amount)
+        //        @BindView(R.id.medicine_item_amount)
 //        TextView Amount;
 //        @BindView(R.id.medicine_item_frequency)
 //        TextView Frequency;

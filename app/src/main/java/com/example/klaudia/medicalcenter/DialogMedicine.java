@@ -64,7 +64,7 @@ public class DialogMedicine extends AppCompatDialogFragment {
         tvFreq.setText(frequency);
         tvName.setText(nameTxt);
 
-        if(addinfo != null && !(addinfo.isEmpty())){
+        if (addinfo != null && !(addinfo.isEmpty())) {
             tvAddInfo.setVisibility(View.VISIBLE);
             tvAddInfoTxt.setVisibility(View.VISIBLE);
             tvAddInfo.setText(addinfo);

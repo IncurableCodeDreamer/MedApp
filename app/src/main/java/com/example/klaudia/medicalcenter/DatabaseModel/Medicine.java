@@ -1,7 +1,8 @@
 package com.example.klaudia.medicalcenter.DatabaseModel;
+
 import java.io.Serializable;
 
-public class Medicine implements Serializable{
+public class Medicine implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private String frequency;
@@ -30,15 +31,21 @@ public class Medicine implements Serializable{
         return amount;
     }
 
-    public String getAddInfo() { return addInfo; }
+    public String getAddInfo() {
+        return addInfo;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAmount(String amount) { this.amount = amount; }
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
 
-    public void setAddInfo(String addInfo) { this.addInfo = addInfo; }
+    public void setAddInfo(String addInfo) {
+        this.addInfo = addInfo;
+    }
 
     public void setFrequency(String frequency) {
         this.frequency = frequency;

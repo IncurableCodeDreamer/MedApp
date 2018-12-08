@@ -2,7 +2,9 @@ package com.example.klaudia.medicalcenter;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -47,7 +49,7 @@ public class AddNoteActivity extends AppCompatActivity {
         setIconInCalendar();
 
         Bundle exstras = this.getIntent().getExtras();
-        Calendar date = (Calendar) exstras.getSerializable("date");
+        final Calendar date = (Calendar) exstras.getSerializable("date");
 
         SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
         String strdate = formatter.format(date.getTime());
@@ -59,10 +61,10 @@ public class AddNoteActivity extends AppCompatActivity {
         }
 
         final DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        if(dbHelper.examinationCheck(strdate)) {
+        if (dbHelper.examinationCheck(strdate)) {
             examination = dbHelper.getExamination(strdate);
 
-            if(examination.getNote() != null && !(examination.getNote().isEmpty())) {
+            if (examination.getNote() != null && !(examination.getNote().isEmpty())) {
                 noteEditText.setText(examination.getNote());
             }
         }
@@ -70,89 +72,20 @@ public class AddNoteActivity extends AppCompatActivity {
         datePicker.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(EventDay eventDay) {
-                Calendar cal = datePicker.getFirstSelectedDate();// getSelectedDate();
+                Calendar clickedDayCalendar = Calendar.getInstance();
+
                 SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-                String strdate = formatter.format(cal.getTime());
+
+                //String clickedDayCalendar2 = eventDay.toString();//.getCalendar();
+                String strdate = formatter.format(clickedDayCalendar);
                 Examination exam;
 
-                if(dbHelper.examinationCheck(strdate)) {
+                if (dbHelper.examinationCheck(strdate)) {
                     exam = dbHelper.getExamination(strdate);
                     noteEditText.setText(exam.getNote());
                 } else {
-                    noteEditText.setText(null);
+                    noteEditText.getText().clear();
                 }
-            }
-        });
-
-        datePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar cal = datePicker.getSelectedDate();
-                SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-                String strdate = formatter.format(cal.getTime());
-                Examination exam;
-
-                if(dbHelper.examinationCheck(strdate)) {
-                    exam = dbHelper.getExamination(strdate);
-                    noteEditText.setText(exam.getNote());
-                } else {
-                    noteEditText.setText(null);
-                }
-
-            }
-        });
-
-        datePicker.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                Calendar cal = datePicker.getFirstSelectedDate();// getSelectedDate();
-                SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-                String strdate = formatter.format(cal.getTime());
-                Examination exam;
-
-                if(dbHelper.examinationCheck(strdate)) {
-                    exam = dbHelper.getExamination(strdate);
-                    noteEditText.setText(exam.getNote());
-                } else {
-                    noteEditText.setText(null);
-                }
-            }
-        });
-
-        datePicker.setOnHoverListener(new View.OnHoverListener() {
-            @Override
-            public boolean onHover(View v, MotionEvent event) {
-                Calendar cal = datePicker.getFirstSelectedDate();// getSelectedDate();
-                SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-                String strdate = formatter.format(cal.getTime());
-                Examination exam;
-
-                if(dbHelper.examinationCheck(strdate)) {
-                    exam = dbHelper.getExamination(strdate);
-                    noteEditText.setText(exam.getNote());
-                } else {
-                    noteEditText.setText(null);
-                }
-                return false;
-            }
-        });
-
-        datePicker.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Calendar cal = datePicker.getFirstSelectedDate();// getSelectedDate();
-                SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-                String strdate = formatter.format(cal.getTime());
-                Examination exam;
-
-                if(dbHelper.examinationCheck(strdate)) {
-                    exam = dbHelper.getExamination(strdate);
-                    noteEditText.setText(exam.getNote());
-                } else {
-                    noteEditText.setText(null);
-                }
-
-                return false;
             }
         });
 
@@ -164,7 +97,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 String strdate = formatter.format(cal.getTime());
                 Examination ex = new Examination();
 
-                if(dbHelper.examinationCheck(strdate)) {
+                if (dbHelper.examinationCheck(strdate)) {
                     ex = dbHelper.getExamination(strdate);
                     ex.setNote(noteEditText.getText().toString());
                     ex.setDate(strdate);
@@ -185,15 +118,15 @@ public class AddNoteActivity extends AppCompatActivity {
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         List<Examination> examinationList = dbHelper.getAllExamination();
         List<Examination> notes = dbHelper.getAllNotes();
-        List <EventDay> events = new ArrayList<>();
+        List<EventDay> events = new ArrayList<>();
 
-        for (Examination e :examinationList) {
+        for (Examination e : examinationList) {
             String dateFromExamination = e.getDate();
             SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
 
             try {
                 Date date = formatter.parse(dateFromExamination);
-                Calendar cal=Calendar.getInstance();
+                Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
                 events.add(new EventDay(cal, R.drawable.ic_favorite_black_24dp));
             } catch (ParseException e1) {
@@ -201,12 +134,12 @@ public class AddNoteActivity extends AppCompatActivity {
             }
         }
 
-        for (Examination e :notes) {
+        for (Examination e : notes) {
             String dateFromExamination = e.getDate();
             SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
             try {
                 Date date = formatter.parse(dateFromExamination);
-                Calendar cal=Calendar.getInstance();
+                Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
                 events.add(new EventDay(cal, R.drawable.ic_message_black_24dp));
             } catch (ParseException e1) {

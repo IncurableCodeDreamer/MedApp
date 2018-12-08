@@ -47,7 +47,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddAccountActivity extends AppCompatActivity implements Validator.ValidationListener{
+public class AddAccountActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     private static final int PICK_IMAGE = 100;
     private Uri imageUri;
@@ -151,7 +151,7 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
             @SuppressLint("WrongConstant")
             @Override
             public void onClick(View v) {
-                    validator.validate();
+                validator.validate();
             }
         });
 
@@ -164,9 +164,9 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
     }
 
     private void showAccountList(ArrayList<Account> itemList) {
-        if(itemList.size() > 0){
+        if (itemList.size() > 0) {
             for (Account a : itemList) {
-                switch (a.getName()){
+                switch (a.getName()) {
                     case "Choroby":
                         item_value_illness.setText(a.getValue());
                         break;
@@ -241,24 +241,24 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
             }
         }
 
-        if(accountList.size() !=0) {
+        if (accountList.size() != 0) {
             dbHelper.deleteAllAcount();
             for (Account ac : accountList) {
                 dbHelper.insertOneAccount(ac);
             }
         }
 
-        if(!(image.getDrawable().getConstantState().equals (getResources().getDrawable(R.drawable.ic_person_black_24dp).getConstantState()))){
+        if (!(image.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.ic_person_black_24dp).getConstantState()))) {
             ByteArrayOutputStream bytearrayoutputstream;
             bytearrayoutputstream = new ByteArrayOutputStream();
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-            bitmap.compress(Bitmap.CompressFormat.JPEG,70,bytearrayoutputstream);
-            byte [] BYTE = bytearrayoutputstream.toByteArray();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bytearrayoutputstream);
+            byte[] BYTE = bytearrayoutputstream.toByteArray();
             user.setPicture(BYTE);
         }
 
         user.setIfDonor(ifDonor.isChecked());
-        String userD []= userData.getText().toString().split(" ");
+        String userD[] = userData.getText().toString().split(" ");
         user.setName(userD[0]);
         user.setSurname(userD[1]);
         user.setBirthDate(userAge.getText().toString());
@@ -286,7 +286,7 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             imageUri = data.getData();
             image.setImageURI(imageUri);
         }

@@ -61,7 +61,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
-        
+
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +76,6 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
-
         calendarView.setOnDayClickListener(new OnDayClickListener() { //sprawdzic czy to ten klik
             @Override
             public void onDayClick(EventDay eventDay) {
@@ -85,8 +84,11 @@ public class CalendarActivity extends AppCompatActivity {
                 SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
                 String strdate = formatter.format(date.getTime());
 
-                if(dbHelper.examinationCheck(strdate)){
-                    floatInfo.setVisibility(View.VISIBLE);
+                if (dbHelper.examinationCheck(strdate)) {
+                    Examination ex = dbHelper.getExamination(strdate);
+                    if (ex.getName() != null) {
+                        floatInfo.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     floatInfo.setVisibility(View.GONE);
                 }
@@ -116,15 +118,15 @@ public class CalendarActivity extends AppCompatActivity {
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         List<Examination> examinationList = dbHelper.getAllExamination();
         List<Examination> notes = dbHelper.getAllNotes();
-        List <EventDay> events = new ArrayList<>();
+        List<EventDay> events = new ArrayList<>();
 
-        for (Examination e :examinationList) {
+        for (Examination e : examinationList) {
             String dateFromExamination = e.getDate();
             SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
 
             try {
                 Date date = formatter.parse(dateFromExamination);
-                Calendar cal=Calendar.getInstance();
+                Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
                 events.add(new EventDay(cal, R.drawable.ic_favorite_black_24dp));
             } catch (ParseException e1) {
@@ -132,12 +134,12 @@ public class CalendarActivity extends AppCompatActivity {
             }
         }
 
-        for (Examination e :notes) {
+        for (Examination e : notes) {
             String dateFromExamination = e.getDate();
             SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
             try {
                 Date date = formatter.parse(dateFromExamination);
-                Calendar cal=Calendar.getInstance();
+                Calendar cal = Calendar.getInstance();
                 cal.setTime(date);
                 events.add(new EventDay(cal, R.drawable.ic_message_black_24dp));
             } catch (ParseException e1) {

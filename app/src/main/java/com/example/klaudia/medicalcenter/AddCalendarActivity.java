@@ -102,13 +102,13 @@ public class AddCalendarActivity extends AppCompatActivity implements Validator.
         examination.setHour(String.valueOf(hour.getHour()));
 
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        if(dbHelper.examinationCheck(strdate)) {
+        if (dbHelper.examinationCheck(strdate)) {
             dbHelper.updateExamination(examination);
         } else {
             dbHelper.insertExamination(examination);
         }
 
-        if(examination.isNofi()) {
+        if (examination.isNofi()) {
             addNotification(dateStr, examination);
         }
 
@@ -120,7 +120,7 @@ public class AddCalendarActivity extends AppCompatActivity implements Validator.
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, date.getYear());
         calendar.set(Calendar.MONTH, date.getYear());
-        calendar.set(Calendar.DAY_OF_YEAR, date.getDate()-1);
+        calendar.set(Calendar.DAY_OF_YEAR, date.getDate() - 1);
         calendar.set(Calendar.HOUR, 9);
 
         Bundle extras = new Bundle();
@@ -134,7 +134,7 @@ public class AddCalendarActivity extends AppCompatActivity implements Validator.
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
 
         Toast toast = Toast.makeText(this, "Przypomnienie włączono na dzień " + date.getDay() + "/" + date.getMonth()
-                + "/" + date.getYear()+" o godzinie 9 rano", Toast.LENGTH_LONG);
+                + "/" + date.getYear() + " o godzinie 9 rano", Toast.LENGTH_LONG);
         toast.show();
     }
 

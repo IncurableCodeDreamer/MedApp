@@ -34,7 +34,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 
-public class DialogStart extends AppCompatDialogFragment implements Validator.ValidationListener{
+public class DialogStart extends AppCompatDialogFragment implements Validator.ValidationListener {
 
     @NotEmpty(message = "Wprowadz email")
     @Email(message = "Wprowadz email w poprawnej")
@@ -92,7 +92,7 @@ public class DialogStart extends AppCompatDialogFragment implements Validator.Va
 
     private void createUser() {
         Calendar cal = Calendar.getInstance();
-        String date = cal.get(Calendar.DAY_OF_MONTH)-1 + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+        String date = cal.get(Calendar.DAY_OF_MONTH) - 1 + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
         userBirthdate.setText(date);
 
         userSex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -150,7 +150,7 @@ public class DialogStart extends AppCompatDialogFragment implements Validator.Va
         user.setSurname(userSurname.getText().toString());
         user.setEmail(userEmail.getText().toString());
         RadioButton btn = userSex.findViewById(userSex.getCheckedRadioButtonId());
-        user.setSex((String)btn.getText());
+        user.setSex((String) btn.getText());
         user.setIfDonor(true);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this.getContext());
@@ -172,7 +172,7 @@ public class DialogStart extends AppCompatDialogFragment implements Validator.Va
             if (view instanceof EditText) {
                 ((EditText) view).setError(message);
             } else {
-               Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
+                Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
             }
         }
     }

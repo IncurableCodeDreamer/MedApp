@@ -29,6 +29,7 @@ public class EventNote extends EventDay implements Parcelable {
         public EventNote createFromParcel(Parcel in) {
             return new EventNote(in);
         }
+
         @Override
         public EventNote[] newArray(int size) {
             return new EventNote[size];

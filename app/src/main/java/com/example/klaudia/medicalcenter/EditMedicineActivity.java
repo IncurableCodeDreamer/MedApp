@@ -71,14 +71,18 @@ public class EditMedicineActivity extends AppCompatActivity implements Validator
 
     private int selection(String selection) {
         int value = 0;
-        switch (selection){
-            case "Dziennie": value= 0;
+        switch (selection) {
+            case "Dziennie":
+                value = 0;
                 break;
-            case "Tygodniowo": value= 1;
+            case "Tygodniowo":
+                value = 1;
                 break;
-            case "Miesięcznie": value= 2;
-        break;
-        };
+            case "Miesięcznie":
+                value = 2;
+                break;
+        }
+        ;
         return value;
     }
 

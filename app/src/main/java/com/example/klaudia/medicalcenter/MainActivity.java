@@ -26,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle(MainActivity.this.getTitle());
-        ButterKnife.bind( this);
+        ButterKnife.bind(this);
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
 
         if (!dbHelper.doesDatabaseExist(getApplicationContext())) {
             showDialog();
-        } else if (dbHelper.getUserCount() == 0){
+        } else if (dbHelper.getUserCount() == 0) {
             showDialog();
         }
 

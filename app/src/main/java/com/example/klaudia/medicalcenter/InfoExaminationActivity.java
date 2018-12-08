@@ -35,7 +35,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InfoExaminationActivity extends AppCompatActivity implements Validator.ValidationListener{
+public class InfoExaminationActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     @NotEmpty(message = "Pole nie może pozostać puste")
     @Length(min = 3, message = "Nazwa kliniki musi miec powyzej 3 liter")
@@ -81,14 +81,14 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         type.setAdapter(adapter);
 
         getExamination();
-        
+
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editExamination();
             }
         });
-        
+
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,7 +143,7 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         hour.setEnabled(false);
         hour.setFocusable(false);
 
-        if(ex.getAddInfo()!= null && !(ex.getAddInfo().isEmpty())) {
+        if (ex.getAddInfo() != null && !(ex.getAddInfo().isEmpty())) {
             infoTxt.setVisibility(View.VISIBLE);
             addIfno.setVisibility(View.VISIBLE);
             addIfno.setEnabled(false);
@@ -169,7 +169,7 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         hour.setEnabled(true);
         hour.setFocusable(true);
 
-        if(ex.getAddInfo()!= null && !(ex.getAddInfo().isEmpty())) {
+        if (ex.getAddInfo() != null && !(ex.getAddInfo().isEmpty())) {
             infoTxt.setVisibility(View.VISIBLE);
             addIfno.setVisibility(View.VISIBLE);
             addIfno.setEnabled(true);
@@ -197,7 +197,7 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         notif.setChecked(ex.isNofi());
         hour.setHour(Integer.parseInt(ex.getHour()));
 
-        if(ex.getAddInfo()!= null && !(ex.getAddInfo().isEmpty())) {
+        if (ex.getAddInfo() != null && !(ex.getAddInfo().isEmpty())) {
             infoTxt.setVisibility(View.VISIBLE);
             addIfno.setVisibility(View.VISIBLE);
             addIfno.setText(ex.getAddInfo());
@@ -206,16 +206,21 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
 
     private int selection(String selection) {
         int value = 0;
-        switch (selection){
-            case "Konsultacja": value= 0;
+        switch (selection) {
+            case "Konsultacja":
+                value = 0;
                 break;
-            case "Badanie": value= 1;
+            case "Badanie":
+                value = 1;
                 break;
-            case "Operacja": value= 2;
+            case "Operacja":
+                value = 2;
                 break;
-            case "Wizyta kontrolna": value= 3;
+            case "Wizyta kontrolna":
+                value = 3;
                 break;
-        };
+        }
+        ;
         return value;
     }
 
@@ -226,10 +231,10 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         String strdate = formatter.format(date.getTime());
 
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        if(dbHelper.examinationCheck(strdate)) {
+        if (dbHelper.examinationCheck(strdate)) {
             return dbHelper.getExamination(strdate);
         }
-        return  null;
+        return null;
     }
 
     public void onValidationSucceeded() {
@@ -252,7 +257,7 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         dbHelper.updateExamination(ex);
 
-        if(ex.isNofi()) {
+        if (ex.isNofi()) {
             Bundle exstras = this.getIntent().getExtras();
             Calendar date = (Calendar) exstras.getSerializable("date");
             addNotification(date.getTime(), ex);
@@ -272,7 +277,7 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, date.getYear());
         calendar.set(Calendar.MONTH, date.getYear());
-        calendar.set(Calendar.DAY_OF_YEAR, date.getDate()-1);
+        calendar.set(Calendar.DAY_OF_YEAR, date.getDate() - 1);
         calendar.set(Calendar.HOUR, 9);
 
         Bundle extras = new Bundle();
@@ -286,7 +291,7 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
 
         Toast toast = Toast.makeText(this, "Przypomnienie włączono na dzień " + date.getDay() + "/" + date.getMonth()
-                + "/" + date.getYear()+" o godzinie 9 rano", Toast.LENGTH_LONG);
+                + "/" + date.getYear() + " o godzinie 9 rano", Toast.LENGTH_LONG);
         toast.show();
     }
 
