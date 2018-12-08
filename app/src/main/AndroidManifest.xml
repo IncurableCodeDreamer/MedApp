@@ -99,7 +99,7 @@
         <activity
             android:name=".InfoExaminationActivity"
             android:label="@string/title_info_examination_activity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
