@@ -77,7 +77,7 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         ButterKnife.bind(this);
 
         String[] items = new String[]{"Konsultacja", "Badanie", "Operacja", "Wizyta kontrolna"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, items);
         type.setAdapter(adapter);
 
         getExamination();

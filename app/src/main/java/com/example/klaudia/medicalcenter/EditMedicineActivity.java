@@ -49,7 +49,7 @@ public class EditMedicineActivity extends AppCompatActivity implements Validator
         ButterKnife.bind(this);
 
         String[] items = new String[]{"Dziennie", "Tygodniowo", "Miesięcznie"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, items);
         dropdown.setAdapter(adapter);
 
         Bundle extras = getIntent().getExtras();
