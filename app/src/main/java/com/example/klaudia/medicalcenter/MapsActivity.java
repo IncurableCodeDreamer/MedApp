@@ -1,9 +1,12 @@
 package com.example.klaudia.medicalcenter;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -55,13 +58,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    @BindView(R.id.bottom_navigator)
+    BottomNavigationView bottomNavigationView;
 
     IGoogleApiService mService;
     MyPlaces currentPlace;
 
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
-    private LocationRequest mLocationRequest;
+    LocationRequest mLocationRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +91,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigator);
+
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        longitude = location.getLongitude();
+        latitude = location.getLatitude();
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -102,7 +112,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         mMap.clear();
                         MarkerOptions markerOptions = new MarkerOptions()
                                 .position(latLng)
-                                .title(getApplicationContext().getString(R.string.position)) //this.getString(R.string.pozycja)
+                                .title(getApplicationContext().getString(R.string.position))
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
                         mMarker = mMap.addMarker(markerOptions);
@@ -166,7 +176,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (Toggle.onOptionsItemSelected(item)) {
             return true;
         }

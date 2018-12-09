@@ -11,13 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
-import com.example.klaudia.medicalcenter.DatabaseModel.EventNote;
 import com.example.klaudia.medicalcenter.DatabaseModel.Examination;
 import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 
