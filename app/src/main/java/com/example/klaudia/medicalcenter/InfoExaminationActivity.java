@@ -307,5 +307,6 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }
         }
+        Toast.makeText(getApplicationContext(), "Sprawdź wprowadzone dane", Toast.LENGTH_SHORT).show();
     }
 }

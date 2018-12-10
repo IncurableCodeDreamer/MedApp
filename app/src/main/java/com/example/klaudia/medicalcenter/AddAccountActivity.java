@@ -313,5 +313,6 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }
         }
+        Toast.makeText(getApplicationContext(), "Sprawdź wprowadzone dane", Toast.LENGTH_SHORT).show();
     }
 }

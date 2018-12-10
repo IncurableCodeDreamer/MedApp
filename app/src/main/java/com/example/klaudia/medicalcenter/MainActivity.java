@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tutorial)
     CardView tutorial;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

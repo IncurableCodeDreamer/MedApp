@@ -175,5 +175,6 @@ public class DialogStart extends AppCompatDialogFragment implements Validator.Va
                 Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
             }
         }
+        Toast.makeText(this.getContext(), "Sprawdź wprowadzone dane", Toast.LENGTH_SHORT).show();
     }
 }

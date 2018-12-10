@@ -2,6 +2,7 @@ package com.example.klaudia.medicalcenter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,20 +11,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.opencsv.CSVReader;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.FileReader;
-
-import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 import com.example.klaudia.medicalcenter.DatabaseModel.Medicine;
+import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
+import com.opencsv.CSVReader;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.List;
 
 import butterknife.BindView;
@@ -53,15 +52,33 @@ public class AddMedicineActivity extends AppCompatActivity implements Validator.
         setContentView(R.layout.activity_add_medicine);
         setTitle(AddMedicineActivity.this.getTitle());
         ButterKnife.bind(this);
+        
+        List myEntries2;
+
+        try {
+            CSVReader reader2 = new CSVReader(new FileReader("leki.csv"));
+            List<String[]> myEntries = reader2.readAll();
+
+            File csvfile = new File(Environment.getExternalStorageDirectory() + "/leki.csv");
+            CSVReader reader = new CSVReader(new FileReader(csvfile.getAbsolutePath()));
+            String[] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+                //myEntries.add(nextLine[1]);
+                // nextLine[] is an array of values from the line
+                //System.out.println(nextLine[0] + nextLine[1] + "etc...");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "The specified file was not found", Toast.LENGTH_SHORT).show();
+        }
 
         CSVReader reader = null;
         try {
-            reader = new CSVReader(new FileReader("Rejestr_Produktow_Leczniczych_stan_na_dzien_20181209075221.csv"));
-            myEntries = reader.readAll();
+            reader = new CSVReader(new FileReader("leki.csv"));
+            myEntries2 = reader.readAll();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            myEntries = null;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -110,5 +127,6 @@ public class AddMedicineActivity extends AppCompatActivity implements Validator.
                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }
         }
+        Toast.makeText(getApplicationContext(), "Sprawdź wprowadzone dane", Toast.LENGTH_SHORT).show();
     }
 }

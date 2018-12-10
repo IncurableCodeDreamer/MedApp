@@ -117,6 +117,7 @@ public class EditMedicineActivity extends AppCompatActivity implements Validator
                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }
         }
+        Toast.makeText(getApplicationContext(), "Sprawdź wprowadzone dane", Toast.LENGTH_SHORT).show();
     }
 
 }
