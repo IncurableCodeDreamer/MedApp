@@ -47,6 +47,7 @@
     <string name="title_note_preview_activity">Podgląd notatki</string>
     <string name="title_add_note_activity">Dodawanie notatki</string>
     <string name="title_info_examination_activity">Informacje o wizycie</string>
+    <string name="title_tutorial_activity">Samouczek</string>
 
     <!--calendar view-->
     <string name="material_calendar_monday">Pon</string>

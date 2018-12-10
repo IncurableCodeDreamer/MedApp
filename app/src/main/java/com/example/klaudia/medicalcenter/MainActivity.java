@@ -1,12 +1,15 @@
 package com.example.klaudia.medicalcenter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 
@@ -20,6 +23,19 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    @BindView(R.id.aboutApp)
+    CardView aboutApp;
+    @BindView(R.id.account)
+    CardView account;
+    @BindView(R.id.calendar)
+    CardView calendar;
+    @BindView(R.id.medicine)
+    CardView medicine;
+    @BindView(R.id.hospitals)
+    CardView hospitals;
+    @BindView(R.id.tutorial)
+    CardView tutorial;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +51,70 @@ public class MainActivity extends AppCompatActivity {
             showDialog();
         }
 
+        onMenuOpcionClick();
+
         Toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
+    }
+
+    private void onMenuOpcionClick() {
+        aboutApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent selectedIntent;
+                selectedIntent = new Intent(MainActivity.this, AboutAppActivity.class);
+                MainActivity.this.startActivity(selectedIntent);
+            }
+        });
+
+        account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent selectedIntent;
+                selectedIntent = new Intent(MainActivity.this, AccountActivity.class);
+                MainActivity.this.startActivity(selectedIntent);
+            }
+        });
+
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent selectedIntent;
+                selectedIntent = new Intent(MainActivity.this, CalendarActivity.class);
+                MainActivity.this.startActivity(selectedIntent);
+            }
+        });
+
+        medicine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent selectedIntent;
+                selectedIntent = new Intent(MainActivity.this, MedicineActivity.class);
+                MainActivity.this.startActivity(selectedIntent);
+            }
+        });
+
+        hospitals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent selectedIntent;
+                selectedIntent = new Intent(MainActivity.this, MapsActivity.class);
+                MainActivity.this.startActivity(selectedIntent);
+            }
+        });
+
+        tutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent selectedIntent;
+                selectedIntent = new Intent(MainActivity.this, TutorialActivity.class);
+                MainActivity.this.startActivity(selectedIntent);
+            }
+        });
     }
 
     private void showDialog() {

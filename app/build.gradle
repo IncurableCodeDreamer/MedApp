@@ -49,6 +49,7 @@ dependencies {
     implementation 'com.github.vihtarb:tooltip:0.1.9'
 
     implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
+    implementation 'com.opencsv:opencsv:3.9'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:support-compat:27.1.1'

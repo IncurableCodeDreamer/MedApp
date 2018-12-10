@@ -27,6 +27,11 @@
         android:title="@string/title_activity_calendar" />
 
     <item
+        android:id="@+id/nav_tutorial"
+        android:icon="@drawable/ic_import_contacts_white_24dp"
+        android:title="@string/title_tutorial_activity" />
+
+    <item
         android:id="@+id/nav_info"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/title_activity_about_app" />

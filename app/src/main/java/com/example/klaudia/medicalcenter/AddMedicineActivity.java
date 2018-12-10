@@ -10,6 +10,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.opencsv.CSVReader;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.FileReader;
+
 import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 import com.example.klaudia.medicalcenter.DatabaseModel.Medicine;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -39,6 +45,7 @@ public class AddMedicineActivity extends AppCompatActivity implements Validator.
     EditText add_medicine_item_add_info;
     @BindView(R.id.add_medicine_btn_activity)
     Button add_medicine_btn;
+    List myEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,17 @@ public class AddMedicineActivity extends AppCompatActivity implements Validator.
         setContentView(R.layout.activity_add_medicine);
         setTitle(AddMedicineActivity.this.getTitle());
         ButterKnife.bind(this);
+
+        CSVReader reader = null;
+        try {
+            reader = new CSVReader(new FileReader("Rejestr_Produktow_Leczniczych_stan_na_dzien_20181209075221.csv"));
+            myEntries = reader.readAll();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            myEntries = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         String[] items = new String[]{"Dziennie", "Tygodniowo", "Miesięcznie"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, items);

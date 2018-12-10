@@ -8,6 +8,14 @@
     <color name="darkGray">#6C6C6C</color>
     <color name="colorRed">#8B0000</color>
 
+    <!-- Menu background color-->
+    <color name="card1">#005467</color>
+    <color name="card2">#236B8E</color>
+    <color name="card3">#629CD6</color>
+    <color name="card4">#5cadd6</color>
+    <color name="card5">#99cce6</color>
+    <color name="card6">#c2e0f0</color>
+
     <!-- Screens background color-->
     <color name="bg_screen1">#A7D7CC</color>
     <color name="bg_screen2">#F6D6D6</color>

@@ -28,6 +28,9 @@ class MenuSelector {
             case R.id.nav_info:
                 selectedIntent = new Intent(currentClass, AboutAppActivity.class);
                 break;
+            case R.id.nav_tutorial:
+                selectedIntent = new Intent(currentClass, TutorialActivity.class);
+                break;
             default:
                 selectedIntent = new Intent(currentClass, MainActivity.class);
                 break;
