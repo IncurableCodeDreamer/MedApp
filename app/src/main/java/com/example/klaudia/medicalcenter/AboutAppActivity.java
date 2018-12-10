@@ -59,7 +59,8 @@ public class AboutAppActivity extends AppCompatActivity {
                 R.layout.welcome_side1,
                 R.layout.welcome_side2,
                 R.layout.welcome_side3,
-                R.layout.welcome_side4};
+                R.layout.welcome_side4,
+                R.layout.welcome_side5};
 
         addBottomDots(0);
 
@@ -118,19 +119,16 @@ public class AboutAppActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-        }
+        public void onPageScrolled(int arg0, float arg1, int arg2) { }
 
         @Override
-        public void onPageScrollStateChanged(int arg0) {
-        }
+        public void onPageScrollStateChanged(int arg0) { }
     };
 
     public class MyViewPagerAdapter extends PagerAdapter {
         private LayoutInflater layoutInflater;
 
-        public MyViewPagerAdapter() {
-        }
+        public MyViewPagerAdapter() { }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
