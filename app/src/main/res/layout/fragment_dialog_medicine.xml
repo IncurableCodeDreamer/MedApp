@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/startDialogFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20sp"
+    tools:context="com.example.klaudia.medicalcenter.MedicineActivity">
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:padding="5sp"
+        android:text="Nazwa leku:" />
+
+    <TextView
+        android:id="@+id/medicine_dialog_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/txt_name"/>
+
+    <TextView
+        android:text="Częstość spożywania:"
+        android:id="@+id/txt_frequency"
+        android:layout_width="wrap_content"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:layout_below="@+id/medicine_dialog_name"/>
+
+    <TextView
+        android:id="@+id/medicine_dialog_frequency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/txt_frequency"
+        android:layout_below="@id/medicine_dialog_name"/>
+
+    <TextView
+        android:text="Ilość:"
+        android:id="@+id/txt_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:padding="5sp"
+        android:layout_below="@+id/medicine_dialog_frequency"/>
+
+    <TextView
+        android:id="@+id/medicine_dialog_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:padding="5sp"
+        android:layout_toRightOf="@+id/txt_amount"
+        android:layout_below="@id/medicine_dialog_frequency"/>
+
+    <TextView
+        android:id="@+id/txt_addInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:padding="5sp"
+        android:layout_below="@+id/medicine_dialog_amount"
+        android:text="Dodatkowe informacje:"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/medicine_dialog_addInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/medicine_dialog_amount"
+        android:padding="5sp"
+        android:textSize="15sp"
+        android:text="Data"
+        android:layout_toRightOf="@+id/txt_addInfo"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/medicine_dialog_ok_btn"
+        android:layout_below="@id/medicine_dialog_addInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:textColor="@color/white"
+        android:background="@color/colorAccent"
+        android:text="OK" />
+
+</RelativeLayout>
