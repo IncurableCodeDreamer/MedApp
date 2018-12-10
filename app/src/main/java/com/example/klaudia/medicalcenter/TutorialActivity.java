@@ -77,6 +77,18 @@ public class TutorialActivity extends AppCompatActivity {
                        tutorialText.setVisibility(View.VISIBLE);
                        tutorialText.setText(description[2]);
                        break;
+                   case 3:
+                       tutorialText.setVisibility(View.VISIBLE);
+                       tutorialText.setText(description[3]);
+                       break;
+                   case 4:
+                       tutorialText.setVisibility(View.VISIBLE);
+                       tutorialText.setText(description[4]);
+                       break;
+                   case 5:
+                       tutorialText.setVisibility(View.VISIBLE);
+                       tutorialText.setText(description[5]);
+                       break;
                    default:
                        tutorialText.setText(description[0]);
                        tutorialText.setVisibility(View.VISIBLE);

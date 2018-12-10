@@ -99,141 +99,137 @@
         W przypadku powierzchownych oparzeń skóra staje się czerwona, lekko opuchnięta i bolesna. Jeśli oparzenie jest głębsze,
         widoczne będą również pęcherze. Te oparzenia są bardzo bolesne. Jeśli najgłębsza warstwa skóry uległa uszkodzeniu,
         zwykle nie odczuwa się bólu, ponieważ nerwy w tym obszarze również zostały naruszone. Jednak skóra wokół rany,
-        która jest często mniej głęboko uszkodzona, ​​jest bolesna.
-        str 44 uropean First Aid Manual
-
+        która jest często mniej głęboko uszkodzona, ​​jest bolesna. str 44 uropean First Aid Manual \n
+        \n
         Oparzenia, zwłaszcza te głębokie mogą doprowadzają do uszkodzeń zakończeń nerwowych, stając się przez to bezbolesne.
         Dlatego nie należy ich bagatelizować.
         Dodatkowo powodują dużą utratę wody, przez co mogą wywołać wstrząs. Są też idealną drogą przenikania bakterii – wywołując zakażenia.
-        Przy oparzeniach rozległych należy wezwać jak najszybciej pogotowie, lub dostarczyć osobę poszkodowaną do szpitala.
-
-        PIERWSZA POMOC:
+        Przy oparzeniach rozległych należy wezwać jak najszybciej pogotowie, lub dostarczyć osobę poszkodowaną do szpitala.\n
+        \n
+        PIERWSZA POMOC:\n
         ■ Oparzone części ciała należy odkryć. W przypadku, gdy ubranie przylega do ciała nie należy
-        go odrywać, jedynie rociąć nożyczkami miejsca wokół zranienia.
-        ■ Należy polać popażone miejsce chłodną wodą, do momentu zmniejszenia się bólu.
+        go odrywać, jedynie rociąć nożyczkami miejsca wokół zranienia.\n
+        ■ Należy polać popażone miejsce chłodną wodą, do momentu zmniejszenia się bólu.\n
         ■ W przypadku oparzenia ręki należy jak najszybciej zdjąć założoną biżuterię - zapobiegnie to możliwości
-        powstania martwicy w okolicy powstającego obrzęku skóry.
-        ■ Jest to jedyny wypadek w którym poszkodowanemu możemy podać środki przeciwbólowe i uspokajające
-        ■ W celu zmniejszenia powikłań mogącego wystąpić odwodnienia należy podawać jak największą ilość płynów.
-        ■ Nie należy stosować maści ani płynów.
-        ■ Nie należy przekłuwać powstających pęcherzy.
+        powstania martwicy w okolicy powstającego obrzęku skóry.\n
+        ■ Jest to jedyny wypadek w którym poszkodowanemu możemy podać środki przeciwbólowe i uspokajające\n
+        ■ W celu zmniejszenia powikłań mogącego wystąpić odwodnienia należy podawać jak największą ilość płynów.\n
+        ■ Nie należy stosować maści ani płynów.\n
+        ■ Nie należy przekłuwać powstających pęcherzy.\n
     </string>
     <string name="opazenieChemiczne">
-        Opażenia chemiczne są wynikiem kontaktu organizmu z kwasami, zasadami lub innymi szkodliwymi związkami chemicznymi.
-
-        PIERWSZA POMOC:
+        Opażenia chemiczne są wynikiem kontaktu organizmu z kwasami, zasadami lub innymi szkodliwymi związkami chemicznymi.\n
+        \n
+        PIERWSZA POMOC:\n
         ■ Nie prowokuj wymiotów w przypadku doustnego zażycia środka chemicznego. Jedyną pomocą będzie
         podanie płynów obojętnych np. wody, co pozwoli na rozcieńczenie substancji żrącej.
-        Ważne! Resztkę trucizny zabezpiecz dla lekarza - da to możliwość szybszego znalezienia czynnika neutralizującego.
-        ■ Spłucz wodą resztki substancji w przypadku skórnego kontaktu z trucizną.
-
-        Pamietaj, aby przy udzielaniu pomocy zachowac szczególną ostrożność i samemu nie ulec poparzeniu.
+        Ważne! Resztkę trucizny zabezpiecz dla lekarza - da to możliwość szybszego znalezienia czynnika neutralizującego. \n
+        ■ Spłucz wodą resztki substancji w przypadku skórnego kontaktu z trucizną. \n
+        \n
+        Pamietaj, aby przy udzielaniu pomocy zachowac szczególną ostrożność i samemu nie ulec poparzeniu.\n
      </string>
     <string name="krwotokZNosa">
-        Przegroda nosowa jest miejscem licznych powierzchownych naczyń krwionośnych które mogą pękać bez poważnych urazów.
-
-        PIERWSZA POMOC:
-        ■ Usadź osobę poszkodowaną z głową pochyloną do przodu.
-        ■ Po uprzednim oczyszczeniu nosa przyłóż zimny kompres na jego nasadę, a także czoło oraz kark.
-        ■ Uciskaj nasadę nosa wy przypadku mocnego krawenia.
-        ■ Skontaktuj się z lekarzem, gdy krawnienie nie ustąpi.
-
-        Pamietaj, aby nie tamować wypływu krwi u osób, które leczą się na nadciśnienie tętnicze.
+        Przegroda nosowa jest miejscem licznych powierzchownych naczyń krwionośnych które mogą pękać bez poważnych urazów.\n
+        \n
+        PIERWSZA POMOC:\n
+        ■ Usadź osobę poszkodowaną z głową pochyloną do przodu.\n
+        ■ Po uprzednim oczyszczeniu nosa przyłóż zimny kompres na jego nasadę, a także czoło oraz kark.\n
+        ■ Uciskaj nasadę nosa wy przypadku mocnego krawenia.\n
+        ■ Skontaktuj się z lekarzem, gdy krawnienie nie ustąpi.\n
+        \n
+        Pamietaj, aby nie tamować wypływu krwi u osób, które leczą się na nadciśnienie tętnicze.\n
     </string>
     <string name="odmrozenie">
         Odmrożenie to czasowe lub nieodwracalne uszkodzenie tkanki ciała, które powstaje, w efekcie kurczenia się naczyń krwionośnych,
         zmniejszając przepływ krwi i transportu tlenu w organiźmie. Głównym powikłaniem jest nieodwracalne obumarcie odmrożonych części
-        ciała, a także możliwość zakażenia lub nawet śmierć.
-
+        ciała, a także możliwość zakażenia lub nawet śmierć.\n
+        \n
         Odmrożenia najczęściej dotyczą części ciała, które są najdalej od rdzenia ciała, a zatem mają mniejszy
         przepływ krwi. Należą do nich m.in. uszy, palce stóp i rąk, oraz nos. Odmrożenie jest zwykle spowodowane długotrwałą ekspozycją
-        ciała na niską temperaturę.
-
-        PRZYCZYNY:
-        ■ Ubrania nodpowiednie do warunków, w jakich się znajdujesz.
-        ■ Zbyt długie przebywanie w chłodzie i wietrze.
-        str 1 AccidentalHypothermia Frostbite:Cold-Related Conditions
-
-        OBJAWY:
+        ciała na niską temperaturę.\n
+        \n
+        PRZYCZYNY:\n
+        ■ Ubrania nodpowiednie do warunków, w jakich się znajdujesz.\n
+        ■ Zbyt długie przebywanie w chłodzie i wietrze. str 1 AccidentalHypothermia Frostbite:Cold-Related Conditions \n
+        \n
+        OBJAWY:\n
         ■ W początkowej fazie skóra staje się zaczerwieniona, a następnie jej koloryt staje się siny,
-        niebiesko-szary, a na końcu czarny.
-        ■ Lekkie odmrożenia powodują silny ból, natomiast silne pozostają niebolesne.
-        ■ Pojwiają się pęcherze z płynem surowiczym.
-        ■ Może pojawić się obrzęk.
-        ■ Uczucie odrętwienia dotkniętego odmrożeniem obszaru.
-
-        PIERWSZA POMOC:
-        ■ Możliwie jak najszybciej przywróć w części odmrożonej krążenie krwi, np. poprzez ogrzanie ciepłą kąpielą.
-        ■ Po kąpieli w miejsca odmrożone można lekko wmasować niewielką ilość 70% alkoholu etylowego.
-        ■ Opatrunek powinien zawierać grubą warstwę waty, aby zapewnić utrzymanie ciepłoty ciała.
-        ■ Jeżeli wytworzą się pęcherze nie należy ich przekłuwać.
-        ■ Nie należy podawać alkoholu ani palić papierosów.
+        niebiesko-szary, a na końcu czarny.\n
+        ■ Lekkie odmrożenia powodują silny ból, natomiast silne pozostają niebolesne.\n
+        ■ Pojwiają się pęcherze z płynem surowiczym.\n
+        ■ Może pojawić się obrzęk.\n
+        ■ Uczucie odrętwienia dotkniętego odmrożeniem obszaru.\n
+        \n
+        PIERWSZA POMOC:\n
+        ■ Możliwie jak najszybciej przywróć w części odmrożonej krążenie krwi, np. poprzez ogrzanie ciepłą kąpielą.\n
+        ■ Po kąpieli w miejsca odmrożone można lekko wmasować niewielką ilość 70% alkoholu etylowego.\n
+        ■ Opatrunek powinien zawierać grubą warstwę waty, aby zapewnić utrzymanie ciepłoty ciała.\n
+        ■ Jeżeli wytworzą się pęcherze nie należy ich przekłuwać.\n
+        ■ Nie należy podawać alkoholu ani palić papierosów.\n
         ■ W przypadku ochłodzenia całego ciała, należy pamiętać o bardzo powolnym ogrzewaniu
-        całego ciała.
+        całego ciała.\n
 </string>
     <string name="udarSloneczny">
         Nadmierna ekspozycja na promienie słoneczne spowodować może poparzenia słoneczne.
         Na dużych wysokościach oparzenia słoneczne mogą wystąpić nawet w pochmurny, letni dzień lub na śniegu.
-        Ponadto, warto wiedzieć, iż niektóre leki mogą powodować silną wrażliwość na światło słoneczne.
-
-        Oparzeniom słonecznym można zapobiegać poprzez:
-        ■ pozostawanie w cieniu;
-        ■ ubranie odzieży ochronnej;
-        ■ stosowanie środka przeciwsłonecznego o wysokim współczynniku ochrony przeciwsłonecznej.
-
+        Ponadto, warto wiedzieć, iż niektóre leki mogą powodować silną wrażliwość na światło słoneczne.\n
+        \n
+        Oparzeniom słonecznym można zapobiegać poprzez:\n
+        ■ pozostawanie w cieniu;\n
+        ■ ubranie odzieży ochronnej;\n
+        ■ stosowanie środka przeciwsłonecznego o wysokim współczynniku ochrony przeciwsłonecznej.\n
+        \n
         Większość poparzeń słonecznych jest powierzchowna. W ciężkich przypadkach skóra przybiera kolory czerwieni
-        i jest pokryta pęcherzami. Ponadto, poszkodowany może cierpieć z powodu wyczerpania cieplnego lub udaru cieplnego.
-
-        OBJAWY:
-        ■ zaczerwieniona skóra;
-        ■ osłabienie organizmu;
-        ■ ból w okolicy oparzenia;
-        ■ tętno wolne;
-        ■ nudności i wymioty;
-        ■ podwyższone temperatura ciała;
-        ■ blisterowanie dotkniętej skóry.
-
-        PIERWSZA POMOC:
-        ■ Przykryć skórę poszkodowanego lekkim ubraniem lub ręcznikiem.
-        ■ Pomóż poszkodowanemu zejść ze słońca.
-        ■ Zachęć poszkodowanego do częstych łyków zimnej wody.
+        i jest pokryta pęcherzami. Ponadto, poszkodowany może cierpieć z powodu wyczerpania cieplnego lub udaru cieplnego.\n
+        \n
+        OBJAWY:\n
+        ■ zaczerwieniona skóra;\n
+        ■ osłabienie organizmu;\n
+        ■ ból w okolicy oparzenia;\n
+        ■ tętno wolne;\n
+        ■ nudności i wymioty;\n
+        ■ podwyższone temperatura ciała;\n
+        ■ blisterowanie dotkniętej skóry.\n
+        \n
+        PIERWSZA POMOC:\n
+        ■ Przykryć skórę poszkodowanego lekkim ubraniem lub ręcznikiem.\n
+        ■ Pomóż poszkodowanemu zejść ze słońca.\n
+        ■ Zachęć poszkodowanego do częstych łyków zimnej wody.\n
         ■ Ochłodź popażoną skórę, przecierając ją zimną wodą. Jeśli dotnięty obszar jest rozległy, osoba poszkodowana może
         preferować moczenie dotkniętej skóry w zimnej kąpieli przez dziesięć minut. Natomiast, jeśli oparzenia są łagodne, krem po
-        opalaniu może złagodzić uczucie pieczenia.
-        ■ Dopilnuj, aby poszkodowany pozostał w miejscu zacienionym.
-        ■ W przypadku powstawania pęcherzy nie należy ich przebijać.
-        ■ Jeśli oparzenie słoneczne jest poważne, należy zasięgnąć porady lekarskiej.
-        str 183 5TH EDITIONFIRST AIDMANUAL
+        opalaniu może złagodzić uczucie pieczenia.\n
+        ■ Dopilnuj, aby poszkodowany pozostał w miejscu zacienionym.\n
+        ■ W przypadku powstawania pęcherzy nie należy ich przebijać.\n
+        ■ Jeśli oparzenie słoneczne jest poważne, należy zasięgnąć porady lekarskiej. str 183 5TH EDITIONFIRST AIDMANUAL \n
     </string>
     <string name="porazeniePradem">
         Gdy osoba porażona jest prądem elektrycznym, przejście prądu elektrycznego przez ciało może wywołać ogłuszenie,
         powodując w efekcie zatrzymanie oddechu oraz akcji bicia serca. Prąd elektryczny może również powodować oparzenia zarówno
-        w miejscu wejścia, jak i wyjścia z ciała, aby przejść do tzw. "uziemienia".
-
-        Oparzenie elektryczne może wydawać się bardzo małe lub może nawet być niewidoczne na skórze, a jednocześnie sięgać głęboko do tkanek organizmu.
-        Czynniki, które wpływają na dotkliwość urazu to:
-        ■ napięcie;
-        ■ rodzaj prądu - prąd przemienny lub prąd stały;
-        ■ ścieżka prądu - ścieżka prądu może być w układzie ręka-ręka, ręka-stopa lub stopa-stopa.
-
+        w miejscu wejścia, jak i wyjścia z ciała, aby przejść do tzw. "uziemienia".\n
+        \n
+        Oparzenie elektryczne może wydawać się bardzo małe lub może nawet być niewidoczne na skórze, a jednocześnie sięgać głęboko do tkanek organizmu.\n
+        \n
+        Czynniki, które wpływają na dotkliwość urazu to:\n
+        ■ napięcie;\n
+        ■ rodzaj prądu - prąd przemienny lub prąd stały;\n
+        ■ ścieżka prądu - ścieżka prądu może być w układzie ręka-ręka, ręka-stopa lub stopa-stopa.\n
+        \n
         Prąd przemienny powoduje skurcze mięśni (tężyczka) i zjawisko "zablokowania" - chwyt przypadkowej osoby jest
-        "zablokowany" na trzymanym przedmiocie, uniemożliwiając odejście.
+        "zablokowany" na trzymanym przedmiocie, uniemożliwiając odejście.\n
         W przeciwieństwie do tego, prąd stały ma tendencję do wywoływania pojedynczego dużego skurczu mięśni,
         który często "odrzuca" osobę od źródła prądu. Należy zwrócić jednak uwagę, iż może to spowodować obrażenia,
-        takie, jak urazy kręgosłupa czy złamania.
-        str 34 FIRST AIDMANUAL5TH EDITION
-
-        PIERWSZA POMOC:
-        ■ Nie dotykaj poszkodowanego, jeśli jest on w kontakcie z prądem elektrycznym.
-        ■ Nie używaj niczego metalowego w celu przerwania kontaktu elektrycznego.
-        ■ Nie podchodź do przewodów wysokiego napięcia, dopóki zasilanie nie zostanie wyłączone.
-        ■ Nie przenoś osoby z obrażeniami elektrycznymi. Wyjątkiem jest sytuacja, gdy poszkodowany znajduje się w bezpośrednim niebezpieczeństwie życia, a ponadto nie ma już kontaktu z elektrycznością.
-        ■ W przypadku, gdy możesz bezpiecznie dotknąć poszkodowanego, a jego stan wskazuje, iż jest on nieprzytomny i nie oddycha, rozpocznij RKO z uciśnięciami klatki piersiowej.
-        ■ Na oparzone miejsca przyłuż jałowy opatrunek.
-        str 36 5TH EDITIONFIRST AIDMANUAL
-
+        takie, jak urazy kręgosłupa czy złamania. str 34 FIRST AIDMANUAL5TH EDITION \n
+        \n
+        PIERWSZA POMOC:\n
+        ■ Nie dotykaj poszkodowanego, jeśli jest on w kontakcie z prądem elektrycznym.\n
+        ■ Nie używaj niczego metalowego w celu przerwania kontaktu elektrycznego.\n
+        ■ Nie podchodź do przewodów wysokiego napięcia, dopóki zasilanie nie zostanie wyłączone.\n
+        ■ Nie przenoś osoby z obrażeniami elektrycznymi. Wyjątkiem jest sytuacja, gdy poszkodowany znajduje się w bezpośrednim niebezpieczeństwie życia, a ponadto nie ma już kontaktu z elektrycznością.\n
+        ■ W przypadku, gdy możesz bezpiecznie dotknąć poszkodowanego, a jego stan wskazuje, iż jest on nieprzytomny i nie oddycha, rozpocznij RKO z uciśnięciami klatki piersiowej.\n
+        ■ Na oparzone miejsca przyłuż jałowy opatrunek. str 36 5TH EDITIONFIRST AIDMANUAL \n
+        \n
         Pamiętaj, że doskonałym przewodnikiem prądu jest woda, więc mając mokre ręce lub
-        stojąc na mokrej podłodze, narażasz się na niebezpieczeństwo porażenia prądem.
+        stojąc na mokrej podłodze, narażasz się na niebezpieczeństwo porażenia prądem.\n
     </string>
 
 </resources>
