@@ -1,13 +1,11 @@
 package com.example.klaudia.medicalcenter;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -41,12 +39,25 @@ public class TutorialActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
 
-        final String [] description = new String [] {"Pierwsza pomoc","Popażenia","Odmrożenia"};
+        final String [] description = new String [] {
+                getResources().getString(R.string.opazenieTermiczne),
+                getResources().getString(R.string.opazenieChemiczne),
+                getResources().getString(R.string.porazeniePradem),
+                getResources().getString(R.string.udarSloneczny),
+                getResources().getString(R.string.odmrozenie),
+                getResources().getString(R.string.krwotokZNosa)};
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
 
-        String[] items = new String[]{"Pierwsza pomoc", "Popażenia", "Odmrożenia"};
+        String[] items = new String[]{
+                "Opażenie termiczne",
+                "Opażenie chemiczne",
+                "Opażenie elektryczne",
+                "Opażenie słoneczne",
+                "Odmrożenie",
+                "Krwotok z nosa"};
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, items);
         tutorialType.setAdapter(adapter);
 
@@ -76,24 +87,13 @@ public class TutorialActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parentView) { }
         });
-
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.account_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (Toggle.onOptionsItemSelected(item)) {
             return true;
-        } else {
-            Intent intent = new Intent(TutorialActivity.this, AddAccountActivity.class);
-            startActivity(intent);
-            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setDrawerContent(NavigationView navigationView) {
