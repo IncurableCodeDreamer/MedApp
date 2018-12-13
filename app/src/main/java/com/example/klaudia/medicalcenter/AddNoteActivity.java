@@ -2,11 +2,8 @@ package com.example.klaudia.medicalcenter;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -72,12 +69,10 @@ public class AddNoteActivity extends AppCompatActivity {
         datePicker.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(EventDay eventDay) {
-                Calendar clickedDayCalendar = Calendar.getInstance();
-
+                DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+                Calendar date = eventDay.getCalendar();
                 SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-
-                //String clickedDayCalendar2 = eventDay.toString();//.getCalendar();
-                String strdate = formatter.format(clickedDayCalendar);
+                String strdate = formatter.format(date.getTime());
                 Examination exam;
 
                 if (dbHelper.examinationCheck(strdate)) {
@@ -100,8 +95,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 if (dbHelper.examinationCheck(strdate)) {
                     ex = dbHelper.getExamination(strdate);
                     ex.setNote(noteEditText.getText().toString());
-                    ex.setDate(strdate);
-                    dbHelper.updateExamination(examination);
+                    dbHelper.updateExamination(ex);
                 } else {
                     ex.setDate(strdate);
                     ex.setNote(noteEditText.getText().toString());

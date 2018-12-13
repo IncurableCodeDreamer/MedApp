@@ -35,7 +35,7 @@ public class AddCalendarActivity extends AppCompatActivity implements Validator.
 
     @NotEmpty(message = "Pole nie może pozostać puste")
     @Length(min = 3, message = "Nazwa kliniki musi miec powyzej 3 liter")
-    @Pattern(sequence = 2, regex = "[a-zA-Z][a-zA-Z ]+", message = "Wprowadz dane w odpowiedniej formie")
+    @Pattern(sequence = 2, regex = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+", message = "Wprowadz dane w odpowiedniej formie")
     @BindView(R.id.hospital_name)
     EditText name;
     @NotEmpty(message = "Pole nie może pozostać puste")
@@ -48,7 +48,7 @@ public class AddCalendarActivity extends AppCompatActivity implements Validator.
     EditText addIfno;
     @NotEmpty(message = "Pole nie może pozostać puste")
     @Length(min = 3, message = "Opis musi miec powyzej 3 liter")
-    @Pattern(sequence = 2, regex = "[a-zA-Z][a-zA-Z ]+", message = "Wprowadz dane w odpowiedniej formie")
+    @Pattern(sequence = 2, regex = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+", message = "Wprowadz dane w odpowiedniej formie")
     @BindView(R.id.hospital_description)
     EditText decription;
     @BindView(R.id.hospital_notification)
@@ -102,6 +102,8 @@ public class AddCalendarActivity extends AppCompatActivity implements Validator.
 
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         if (dbHelper.examinationCheck(strdate)) {
+            Examination ex = dbHelper.getExamination(strdate);
+            examination.setNote(ex.getNote());
             dbHelper.updateExamination(examination);
         } else {
             dbHelper.insertExamination(examination);
@@ -117,9 +119,8 @@ public class AddCalendarActivity extends AppCompatActivity implements Validator.
 
     private void addNotification(Date date, Examination ex) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, date.getYear());
-        calendar.set(Calendar.MONTH, date.getYear());
-        calendar.set(Calendar.DAY_OF_YEAR, date.getDate() - 1);
+        calendar.setTime(date);
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH)-1);
         calendar.set(Calendar.HOUR, 9);
 
         Bundle extras = new Bundle();
@@ -132,8 +133,8 @@ public class AddCalendarActivity extends AppCompatActivity implements Validator.
         PendingIntent broadcast = PendingIntent.getBroadcast(AddCalendarActivity.this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
 
-        Toast toast = Toast.makeText(this, "Przypomnienie włączono na dzień " + date.getDay() + "/" + date.getMonth()
-                + "/" + date.getYear() + " o godzinie 9 rano", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, "Przypomnienie włączono na dzień " + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH)
+                + "/" + calendar.get(Calendar.YEAR) + " o godzinie 9 rano", Toast.LENGTH_LONG);
         toast.show();
     }
 

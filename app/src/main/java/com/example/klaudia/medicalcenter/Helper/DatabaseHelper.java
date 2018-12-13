@@ -215,7 +215,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Examination.NOTE, examination.getNote());
         values.put(Examination.HOUR, examination.getHour());
 
-        db.update(Examination.TABLE, values, Examination.ID + "=" + examination.getId(), null);
+        db.update(Examination.TABLE, values, Examination.DATE + "='" + examination.getDate()+ "'", null);
     }
 
     public boolean examinationCheck(String date) {
@@ -267,6 +267,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<Examination> examinationList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             Examination examination = new Examination();
+            examination.setId(cursor.getInt(cursor.getColumnIndex(Examination.ID)));
             examination.setName(cursor.getString(cursor.getColumnIndex(Examination.NAME)));
             examination.setAddInfo(cursor.getString(cursor.getColumnIndex(Examination.ADDINFO)));
             examination.setAddress(cursor.getString(cursor.getColumnIndex(Examination.ADDRESS)));
@@ -287,6 +288,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         while (cursor.moveToNext()) {
             Examination examination = new Examination();
+            examination.setId(cursor.getInt(cursor.getColumnIndex(Examination.ID)));
             examination.setName(cursor.getString(cursor.getColumnIndex(Examination.NAME)));
             examination.setAddInfo(cursor.getString(cursor.getColumnIndex(Examination.ADDINFO)));
             examination.setAddress(cursor.getString(cursor.getColumnIndex(Examination.ADDRESS)));
@@ -410,6 +412,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return medicine;
+    }
+
+    public boolean medicineCheck(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "SELECT * FROM " + Medicine.TABLE + " WHERE NAME='" + name + "'";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor.getCount() > 0) {
+            cursor.close();
+            return true;
+        } else {
+            cursor.close();
+            return false;
+        }
     }
 
     public ArrayList<Medicine> getAllMedicine() {

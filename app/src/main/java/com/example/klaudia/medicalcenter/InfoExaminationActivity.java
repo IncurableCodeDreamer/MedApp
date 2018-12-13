@@ -1,12 +1,10 @@
 package com.example.klaudia.medicalcenter;
 
 import android.app.AlarmManager;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,7 +37,7 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
 
     @NotEmpty(message = "Pole nie może pozostać puste")
     @Length(min = 3, message = "Nazwa kliniki musi miec powyzej 3 liter")
-    @Pattern(sequence = 2, regex = "[a-zA-Z][a-zA-Z ]+", message = "Wprowadz dane w odpowiedniej formie")
+    @Pattern(sequence = 2, regex = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+", message = "Wprowadz dane w odpowiedniej formie")
     @BindView(R.id.hospital_name)
     EditText name;
     @NotEmpty(message = "Pole nie może pozostać puste")
@@ -52,7 +50,7 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
     EditText addIfno;
     @NotEmpty(message = "Pole nie może pozostać puste")
     @Length(min = 3, message = "Opis musi miec powyzej 3 liter")
-    @Pattern(sequence = 2, regex = "[a-zA-Z][a-zA-Z ]+", message = "Wprowadz dane w odpowiedniej formie")
+    @Pattern(sequence = 2, regex = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+", message = "Wprowadz dane w odpowiedniej formie")
     @BindView(R.id.hospital_description)
     EditText decription;
     @BindView(R.id.hospital_notification)
@@ -163,11 +161,13 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         type.setEnabled(true);
         type.setClickable(true);
         decription.setEnabled(true);
-        notif.setEnabled(true);
-        notif.setClickable(true);
         hour.setClickable(true);
         hour.setEnabled(true);
         hour.setFocusable(true);
+        if(!notif.isChecked()) {
+            notif.setEnabled(true);
+            notif.setClickable(true);
+        }
 
         if (ex.getAddInfo() != null && !(ex.getAddInfo().isEmpty())) {
             infoTxt.setVisibility(View.VISIBLE);
@@ -189,6 +189,8 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         type.setEnabled(false);
         hour.setEnabled(false);
         hour.setFocusable(false);
+        notif.setEnabled(false);
+        notif.setClickable(false);
 
         name.setText(ex.getName());
         address.setText(ex.getAddress());
@@ -267,17 +269,10 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         startActivity(intent);
     }
 
-//    public static void cancelNotification(Context ctx, int notifyId) {
-//        String ns = Context.NOTIFICATION_SERVICE;
-//        NotificationManager nMgr = (NotificationManager) ctx.getSystemService(ns);
-//        nMgr.cancel(notifyId);
-//    }
-
     private void addNotification(Date date, Examination ex) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, date.getYear());
-        calendar.set(Calendar.MONTH, date.getYear());
-        calendar.set(Calendar.DAY_OF_YEAR, date.getDate() - 1);
+        calendar.setTime(date);
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH)-1);
         calendar.set(Calendar.HOUR, 9);
 
         Bundle extras = new Bundle();
@@ -290,8 +285,8 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
         PendingIntent broadcast = PendingIntent.getBroadcast(InfoExaminationActivity.this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
 
-        Toast toast = Toast.makeText(this, "Przypomnienie włączono na dzień " + date.getDay() + "/" + date.getMonth()
-                + "/" + date.getYear() + " o godzinie 9 rano", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, "Przypomnienie włączono na dzień " + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH)
+                + "/" + calendar.get(Calendar.YEAR) + " o godzinie 9 rano", Toast.LENGTH_LONG);
         toast.show();
     }
 
