@@ -29,9 +29,6 @@ public class EditMedicineActivity extends AppCompatActivity implements Validator
 
     @BindView(R.id.edit_medicine_item_frequency)
     Spinner dropdown;
-    @NotEmpty(message = "Pole nie może pozostać puste")
-    @Length(min = 3, message = "Nazwa leku musi miec powyzej 3 liter")
-    @Pattern(sequence = 2, regex = "[a-zA-Z][a-zA-Z ]+", message = "Wprowadz dane w odpowiedniej formie")
     @BindView(R.id.edit_medicine_item_name)
     EditText save_medicine_item_name;
     @NotEmpty(message = "Pole nie może pozostać puste")

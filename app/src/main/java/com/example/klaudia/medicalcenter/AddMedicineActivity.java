@@ -93,7 +93,15 @@ public class AddMedicineActivity extends AppCompatActivity implements Validator.
 
     @Override
     public void onValidationSucceeded() {
-        addMedicine();
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        Object selItem = add_medicine_item_name.getSelectedItem();
+        if(selItem == null){
+            Toast.makeText(getApplicationContext(), "Wybierz nazwę leku", Toast.LENGTH_SHORT).show();
+        } else if(dbHelper.medicineCheck(add_medicine_item_name.getSelectedItem().toString())) {
+            Toast.makeText(getApplicationContext(), "Podany lek już istnieje w apteczce", Toast.LENGTH_SHORT).show();
+        } else {
+            addMedicine();
+        }
     }
 
     @Override
