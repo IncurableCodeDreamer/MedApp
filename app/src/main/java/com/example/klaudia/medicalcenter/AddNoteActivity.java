@@ -94,7 +94,11 @@ public class AddNoteActivity extends AppCompatActivity {
 
                 if (dbHelper.examinationCheck(strdate)) {
                     ex = dbHelper.getExamination(strdate);
-                    ex.setNote(noteEditText.getText().toString());
+                    if(noteEditText.getText().toString().isEmpty()){
+                        ex.setNote(null);
+                    }else {
+                        ex.setNote(noteEditText.getText().toString());
+                    }
                     dbHelper.updateExamination(ex);
                 } else {
                     ex.setDate(strdate);
@@ -113,6 +117,26 @@ public class AddNoteActivity extends AppCompatActivity {
         List<Examination> examinationList = dbHelper.getAllExamination();
         List<Examination> notes = dbHelper.getAllNotes();
         List<EventDay> events = new ArrayList<>();
+        List<Examination> doubleEvents = checkEvents(examinationList);
+        List<Examination> deleteFromNotes = checkEvents(notes);
+
+        for (Examination ex: deleteFromNotes){
+            notes.remove(ex);
+        }
+
+        for (Examination examination: doubleEvents){
+            examinationList.remove(examination);
+            String dateFromExamination = examination.getDate();
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+            try {
+                Date date = formatter.parse(dateFromExamination);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                events.add(new EventDay(cal, R.drawable.two_icons));
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            }
+        }
 
         for (Examination e : examinationList) {
             String dateFromExamination = e.getDate();
@@ -140,7 +164,19 @@ public class AddNoteActivity extends AppCompatActivity {
                 e1.printStackTrace();
             }
         }
-
         datePicker.setEvents(events);
+    }
+
+    private List<Examination> checkEvents(List<Examination> examinationList) {
+        List<Examination> doubleEvents = new ArrayList<>();
+
+        for (Examination exam: examinationList) {
+            if(exam.getName()!= null && exam.getNote() != null){
+                if(!(exam.getName().isEmpty()) && !(exam.getNote().isEmpty())) {
+                    doubleEvents.add(exam);
+                }
+            }
+        }
+        return  doubleEvents;
     }
 }

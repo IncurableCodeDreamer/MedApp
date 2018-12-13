@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,9 +25,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,11 +77,12 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
-        calendarView.setOnDayClickListener(new OnDayClickListener() { //sprawdzic czy to ten klik
+        calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(EventDay eventDay) {
+                floatInfo.setVisibility(View.GONE);
                 DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-                Calendar date = calendarView.getSelectedDate();
+                Calendar date = eventDay.getCalendar();
                 SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
                 String strdate = formatter.format(date.getTime());
 
@@ -117,6 +121,26 @@ public class CalendarActivity extends AppCompatActivity {
         List<Examination> examinationList = dbHelper.getAllExamination();
         List<Examination> notes = dbHelper.getAllNotes();
         List<EventDay> events = new ArrayList<>();
+        List<Examination> doubleEvents = checkEvents(examinationList);
+        List<Examination> deleteFromNotes = checkEvents(notes);
+
+        for (Examination ex: deleteFromNotes){
+            notes.remove(ex);
+        }
+
+        for (Examination examination: doubleEvents){
+            examinationList.remove(examination);
+            String dateFromExamination = examination.getDate();
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+            try {
+                Date date = formatter.parse(dateFromExamination);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                events.add(new EventDay(cal, R.drawable.two_icons));
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            }
+        }
 
         for (Examination e : examinationList) {
             String dateFromExamination = e.getDate();
@@ -144,8 +168,20 @@ public class CalendarActivity extends AppCompatActivity {
                 e1.printStackTrace();
             }
         }
-
         calendarView.setEvents(events);
+    }
+
+    private List<Examination> checkEvents(List<Examination> examinationList) {
+        List<Examination> doubleEvents = new ArrayList<>();
+
+        for (Examination exam: examinationList) {
+            if(exam.getName()!= null && exam.getNote() != null){
+                if(!(exam.getName().isEmpty()) && !(exam.getNote().isEmpty())) {
+                    doubleEvents.add(exam);
+                }
+            }
+        }
+        return  doubleEvents;
     }
 
     private void addNote() {

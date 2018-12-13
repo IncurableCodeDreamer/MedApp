@@ -99,8 +99,12 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
     private void deleteExamination() {
         Examination ex = getExaminationFromDb();
 
-        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        dbHelper.deleteExamination(ex);
+        if(ex.getNote()==null || ex.getNote().isEmpty()) {
+            DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+            dbHelper.deleteExamination(ex);
+        } else{
+            updateExamination(ex);
+        }
 
         Intent intent = new Intent(InfoExaminationActivity.this, CalendarActivity.class);
         startActivity(intent);
@@ -241,6 +245,27 @@ public class InfoExaminationActivity extends AppCompatActivity implements Valida
 
     public void onValidationSucceeded() {
         updateExamination();
+    }
+
+    private void updateExamination(Examination exToUpdate) {
+        Examination ex = new Examination();
+
+        ex.setId(exToUpdate.getId());
+        ex.setNote(exToUpdate.getNote());
+        ex.setDate(exToUpdate.getDate());
+        ex.setDescription(null);
+        ex.setName(null);
+        ex.setAddress(null);
+        ex.setType(null);
+        ex.setNofi(false);
+        ex.setAddInfo(null);
+        ex.setHour(null);
+
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        dbHelper.updateExamination(ex);
+
+        Intent intent = new Intent(InfoExaminationActivity.this, CalendarActivity.class);
+        startActivity(intent);
     }
 
     private void updateExamination() {
