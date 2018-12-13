@@ -42,12 +42,12 @@ public class DialogStart extends AppCompatDialogFragment implements Validator.Va
     EditText userEmail;
     @NotEmpty(message = "Wprowadz imie")
     @Length(min = 3, message = "Imie musi miec powyzej 3 liter")
-    @Pattern(sequence = 2, regex = "[a-zA-Z][a-zA-Z ]+", message = "Wprowadz imie w odpowiedniej formie")
+    @Pattern(sequence = 2, regex = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+", message = "Wprowadz imie w odpowiedniej formie")
     @BindView(R.id.start_dialog_name)
     EditText userName;
     @NotEmpty(message = "Wprowadz nazwisko")
     @Length(min = 3, message = "Nazwisko musi miec powyzej 3 liter")
-    @Pattern(sequence = 2, regex = "[a-zA-Z][a-zA-Z ]+", message = "Wprowadz nazwisko w odpowiedniej formie")
+    @Pattern(sequence = 2, regex = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+", message = "Wprowadz nazwisko w odpowiedniej formie")
     @BindView(R.id.start_dialog_surname)
     EditText userSurname;
     @BindView(R.id.start_dialog_bithdate)
