@@ -67,7 +67,7 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
     Button add_account_save_btn;
     @NotEmpty(message = "Pole nie może pozostać puste")
     @Length(min = 3, message = "Imie i nazwisko muszą miec powyzej 3 liter")
-    @Pattern(sequence = 2, regex = "[a-zA-Z][a-zA-Z ]+", message = "Wprowadz dane w odpowiedniej formie")
+    @Pattern(sequence = 2, regex = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+", message = "Wprowadz dane w odpowiedniej formie")
     @BindView(R.id.userData)
     EditText userData;
 
@@ -85,6 +85,7 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
     EditText item_value_notes;
     @BindView(R.id.userAge)
     EditText userAge;
+    private boolean ifChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +105,10 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         User user = dbHelper.getUser();
         ifDonor.setChecked(user.isIfDonor());
-        ifDonor.setChecked(AccountActivity.ifChecked);
+        Bundle extras= getIntent().getExtras();
+        ifChecked = extras.getBoolean("ifDonor");
+
+        ifDonor.setChecked(ifChecked);
 
         String date = user.getBirthDate();
         userAge.setText(date);
@@ -208,7 +212,7 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
         }
 
         int yearToCal = Integer.parseInt(year);
-        int monthToCal = Integer.parseInt(month);
+        int monthToCal = Integer.parseInt(month)-1;
         int dayToCal = Integer.parseInt(day);
 
         DatePickerDialog dialog = new DatePickerDialog(Objects.requireNonNull(this),
@@ -252,7 +256,8 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
             ByteArrayOutputStream bytearrayoutputstream;
             bytearrayoutputstream = new ByteArrayOutputStream();
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bytearrayoutputstream);
+            Bitmap resizedBitmap = getResizedBitmap(bitmap, 100);
+            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 70, bytearrayoutputstream);
             byte[] BYTE = bytearrayoutputstream.toByteArray();
             user.setPicture(BYTE);
         }
@@ -267,14 +272,26 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
         user.setAge(age);
         dbHelper.updateUser(user);
 
-        if (ifDonor.isChecked()) {
-            AccountActivity.ifChecked = true;
-        } else {
-            AccountActivity.ifChecked = false;
-        }
-
         Intent intent = new Intent(AddAccountActivity.this, AccountActivity.class);
+        Bundle extras = new Bundle();
+        extras.putBoolean("ifDonor", ifDonor.isChecked());
+        intent.putExtras(extras);
         startActivity(intent);
+    }
+
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 0) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
     }
 
     private void operGallery() {
@@ -288,7 +305,15 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
 
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             imageUri = data.getData();
-            image.setImageURI(imageUri);
+
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Bitmap resizedBitmap = getResizedBitmap(bitmap, 100);
+            image.setImageBitmap(resizedBitmap);
         }
     }
 

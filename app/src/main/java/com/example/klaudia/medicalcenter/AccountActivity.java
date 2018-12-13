@@ -33,7 +33,6 @@ public class AccountActivity extends AppCompatActivity {
     private ActionBarDrawerToggle Toggle;
     private AccountAdapter adapter;
     private ArrayList<Account> itemList;
-    public static boolean ifChecked = true;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
@@ -64,8 +63,6 @@ public class AccountActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
 
-        ifIsDonor();
-
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         if (dbHelper.getAccountCount() != 0) {
             itemList = dbHelper.getAllAccount();
@@ -79,6 +76,7 @@ public class AccountActivity extends AppCompatActivity {
         userData.setText(user.getName() + " " + user.getSurname());
         String yearsOld = getYearsOld(user.getAge());
         userAge.setText(user.getBirthDate() + " (" + user.getAge() + " " + yearsOld + ")");
+        ifIsDonor(user.isIfDonor());
 
         if (user.getPicture() != null) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(user.getPicture(), 0, user.getPicture().length);
@@ -97,18 +95,12 @@ public class AccountActivity extends AppCompatActivity {
         return yearsOld;
     }
 
-    private void ifIsDonor() {
+    private void ifIsDonor(boolean ifChecked) {
         if (ifChecked) {
             ifDonor.setVisibility(View.VISIBLE);
         } else {
             ifDonor.setVisibility(View.INVISIBLE);
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        ifIsDonor();
     }
 
     @Override
@@ -123,6 +115,9 @@ public class AccountActivity extends AppCompatActivity {
             return true;
         } else {
             Intent intent = new Intent(AccountActivity.this, AddAccountActivity.class);
+            Bundle extras = new Bundle();
+            extras.putBoolean("ifDonor", (ifDonor.getVisibility()==View.VISIBLE));
+            intent.putExtras(extras);
             startActivity(intent);
             return true;
         }
