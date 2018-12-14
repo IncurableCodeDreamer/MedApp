@@ -1,8 +1,7 @@
 package com.example.klaudia.medicalcenter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,8 +15,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -40,6 +37,8 @@ public class AboutAppActivity extends AppCompatActivity {
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    @BindView(R.id.view)
+    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +87,7 @@ public class AboutAppActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("ResourceAsColor")
     private void addBottomDots(int currentPage) {
         dots = new TextView[layouts.length];
 
@@ -116,6 +116,12 @@ public class AboutAppActivity extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
+
+            if (position == layouts.length - 1) {
+                view.setBackgroundColor(getResources().getColor(R.color.darkGray));
+            } else {
+                view.setBackgroundColor(getResources().getColor(R.color.white));
+            }
         }
 
         @Override
@@ -149,7 +155,6 @@ public class AboutAppActivity extends AppCompatActivity {
         public boolean isViewFromObject(View view, Object obj) {
             return view == obj;
         }
-
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {

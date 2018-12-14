@@ -17,9 +17,9 @@
     <color name="card6">#c2e0f0</color>
 
     <!-- Screens background color-->
-    <color name="bg_screen1">#A7D7CC</color>
-    <color name="bg_screen2">#F6D6D6</color>
-    <color name="bg_screen3">#A7D7CC</color>
+    <color name="bg_screen1">#b4d6ca</color>
+    <color name="bg_screen2">#ebd2d2</color>
+    <color name="bg_screen3">#b5d6cb</color>
     <color name="bg_screen4">#005467</color>
 
     <!-- dots inactive colors -->
