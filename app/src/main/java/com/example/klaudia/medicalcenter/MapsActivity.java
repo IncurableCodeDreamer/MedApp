@@ -1,7 +1,6 @@
 package com.example.klaudia.medicalcenter;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,9 +20,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.klaudia.medicalcenter.Remote.IGoogleApiService;
 import com.example.klaudia.medicalcenter.RetrofitModel.MyPlaces;
 import com.example.klaudia.medicalcenter.RetrofitModel.Results;
-import com.example.klaudia.medicalcenter.Remote.IGoogleApiService;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -81,7 +80,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
-
+        
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -92,10 +91,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             checkLocationPermission();
         }
 
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        longitude = location.getLongitude();
-        latitude = location.getLatitude();
+//        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//        longitude = location.getLongitude();
+//        latitude = location.getLatitude();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -108,6 +107,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         nearByPlace("pharmacy");
                         break;
                     case R.id.myLocalization:
+
                         LatLng latLng = new LatLng(latitude, longitude);
                         mMap.clear();
                         MarkerOptions markerOptions = new MarkerOptions()

@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import com.example.klaudia.medicalcenter.DatabaseModel.Account;
 import com.example.klaudia.medicalcenter.DatabaseModel.User;
 import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
+import com.github.florent37.viewtooltip.ViewTooltip;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -47,6 +50,8 @@ public class AccountActivity extends AppCompatActivity {
     TextView userAge;
     @BindView(R.id.nav_image)
     ImageView image;
+    @BindView(R.id.tooltipBtn)
+    FloatingActionButton tooltipBtn;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -62,6 +67,13 @@ public class AccountActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
+
+        tooltipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tooltips();
+            }
+        });
 
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         if (dbHelper.getAccountCount() != 0) {
@@ -82,6 +94,23 @@ public class AccountActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeByteArray(user.getPicture(), 0, user.getPicture().length);
             image.setImageBitmap(bitmap);
         }
+    }
+
+    private void tooltips() {
+        ViewTooltip
+                .on(this, findViewById(R.id.edit_account_menu_btn))
+                .autoHide(true, 2000)
+                .clickToHide(false)
+                .align(ViewTooltip.ALIGN.CENTER)
+                .position(ViewTooltip.Position.LEFT)
+                .text("Edytuj swoje konto")
+                .textColor(Color.WHITE)
+                .color(getResources().getColor(R.color.colorAccent))
+                .corner(40)
+                .arrowWidth(15)
+                .arrowHeight(25)
+                .distanceWithView(0)
+                .show();
     }
 
     private String getYearsOld(int age) {

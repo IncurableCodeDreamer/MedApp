@@ -14,10 +14,16 @@ tools:context=".MedicineActivity">
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <TextView
-        android:layout_width="match_parent"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/tooltipBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dodaj leki oraz ustaw częstotliwość ich spożywania wraz z godziną aby umożliwić powiadomienia"/>
+        android:layout_gravity="top|right"
+        android:clickable="true"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="10sp"
+        app:fabSize="mini"
+        android:src="@drawable/ic_help_outline_white_24dp" />
 
     <EditText
         android:id="@+id/medicine_search"

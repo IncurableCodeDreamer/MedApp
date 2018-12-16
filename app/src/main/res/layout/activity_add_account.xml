@@ -14,41 +14,55 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
             android:focusableInTouchMode="true">
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/tooltipBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
+                android:layout_marginRight="10sp"
+                android:clickable="true"
+                app:fabSize="mini"
+                android:src="@drawable/ic_help_outline_white_24dp" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20sp">
+                android:paddingLeft="20sp"
+                android:paddingRight="20sp"
+                android:paddingBottom="20sp">
 
                 <LinearLayout
                     android:id="@+id/leftLayout"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:focusable="true"
-                    android:textSize="15sp"
-                    android:focusableInTouchMode="true">
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical"
+                    android:textSize="15sp">
 
                     <EditText
                         android:id="@+id/userData"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
+                        android:hint="@string/user_data"
                         android:textSize="15sp"
-                        android:hint="@string/user_data"/>
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/userAge"
-                        android:focusable="false"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:hint="Data urodzenia"/>
+                        android:focusable="false"
+                        android:hint="Data urodzenia"
+                        android:textSize="15sp" />
 
                     <CheckBox
                         android:id="@+id/ifDonor_checkbox"
@@ -66,9 +80,9 @@
                     android:id="@+id/nav_image"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/ic_person_black_24dp"
+                    android:layout_alignParentRight="true"
                     android:clickable="true"
-                    android:layout_alignParentRight="true"/>
+                    android:src="@drawable/ic_person_black_24dp" />
 
             </RelativeLayout>
 
@@ -202,6 +216,7 @@
         </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
 
 </android.support.v4.widget.DrawerLayout>

@@ -9,11 +9,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -27,12 +27,12 @@ import android.widget.Toast;
 import com.example.klaudia.medicalcenter.DatabaseModel.Account;
 import com.example.klaudia.medicalcenter.DatabaseModel.User;
 import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
+import com.github.florent37.viewtooltip.ViewTooltip;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
-import com.tooltip.Tooltip;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -70,7 +70,8 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
     @Pattern(sequence = 2, regex = "[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ][a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]+", message = "Wprowadz dane w odpowiedniej formie")
     @BindView(R.id.userData)
     EditText userData;
-
+    @BindView(R.id.tooltipBtn)
+    FloatingActionButton tooltipBtn;
     @BindView(R.id.item_value_illness)
     EditText item_value_illness;
     @BindView(R.id.item_value_alergy)
@@ -95,13 +96,6 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
         final Validator validator = new Validator(this);
         validator.setValidationListener(this);
 
-        Tooltip tooltipImage = new Tooltip.Builder(image)
-                .setText("Dodaj zdjęcie z galerii")
-                .setCancelable(true)
-                .setBackgroundColor(Color.GRAY)
-                .setGravity(Gravity.BOTTOM)
-                .build();
-
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
         User user = dbHelper.getUser();
         ifDonor.setChecked(user.isIfDonor());
@@ -109,6 +103,13 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
         ifChecked = extras.getBoolean("ifDonor");
 
         ifDonor.setChecked(ifChecked);
+
+        tooltipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tooltips();
+            }
+        });
 
         String date = user.getBirthDate();
         userAge.setText(date);
@@ -324,6 +325,68 @@ public class AddAccountActivity extends AppCompatActivity implements Validator.V
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void tooltips() {
+        ViewTooltip
+                .on(this, image)
+                .autoHide(true, 2000)
+                .clickToHide(false)
+                .align(ViewTooltip.ALIGN.END)
+                .position(ViewTooltip.Position.BOTTOM)
+                .text("Dodaj zdjęcie z galerii")
+                .textColor(Color.WHITE)
+                .color(getResources().getColor(R.color.colorAccent))
+                .corner(40)
+                .arrowWidth(15)
+                .arrowHeight(25)
+                .distanceWithView(0)
+                .show();
+
+        ViewTooltip
+                .on(this, userAge)
+                .autoHide(true, 2000)
+                .clickToHide(false)
+                .align(ViewTooltip.ALIGN.CENTER)
+                .position(ViewTooltip.Position.TOP)
+                .text("Wybierz, aby edytować datę")
+                .textColor(Color.WHITE)
+                .color(getResources().getColor(R.color.colorAccent))
+                .corner(40)
+                .arrowWidth(15)
+                .arrowHeight(25)
+                .distanceWithView(0)
+                .show();
+
+        ViewTooltip
+                .on(this, item_value_alergy)
+                .autoHide(true, 2000)
+                .clickToHide(false)
+                .align(ViewTooltip.ALIGN.CENTER)
+                .position(ViewTooltip.Position.TOP)
+                .text("Edytuj dane")
+                .textColor(Color.WHITE)
+                .color(getResources().getColor(R.color.colorAccent))
+                .corner(40)
+                .arrowWidth(15)
+                .arrowHeight(25)
+                .distanceWithView(0)
+                .show();
+
+        ViewTooltip
+                .on(this, ifDonor)
+                .autoHide(true, 2000)
+                .clickToHide(false)
+                .align(ViewTooltip.ALIGN.START)
+                .position(ViewTooltip.Position.BOTTOM)
+                .text("Zaznacz lub odznacz")
+                .textColor(Color.WHITE)
+                .color(getResources().getColor(R.color.colorAccent))
+                .corner(40)
+                .arrowWidth(15)
+                .arrowHeight(25)
+                .distanceWithView(0)
+                .show();
     }
 
     @Override

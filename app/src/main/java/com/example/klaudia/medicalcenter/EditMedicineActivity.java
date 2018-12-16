@@ -8,16 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 import com.example.klaudia.medicalcenter.DatabaseModel.Medicine;
+import com.example.klaudia.medicalcenter.Helper.DatabaseHelper;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import com.mobsandgeeks.saripaar.annotation.Pattern;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,7 +1,9 @@
 package com.example.klaudia.medicalcenter;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.github.florent37.viewtooltip.ViewTooltip;
 
 import java.util.Objects;
 
@@ -29,12 +33,21 @@ public class TutorialActivity extends AppCompatActivity {
     Spinner tutorialType;
     @BindView(R.id.tutorial)
     TextView tutorialText;
+    @BindView(R.id.tooltipBtn)
+    FloatingActionButton tooltipBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
         ButterKnife.bind(this);
+
+        tooltipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tooltips();
+            }
+        });
 
         Toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(Toggle);
@@ -102,6 +115,24 @@ public class TutorialActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parentView) { }
         });
     }
+
+    private void tooltips() {
+        ViewTooltip
+                .on(this, tutorialType)
+                .autoHide(true, 2000)
+                .clickToHide(false)
+                .align(ViewTooltip.ALIGN.CENTER)
+                .position(ViewTooltip.Position.TOP)
+                .text("Wybierz rodzaj samouczka")
+                .textColor(Color.WHITE)
+                .color(getResources().getColor(R.color.colorAccent))
+                .corner(40)
+                .arrowWidth(15)
+                .arrowHeight(25)
+                .distanceWithView(0)
+                .show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (Toggle.onOptionsItemSelected(item)) {

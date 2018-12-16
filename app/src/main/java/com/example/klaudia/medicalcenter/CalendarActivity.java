@@ -101,7 +101,6 @@ public class CalendarActivity extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         try {
             calendarView.setDate(cal);
-            floatInfo.setVisibility(View.GONE);
         } catch (OutOfDateRangeException e) {
             e.printStackTrace();
         }
