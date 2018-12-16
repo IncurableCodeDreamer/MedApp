@@ -133,7 +133,9 @@ public class AddCalendarActivity extends AppCompatActivity implements Validator.
         PendingIntent broadcast = PendingIntent.getBroadcast(AddCalendarActivity.this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
 
-        Toast toast = Toast.makeText(this, "Przypomnienie włączono na dzień " + calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.MONTH)
+        int month = calendar.get(Calendar.MONTH)+1;
+
+        Toast toast = Toast.makeText(this, "Przypomnienie włączono na dzień " + calendar.get(Calendar.DAY_OF_MONTH) + "/" + month
                 + "/" + calendar.get(Calendar.YEAR) + " o godzinie 9 rano", Toast.LENGTH_LONG);
         toast.show();
     }
