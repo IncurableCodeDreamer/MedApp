@@ -32,7 +32,7 @@ public class NotificationReciver extends BroadcastReceiver {
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification.Builder builder = new Notification.Builder(context);
         Notification notification = builder.setContentTitle("Przypomnienie")
-                .setContentText("Masz jutro wizytę u " + name + "o godzinie " + hour + ".")
+                .setContentText("Masz jutro wizytę w " + name + " o godzinie " + hour + ".")
                 .setTicker("New Message Alert!")
                 .setSmallIcon(R.drawable.ic_favorite_black_24dp)
                 .setContentIntent(pendingIntent).build();

@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         } else if (dbHelper.getUserCount() == 0) {
             showDialog();
         }
-
         onMenuOpcionClick();
 
         Toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
