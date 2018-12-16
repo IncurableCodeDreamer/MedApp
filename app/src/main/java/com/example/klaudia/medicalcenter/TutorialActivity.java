@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,13 +40,14 @@ public class TutorialActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
 
-        final String [] description = new String [] {
-                getResources().getString(R.string.opazenieTermiczne),
-                getResources().getString(R.string.opazenieChemiczne),
-                getResources().getString(R.string.porazeniePradem),
-                getResources().getString(R.string.udarSloneczny),
-                getResources().getString(R.string.odmrozenie),
-                getResources().getString(R.string.krwotokZNosa)};
+        final String [] description = new String []{
+                String.valueOf(Html.fromHtml(getResources().getString(R.string.opazenieTermiczne))),
+                String.valueOf(Html.fromHtml(getResources().getString(R.string.opazenieChemiczne))),
+                String.valueOf(Html.fromHtml(getResources().getString(R.string.porazeniePradem))),
+                String.valueOf(Html.fromHtml(getResources().getString(R.string.udarSloneczny))),
+                String.valueOf(Html.fromHtml(getResources().getString(R.string.odmrozenie))),
+                String.valueOf(Html.fromHtml(getResources().getString(R.string.krwotokZNosa)))
+        };
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
