@@ -8,7 +8,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,11 +24,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -90,9 +87,11 @@ public class CalendarActivity extends AppCompatActivity {
                     Examination ex = dbHelper.getExamination(strdate);
                     if (ex.getName() != null) {
                         floatInfo.setVisibility(View.VISIBLE);
+                        findViewById(R.id.add_examination_menu_btn).setVisibility(View.VISIBLE);
                     }
                 } else {
                     floatInfo.setVisibility(View.GONE);
+                    findViewById(R.id.add_examination_menu_btn).setVisibility(View.GONE);
                 }
             }
         });
