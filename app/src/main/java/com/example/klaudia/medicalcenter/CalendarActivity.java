@@ -87,11 +87,11 @@ public class CalendarActivity extends AppCompatActivity {
                     Examination ex = dbHelper.getExamination(strdate);
                     if (ex.getName() != null) {
                         floatInfo.setVisibility(View.VISIBLE);
-                        findViewById(R.id.add_examination_menu_btn).setVisibility(View.VISIBLE);
+                        findViewById(R.id.add_examination_menu_btn).setVisibility(View.GONE);
                     }
                 } else {
                     floatInfo.setVisibility(View.GONE);
-                    findViewById(R.id.add_examination_menu_btn).setVisibility(View.GONE);
+                    findViewById(R.id.add_examination_menu_btn).setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -101,6 +101,7 @@ public class CalendarActivity extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         try {
             calendarView.setDate(cal);
+            floatInfo.setVisibility(View.GONE);
         } catch (OutOfDateRangeException e) {
             e.printStackTrace();
         }
@@ -195,6 +196,19 @@ public class CalendarActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.examination_menu, menu);
+        Calendar cal = Calendar.getInstance();
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+        String strdate = formatter.format(cal.getTime());
+        if (dbHelper.examinationCheck(strdate)) {
+            Examination ex = dbHelper.getExamination(strdate);
+            if (ex.getName() != null) {
+                floatInfo.setVisibility(View.VISIBLE);
+            }
+        } else {
+            floatInfo.setVisibility(View.GONE);
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
 
