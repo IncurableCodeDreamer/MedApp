@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddAccountActivity">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/tooltipBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
+                android:layout_marginRight="10sp"
+                android:clickable="true"
+                app:fabSize="mini"
+                android:src="@drawable/ic_help_outline_white_24dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20sp"
+                android:paddingRight="20sp"
+                android:paddingBottom="20sp">
+
+                <LinearLayout
+                    android:id="@+id/leftLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical"
+                    android:textSize="15sp">
+
+                    <EditText
+                        android:id="@+id/userData"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/user_data"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/userAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:hint="Data urodzenia"
+                        android:textSize="15sp" />
+
+                    <CheckBox
+                        android:id="@+id/ifDonor_checkbox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:drawableRight="@drawable/ic_favorite_black_24dp"
+                        android:text="@string/ifDonor"
+                        android:textColor="@color/darkGray"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/nav_image"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentRight="true"
+                    android:clickable="true"
+                    android:src="@drawable/ic_person_black_24dp" />
+
+            </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/add_account_layout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20sp"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TextView
+                android:id="@+id/item_name_illness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Choroby"/>
+
+            <EditText
+                android:id="@+id/item_value_illness"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:inputType="text"
+                android:hint="Wprowadź choroby przewlekłe"/>
+
+            <TextView
+                android:id="@+id/item_name_alergy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Alergie i reakcje"/>
+
+            <EditText
+                android:id="@+id/item_value_alergy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:inputType="text"
+                android:hint="Wprowadź alergie "/>
+
+            <TextView
+                android:id="@+id/item_name_blood"
+                android:layout_width="match_parent"
+                android:textSize="15sp"
+                android:layout_height="wrap_content"
+                android:text="Grupa krwi"/>
+
+            <EditText
+                android:id="@+id/item_value_blood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSize="15sp"
+                android:hint="Wprowadź grupę krwi"/>
+
+            <TextView
+                android:id="@+id/item_name_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Waga"/>
+
+            <EditText
+                android:id="@+id/item_value_weight"
+                android:layout_width="match_parent"
+                android:textSize="15sp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Wprowadź wagę"/>
+
+            <TextView
+                android:id="@+id/item_name_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Wzrost"/>
+
+            <EditText
+                android:id="@+id/item_value_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:inputType="number"
+                android:hint="Wprowadź wzrost"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Leki"/>
+
+            <Button
+                android:id="@+id/item_value_medicine"
+                android:layout_width="match_parent"
+                android:textSize="15sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
+                android:textColor="@color/white"
+                android:background="@color/colorAccent"
+                android:text="Edytuj leki"/>
+
+            <TextView
+                android:id="@+id/item_name_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Notatki dotyczące zdrowia"/>
+
+            <EditText
+                android:id="@+id/item_value_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:inputType="text"
+                android:hint="Wprowadź dodatkowe informacje"/>
+
+            <Button
+                android:id="@+id/add_account_save_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Zapisz zmiany"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
+                android:textColor="@color/white"
+                android:background="@color/colorAccent"/>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.v4.widget.DrawerLayout>

@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#CFBD69</color>
+    <color name="colorPrimary">#236B8E</color>
     <color name="colorPrimaryDark">#080808</color>
     <color name="white">#FFFF</color>
-    <color name="colorAccent">#A8D6C9</color>
-    <color name="gray">#88A9A0</color>
+    <color name="colorAccent">#629CD6</color>
+    <color name="gray">#236B8E</color>
     <color name="darkGray">#6C6C6C</color>
+    <color name="colorRed">#8B0000</color>
+
+    <!-- Menu background color-->
+    <color name="card1">#005467</color>
+    <color name="card2">#236B8E</color>
+    <color name="card3">#629CD6</color>
+    <color name="card4">#5cadd6</color>
+    <color name="card5">#99cce6</color>
+    <color name="card6">#c2e0f0</color>
+
+    <!-- Screens background color-->
+    <color name="bg_screen1">#b4d6ca</color>
+    <color name="bg_screen2">#ebd2d2</color>
+    <color name="bg_screen3">#b5d6cb</color>
+    <color name="bg_screen4">#005467</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#3f8d7b</color>
+    <color name="dot_dark_screen2">#df6d6d</color>
+    <color name="dot_dark_screen3">#3f8d7b</color>
+    <color name="dot_dark_screen4">#002a33</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#dcefeb</color>
+    <color name="dot_light_screen2">#ffffff</color>
+    <color name="dot_light_screen3">#dcefeb</color>
+    <color name="dot_light_screen4">#0092b3</color>
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+        <item>@color/dot_light_screen4</item>
+        <item>@color/card2</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+        <item>@color/dot_dark_screen4</item>
+        <item>@color/dot_dark_screen4</item>
+    </array>
 </resources>

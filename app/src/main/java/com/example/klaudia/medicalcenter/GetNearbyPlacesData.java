@@ -2,7 +2,7 @@ package com.example.klaudia.medicalcenter;
 
 import android.os.AsyncTask;
 
-import com.google.android.gms.maps.CameraUpdate;
+import com.example.klaudia.medicalcenter.Helper.PlaceDataParser;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;

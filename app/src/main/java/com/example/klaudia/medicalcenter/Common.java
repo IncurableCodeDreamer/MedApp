@@ -1,6 +1,6 @@
 package com.example.klaudia.medicalcenter;
 
-import com.example.klaudia.medicalcenter.Model.Results;
+import com.example.klaudia.medicalcenter.RetrofitModel.Results;
 import com.example.klaudia.medicalcenter.Remote.IGoogleApiService;
 import com.example.klaudia.medicalcenter.Remote.RetrofitClient;
 

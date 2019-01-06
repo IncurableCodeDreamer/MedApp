@@ -8,13 +8,80 @@ android:layout_height="match_parent"
 tools:context=".AccountActivity">
 
 <LinearLayout
+    android:id="@+id/account_activity_layout"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/tooltipBtn"
+        android:layout_marginTop="5sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginRight="10sp"
+        android:layout_width="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="mini"
+        android:layout_gravity="top|right"
+        android:src="@drawable/ic_help_outline_white_24dp" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/title_activity_account"/>
+        android:layout_height="wrap_content"
+        android:paddingLeft="20sp"
+        android:paddingRight="20sp"
+        android:paddingBottom="20sp">
+
+    <LinearLayout
+        android:id="@+id/leftLayout"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true">
+
+    <TextView
+        android:id="@+id/userData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="@string/user_data"/>
+
+    <TextView
+        android:id="@+id/userAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Data urodzenia (wiek)"/>
+
+    <TextView
+        android:id="@+id/ifDonor_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/darkGray"
+        android:textSize="15sp"
+        android:text="@string/ifDonor"
+        android:drawableRight="@drawable/ic_favorite_black_24dp"/>
+
+    </LinearLayout>
+
+            <ImageView
+                android:id="@+id/nav_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentRight="true"
+                android:clickable="false"
+                android:src="@drawable/ic_person_black_24dp" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/accountList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5sp"/>
 
 </LinearLayout>
 

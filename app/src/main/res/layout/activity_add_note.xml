@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNoteActivity">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true" >
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/datePicker"
+            android:layout_width="0dp"
+            android:layout_height="370dp"
+            app:datePicker="false"
+            app:type="one_day_picker"
+            app:eventsEnabled="true"
+            app:headerColor="@color/colorAccent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectionColor="@color/colorAccent"
+            app:todayLabelColor="@color/colorPrimaryDark" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/addNoteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ZAPISZ notatkę"
+            android:layout_marginEnd="20sp"
+            android:textSize="15sp"
+            android:layout_marginStart="20sp"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/deleteNoteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Usuń notatkę"
+            android:layout_marginEnd="20sp"
+            android:textSize="15sp"
+            android:layout_marginStart="20sp"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <EditText
+            android:id="@+id/noteEditText"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:background="@null"
+            android:gravity="top"
+            android:textSize="15sp"
+            android:paddingLeft="20sp"
+            android:hint="Wprowadź treść notatki"
+            app:layout_constraintBottom_toTopOf="@id/addNoteButton"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/datePicker" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</android.support.v4.widget.DrawerLayout>

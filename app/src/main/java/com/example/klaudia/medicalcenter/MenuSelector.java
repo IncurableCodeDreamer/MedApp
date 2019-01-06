@@ -10,6 +10,9 @@ class MenuSelector {
     static void selectedItemDrawer(MenuItem menuItem, Context currentClass, DrawerLayout drawerLayout) {
         Intent selectedIntent;
         switch (menuItem.getItemId()) {
+            case R.id.nav_main:
+                selectedIntent = new Intent(currentClass, MainActivity.class);
+                break;
             case R.id.nav_account:
                 selectedIntent = new Intent(currentClass, AccountActivity.class);
                 break;
@@ -22,11 +25,11 @@ class MenuSelector {
             case R.id.nav_search:
                 selectedIntent = new Intent(currentClass, MapsActivity.class);
                 break;
-            case R.id.nav_properties:
-                selectedIntent = new Intent(currentClass, AccountActivity.class);
+            case R.id.nav_info:
+                selectedIntent = new Intent(currentClass, AboutAppActivity.class);
                 break;
-            case R.id.nav_statistics:
-                selectedIntent = new Intent(currentClass, StatisticActivity.class);
+            case R.id.nav_tutorial:
+                selectedIntent = new Intent(currentClass, TutorialActivity.class);
                 break;
             default:
                 selectedIntent = new Intent(currentClass, MainActivity.class);

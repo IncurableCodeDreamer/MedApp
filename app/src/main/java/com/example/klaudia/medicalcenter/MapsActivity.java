@@ -1,9 +1,11 @@
 package com.example.klaudia.medicalcenter;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
@@ -18,9 +20,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.klaudia.medicalcenter.Model.MyPlaces;
-import com.example.klaudia.medicalcenter.Model.Results;
 import com.example.klaudia.medicalcenter.Remote.IGoogleApiService;
+import com.example.klaudia.medicalcenter.RetrofitModel.MyPlaces;
+import com.example.klaudia.medicalcenter.RetrofitModel.Results;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -55,13 +57,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     NavigationView navigationView;
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+    @BindView(R.id.bottom_navigator)
+    BottomNavigationView bottomNavigationView;
 
     IGoogleApiService mService;
     MyPlaces currentPlace;
 
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
-    private LocationRequest mLocationRequest;
+    LocationRequest mLocationRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +80,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setDrawerContent(navigationView);
-
+        
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -86,7 +90,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigator);
+
+//        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//        longitude = location.getLongitude();
+//        latitude = location.getLatitude();
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -98,11 +107,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         nearByPlace("pharmacy");
                         break;
                     case R.id.myLocalization:
+
                         LatLng latLng = new LatLng(latitude, longitude);
                         mMap.clear();
                         MarkerOptions markerOptions = new MarkerOptions()
                                 .position(latLng)
-                                .title(getApplicationContext().getString(R.string.position)) //this.getString(R.string.pozycja)
+                                .title(getApplicationContext().getString(R.string.position))
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
                         mMarker = mMap.addMarker(markerOptions);
@@ -151,22 +161,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 latitude = mLastLocation.getLatitude();
                 longitude = mLastLocation.getLongitude();
 
-                //LatLng latLng = new LatLng(latitude,longitude);
-                //MarkerOptions markerOptions = new MarkerOptions()
-                //       .position(latLng)
-                //      .title("Twoja pozycja")
-                //     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+                LatLng latLng = new LatLng(latitude, longitude);
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .position(latLng)
+                        .title("Twoja pozycja")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
-                //mMarker=mMap.addMarker(markerOptions);
-                //  mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                // mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+                mMarker = mMap.addMarker(markerOptions);
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
             }
         };
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (Toggle.onOptionsItemSelected(item)) {
             return true;
         }

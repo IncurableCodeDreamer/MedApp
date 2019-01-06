@@ -2,7 +2,9 @@ package com.example.klaudia.medicalcenter;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,8 +16,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.klaudia.medicalcenter.Model.PlaceDetails;
+import com.example.klaudia.medicalcenter.RetrofitModel.PlaceDetails;
 import com.example.klaudia.medicalcenter.Remote.IGoogleApiService;
+import com.github.florent37.viewtooltip.ViewTooltip;
 import com.squareup.picasso.Picasso;
 
 
@@ -41,6 +44,8 @@ public class ViewDetailsActivity extends AppCompatActivity {
     Button viewOnMap;
     @BindView(R.id.telephon_number)
     Button telefonNumber;
+    @BindView(R.id.tooltipBtn)
+    FloatingActionButton tooltipBtn;
 
     IGoogleApiService mService;
     PlaceDetails myPlace;
@@ -57,6 +62,13 @@ public class ViewDetailsActivity extends AppCompatActivity {
         opening_hours.setText("");
         place_adress.setText("");
         telefonNumber.setText("");
+
+        tooltipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tooltips();
+            }
+        });
 
         viewOnMap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +93,7 @@ public class ViewDetailsActivity extends AppCompatActivity {
         }
 
         if (Common.currentResults.getOpening_hours() != null) {
-            opening_hours.setText(this.getString(R.string.status));
+            opening_hours.setText(this.getString(R.string.status)+" ");
 
             if (Common.currentResults.getOpening_hours().getOpen_now() == "true") {
                 opening_hours.append(this.getString(R.string.status_open));
@@ -125,6 +137,23 @@ public class ViewDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void tooltips() {
+        ViewTooltip
+                .on(this, telefonNumber)
+                .autoHide(true, 2000)
+                .clickToHide(false)
+                .align(ViewTooltip.ALIGN.CENTER)
+                .position(ViewTooltip.Position.TOP)
+                .text("Wybierz, aby zadzwonić")
+                .textColor(Color.WHITE)
+                .color(getResources().getColor(R.color.colorAccent))
+                .corner(40)
+                .arrowWidth(15)
+                .arrowHeight(25)
+                .distanceWithView(0)
+                .show();
     }
 
     private String getPlaceUrl(String place_id) {
