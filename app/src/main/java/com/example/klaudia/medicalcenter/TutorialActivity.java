@@ -66,10 +66,10 @@ public class TutorialActivity extends AppCompatActivity {
         setDrawerContent(navigationView);
 
         String[] items = new String[]{
-                "Opażenie termiczne",
-                "Opażenie chemiczne",
-                "Opażenie elektryczne",
-                "Opażenie słoneczne",
+                "Oparzenie termiczne",
+                "Oparzenie chemiczne",
+                "Oparzenie elektryczne",
+                "Oparzenie słoneczne",
                 "Odmrożenie",
                 "Krwotok z nosa"};
 
